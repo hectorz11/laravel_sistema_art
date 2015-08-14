@@ -1,0 +1,1 @@
+C:\xampp\htdocs\laravel\sistema_art\app/views/layouts/backend/sections/slider_home.blade.php
