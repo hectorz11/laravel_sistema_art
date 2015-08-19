@@ -13,3 +13,6 @@
 
 Route::get('/', array(
 	'as' => 'home', 'uses' => 'HomeController@index'));
+
+Route::get('/admin', array(
+	'as' => 'admin_dashboard', 'uses' => 'AdminController@index'));
