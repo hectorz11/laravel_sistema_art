@@ -5,6 +5,50 @@
                         <a href="zapana/index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
+                        <a href="#" data-toggle="collapse" data-target="#deeds"><i class="fa fa-fw fa-arrows-v"></i> Escrituras Públicas <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="deeds" class="collapse">
+                            <li>
+                                <a href="{{ URL::route('admin_deeds') }}">Lista</a>
+                            </li>
+                            <li>
+                                <a href="#">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#agrarians"><i class="fa fa-fw fa-arrows-v"></i> Expedientes Agrarios <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="agrarians" class="collapse">
+                            <li>
+                                <a href="#">Lista</a>
+                            </li>
+                            <li>
+                                <a href="#">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#civils"><i class="fa fa-fw fa-arrows-v"></i> Expedientes Civiles <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="civils" class="collapse">
+                            <li>
+                                <a href="#">Lista</a>
+                            </li>
+                            <li>
+                                <a href="#">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#penals"><i class="fa fa-fw fa-arrows-v"></i> Expedientes Penales <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="penals" class="collapse">
+                            <li>
+                                <a href="#">Lista</a>
+                            </li>
+                            <li>
+                                <a href="#">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="zapana/charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                     </li>
                     <li>

@@ -16,3 +16,9 @@ Route::get('/', array(
 
 Route::get('/admin', array(
 	'as' => 'admin_dashboard', 'uses' => 'AdminController@index'));
+
+Route::get('/admin/deeds', array(
+	'as' => 'admin_deeds', 'uses' => 'DeedController@getAdminIndex'));
+
+Route::get('/admin/deed/create', array(
+	'as' => 'admin_deed_create', 'uses' => 'DeedController@getAdminDeedCreate'));

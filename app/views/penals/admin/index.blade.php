@@ -1,0 +1,1 @@
+C:\xampp\htdocs\laravel\laravel_sistema_art\app/views/penals/admin/index.blade.php
