@@ -17,6 +17,11 @@ class CivilController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('civils.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

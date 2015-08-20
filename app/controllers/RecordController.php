@@ -17,6 +17,11 @@ class RecordController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('records.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

@@ -17,6 +17,11 @@ class PenalController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('penals.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

@@ -17,6 +17,11 @@ class AgrarianController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('agrarians.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

@@ -17,6 +17,11 @@ class DeedController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('deeds.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

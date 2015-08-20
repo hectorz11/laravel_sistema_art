@@ -17,6 +17,11 @@ class NotaryController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('notaries.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//

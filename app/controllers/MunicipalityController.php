@@ -17,6 +17,11 @@ class MunicipalityController extends \BaseController {
 		//
 	}
 
+	public function getAdminUpdate($id)
+	{
+		return View::make('municipalities.admin.update');
+	}
+
 	public function postAdminUpdate($id)
 	{
 		//
