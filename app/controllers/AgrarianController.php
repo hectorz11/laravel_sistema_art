@@ -1,15 +1,15 @@
 <?php
 
-class DeedController extends \BaseController {
+class AgrarianController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		return View::make('deeds.admin.index');
+		return View::make('agrarians.admin.index');
 	}
 
 	public function getAdminCreate()
 	{
-		return View::make('deeds.admin.create');
+		return View::make('agrarians.admin.create');
 	}
 
 	public function postAdminCreate()
@@ -26,4 +26,5 @@ class DeedController extends \BaseController {
 	{
 		//
 	}
+
 }

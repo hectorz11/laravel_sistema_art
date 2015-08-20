@@ -8,7 +8,7 @@
                         <a href="#" data-toggle="collapse" data-target="#deeds"><i class="fa fa-fw fa-arrows-v"></i> Escrituras Públicas <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="deeds" class="collapse">
                             <li>
-                                <a href="{{ URL::route('admin_deeds') }}">Lista</a>
+                                <a href="{{ URL::route('admin_deed_index') }}">Lista</a>
                             </li>
                             <li>
                                 <a href="#">Crear</a>
