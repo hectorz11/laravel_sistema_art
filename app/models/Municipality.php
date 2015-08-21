@@ -11,7 +11,7 @@ class Municipality extends \Eloquent {
 		return $this->hasMany('Record','municipality_id');
 	}
 
-	public static function createMunicipality($input)
+	public static function create($input)
 	{
 		$answer = [];
 		$rules = ['name' => 'required'];
@@ -25,10 +25,33 @@ class Municipality extends \Eloquent {
 			$municipality->status = 1;
 
 			if ($municipality->save()) {
-				$answer['message'] = 'Ha sido creado con exito!';
+				$answer['message'] = 'Creado con exito!';
 				$answer['error'] = false;
 			} else {
-				$answer['message'] = 'CREATE MUNICIPALITY error, team noob!';
+				$answer['message'] = 'MUNICIPALITY CREATE error, team noob!';
+				$answer['error'] = false;
+			}
+		}
+		return $answer;
+	}
+
+	public static function update($input, $id)
+	{
+		$answer = [];
+		$rules = ['name' => 'required'];
+		$validation = Validator::make($input, $rules);
+		if ($validation->fails()) {
+			$answer['message'] = $validation;
+			$answer['error'] = true;
+		} else {
+			$municipality = Municipality::find($id);
+			$municipality->name = Input::get('name');
+
+			if ($municipality->save()) {
+				$answer['message'] = 'Editado con exito!';
+				$answer['error'] = false;
+			} else {
+				$answer['message'] = 'MUNICIPALITY UPDATE error, team noob!';
 				$answer['error'] = false;
 			}
 		}
