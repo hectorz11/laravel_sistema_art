@@ -25,4 +25,9 @@ class HomeController extends BaseController {
 		return View::make('pages.home');
 	}
 
+	public function signIn()
+	{
+		return View::make('pages.sign_in');
+	}
+
 }

@@ -14,6 +14,9 @@
 Route::get('/', array(
 	'as' => 'home', 'uses' => 'HomeController@index'));
 
+Route::get('/signin', array(
+	'as' => 'signin', 'uses' => 'HomeController@signIn'));
+
 Route::group(array('prefix' => '/admin'), function() {
 
 	Route::get('/', array(

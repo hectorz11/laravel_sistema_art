@@ -88,3 +88,33 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Filtros: Administrador Usuario
+|--------------------------------------------------------------------------
+*/
+Route::filter('admin', function($route, $request, $value)
+{
+	try {
+		$user = Sentry::getUser();
+ 
+		if( ! $user->hasAnyAccess([$value])) {
+			return Redirect::route('/');
+		}
+	} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+		return Redirect::route('/');
+	}
+});
+Route::filter('user', function($route, $request, $value)
+{
+	try {
+		$user = Sentry::getUser();
+ 
+		if( ! $user->hasAnyAccess([$value])) {
+			return Redirect::route('/');
+		}
+	} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+		return Redirect::route('/');
+	}
+});
