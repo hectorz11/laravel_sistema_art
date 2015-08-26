@@ -7,7 +7,7 @@ class Penal extends \Eloquent {
 	protected $fillable = ['number_penal','acussed','start_date','crime','aggrieved','judge',
 		'scribe','references','description','status'];
 
-	public static function create($input)
+	public static function createPenal($input)
 	{
 		$answer = [];
 		$rules = [
@@ -48,7 +48,7 @@ class Penal extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updatePenal($input, $id)
 	{
 		$answer = [];
 		$rules = [

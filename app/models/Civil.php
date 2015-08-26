@@ -7,7 +7,7 @@ class Civil extends \Eloquent {
 	protected $fillable = ['number_civil','date','demandant','defendant','matery','secretary',
 		'file','references','description','status'];
 
-	public static function create($input)
+	public static function createCivil($input)
 	{
 		$answer = [];
 		$rules = [
@@ -48,7 +48,7 @@ class Civil extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateCivil($input, $id)
 	{
 		$answer = [];
 		$rules = [

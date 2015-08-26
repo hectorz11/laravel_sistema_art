@@ -11,7 +11,7 @@ class Municipality extends \Eloquent {
 		return $this->hasMany('Record','municipality_id');
 	}
 
-	public static function create($input)
+	public static function createMunicipality($input)
 	{
 		$answer = [];
 		$rules = ['name' => 'required'];
@@ -35,7 +35,7 @@ class Municipality extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateMunicipality($input, $id)
 	{
 		$answer = [];
 		$rules = ['name' => 'required'];

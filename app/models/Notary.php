@@ -11,7 +11,7 @@ class Notary extends \Eloquent {
 		return $this->hasMany('Deed','notary_id');
 	}
 
-	public static function create($input)
+	public static function createNotary($input)
 	{
 		$answer = [];
 		$rules = ['name' => 'required'];
@@ -35,7 +35,7 @@ class Notary extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateNotary($input, $id)
 	{
 		$answer = [];
 		$rules = ['name' => 'required'];

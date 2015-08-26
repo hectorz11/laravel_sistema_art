@@ -15,9 +15,25 @@ Route::get('/', array(
 	'as' => 'home', 'uses' => 'HomeController@index'));
 
 Route::get('/signin', array(
-	'as' => 'signin', 'uses' => 'HomeController@signIn'));
+	'as' => 'signin', 'uses' => 'HomeController@getSignIn'));
 
-Route::group(array('prefix' => '/admin'), function() {
+Route::group(array('before' => 'guest'), function() {
+
+	Route::get('/registro/{userId}/activacion/{activationCode}', array(
+		'as' => 'registro_activated', 'uses' => 'AccountController@getRegistroActivated'));
+	
+	Route::group(array('before' => 'csrf'), function() {
+		Route::post('/signin', array(
+			'as' => 'signin_post', 'uses' => 'HomeController@postSignIn'));
+		Route::post('/signup', array(
+			'as' => 'signup_post', 'uses' => 'HomeController@postSignUp'));
+	});
+});
+
+Route::get('/signout', array(
+	'as' => 'signout', 'uses' => 'HomeController@getSignOut'));
+
+Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() {
 
 	Route::get('/', array(
 		'as' => 'admin_dashboard', 'uses' => 'AdminController@index'));

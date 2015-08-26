@@ -12,7 +12,7 @@ class Deed extends \Eloquent {
 		return $this->belongsTo('Deed','notary_id');
 	}
 
-	public static function create($input)
+	public static function createDeed($input)
 	{
 		$answer = [];
 		$rules = [
@@ -56,7 +56,7 @@ class Deed extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateDeed($input, $id)
 	{
 		$answer = [];
 		$rules = [

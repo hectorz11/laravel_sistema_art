@@ -25,9 +25,45 @@ class HomeController extends BaseController {
 		return View::make('pages.home');
 	}
 
-	public function signIn()
+	public function getSignIn()
 	{
 		return View::make('pages.sign_in');
 	}
 
+	public function postSignIn()
+	{
+		$validation = Validator::make(Input::all(), User::$login_rules);
+		if($validation->fails()) {
+			return Redirect::route('/')->withInput();
+		} else {
+			try {
+				$credenciales = array(
+					'email' => Input::get('email'),
+					'password' => Input::get('password')
+				);
+				$sentry = Sentry::authenticate($credenciales, false);
+				if(Sentry::check()) {
+
+					if($sentry->hasAnyAccess(['admin'])) {
+						return Redirect::route('admin_dashboard')
+						->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
+					} else if($sentry->hasAnyAccess(['user'])) {
+						return Redirect::route('home');
+					}
+				} else {
+					return Redirect::route('/')->withInput();
+				}
+			} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
+		     	return Redirect::route('home')->withInput();
+			} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+		    	return Redirect::route('home')->withInput();
+			}
+		}
+	}
+
+	public function getSignOut()
+	{
+		Sentry::logout();
+		return Redirect::route('home');
+	}
 }

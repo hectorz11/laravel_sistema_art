@@ -7,7 +7,7 @@ class Agrarian extends \Eloquent {
 	protected $fillable = ['number_agrarian','date','demandant','defendant','matery','secretary',
 		'file','references','description','status'];
 
-	public static function create($input)
+	public static function createAgrarian($input)
 	{
 		$answer = [];
 		$rules = [
@@ -48,7 +48,7 @@ class Agrarian extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateAgrarian($input, $id)
 	{
 		$answer = [];
 		$rules = [

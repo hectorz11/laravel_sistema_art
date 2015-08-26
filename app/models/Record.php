@@ -12,7 +12,7 @@ class Record extends \Eloquent {
 		return $this->belongsTo('Municipality','municipality_id');
 	}
 
-	public static function create($input)
+	public static function createRecord($input)
 	{
 		$answer = [];
 		$rules = [
@@ -54,7 +54,7 @@ class Record extends \Eloquent {
 		return $answer;
 	}
 
-	public static function update($input, $id)
+	public static function updateRecord($input, $id)
 	{
 		$answer = [];
 		$rules = [
