@@ -6,4 +6,9 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 		'email' => 'required|email',
 		'password' => 'required'
 	);
+
+	public function allUsers()
+	{
+		return self::all();
+	}
 }

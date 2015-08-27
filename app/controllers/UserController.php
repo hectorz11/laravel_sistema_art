@@ -1,18 +1,18 @@
 <?php
 
-class DeedController extends \BaseController {
+class UserController extends \BaseController {
 
-	protected $deed = null;
+	protected $user = null;
 
-	public function __construct(Deed $deed)
+	public function __construct(User $user)
 	{
-		$this->deed = $deed;
+		$this->user = $user;
 	}
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['deed_index'])) {
-			return Response::json($this->deed->allDeeds());
+		if (Sentry::hasAnyAccess(['user_index'])) {
+			return Response::json($this->user->allUsers());
 		}
 	}
 
@@ -40,4 +40,5 @@ class DeedController extends \BaseController {
 	{
 		//
 	}
+
 }

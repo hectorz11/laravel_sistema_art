@@ -38,6 +38,26 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 	Route::get('/', array(
 		'as' => 'admin_dashboard', 'uses' => 'AdminController@index'));
 
+	Route::group(array('prefix' => '/user'), function() {
+
+		Route::get('/index', array(
+			'as' => 'admin_user_index', 'uses' => 'UserController@getAdminIndex'));
+		Route::get('/create', array(
+			'as' => 'admin_user_create', 'uses' => 'UserController@getAdminCreate'));
+		Route::get('/update/{id}', array(
+			'as' => 'admin_user_update', 'uses' => 'UserController@getAdminUpdate'));
+
+		Route::group(array('before' => 'csrf'), function() {
+
+			Route::post('/create', array(
+				'as' => 'admin_user_create_post', 'uses' => 'UserController@postAdminCreate'));
+			Route::put('/update/{id}', array(
+				'as' => 'admin_user_update_post', 'uses' => 'UserController@postAdminUpdate'));
+			Route::delete('/delete/{id}', array(
+				'as' => 'admin_user_delete_post', 'uses' => 'UserController@postAdminDelete'));
+		});
+	});
+
 	Route::group(array('prefix' => '/notary'), function() {
 
 		Route::get('/index', array(
@@ -51,9 +71,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 
 			Route::post('/create', array(
 				'as' => 'admin_notary_create_post', 'uses' => 'NotaryController@postAdminCreate'));
-			Route::post('/update/{id}', array(
+			Route::put('/update/{id}', array(
 				'as' => 'admin_notary_update_post', 'uses' => 'NotaryController@postAdminUpdate'));
-			Route::post('/delete/{id}', array(
+			Route::delete('/delete/{id}', array(
 				'as' => 'admin_notary_delete_post', 'uses' => 'NotaryController@postAdminDelete'));
 		});
 	});

@@ -12,6 +12,11 @@ class Deed extends \Eloquent {
 		return $this->belongsTo('Deed','notary_id');
 	}
 
+	public function allDeeds() 
+	{
+		return self::all();
+	}
+
 	public static function createDeed($input)
 	{
 		$answer = [];
