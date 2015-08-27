@@ -13,6 +13,13 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('GroupTableSeeder');
 		$this->call('UserTableSeeder');
+		$this->call('NotaryTableSeeder');
+		$this->call('MunicipalityTableSeeder');
+		$this->call('DeedTableSeeder');
+		$this->call('AgrarianTableSeeder');
+		$this->call('CivilTableSeeder');
+		$this->call('PenalTableSeeder');
+		$this->call('RecordTableSeeder');
 	}
 
 }

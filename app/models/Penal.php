@@ -41,7 +41,7 @@ class Penal extends \Eloquent {
 				$answer['message'] = 'Creado con exito!';
 				$answer['error'] = false;
 			} else {
-				$answer['message'] = 'DEED CREATE error, team noob!';
+				$answer['message'] = 'PENAL CREATE error, team noob!';
 				$answer['error'] = false;
 			}
 		}
@@ -81,7 +81,7 @@ class Penal extends \Eloquent {
 				$answer['message'] = 'Editado con exito!';
 				$answer['error'] = false;
 			} else {
-				$answer['message'] = 'DEED UPDATE error, team noob!';
+				$answer['message'] = 'PENAL UPDATE error, team noob!';
 				$answer['error'] = false;
 			}
 		}
