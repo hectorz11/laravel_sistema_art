@@ -12,8 +12,18 @@ class DeedController extends \BaseController {
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deed_index'])) {
-			return Response::json($this->deed->allDeeds());
+			$deed = $this->deed->allDeeds();
+			return Response::json($deed);
+			/*$notaries = $this->notary->allNotary();
+			$deeds = $this->deed->allDeeds();
+			return View::make('deeds.admin.index')
+			->with(['deeds' => $deeds, 'notaries' => $notaries]);*/
 		}
+	}
+
+	public function index()
+	{
+		return View::make('deeds.admin.index');
 	}
 
 	public function getAdminCreate()

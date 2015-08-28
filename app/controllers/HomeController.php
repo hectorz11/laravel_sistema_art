@@ -45,7 +45,7 @@ class HomeController extends BaseController {
 				if(Sentry::check()) {
 
 					if($sentry->hasAnyAccess(['admin'])) {
-						return Redirect::route('admin_dashboard')
+						return Redirect::route('admin.dashboard')
 						->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
 					} else if($sentry->hasAnyAccess(['user'])) {
 						return Redirect::route('home');

@@ -2,9 +2,18 @@
 
 class MunicipalityController extends \BaseController {
 
+	protected $municipality = null;
+
+	public function __construct(Municipality $municipality)
+	{
+		$this->municipality = $municipality;
+	}
+
 	public function getAdminIndex()
 	{
-		return View::make('municipalities.admin.index');
+		if (Sentry::hasAnyAccess(['municipality_index'])) {
+			return Response::json($this->municipality->allMunicipalities());
+		}
 	}
 
 	public function getAdminCreate()

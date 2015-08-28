@@ -42,7 +42,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        {{ Form::open(['route' => 'signin_post', 'class' => 'form']) }}
+                        {{ Form::open(['route' => 'signin.post', 'class' => 'form']) }}
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>

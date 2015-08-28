@@ -14,7 +14,7 @@ class Deed extends \Eloquent {
 
 	public function allDeeds() 
 	{
-		return self::all();
+		return self::whereStatus(1)->get();
 	}
 
 	public static function createDeed($input)

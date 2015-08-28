@@ -7,6 +7,11 @@ class Civil extends \Eloquent {
 	protected $fillable = ['number_civil','date','demandant','defendant','matery','secretary',
 		'file','references','description','status'];
 
+	public function allCivils()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createCivil($input)
 	{
 		$answer = [];

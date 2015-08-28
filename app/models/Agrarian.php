@@ -7,6 +7,11 @@ class Agrarian extends \Eloquent {
 	protected $fillable = ['number_agrarian','date','demandant','defendant','matery','secretary',
 		'file','references','description','status'];
 
+	public function allAgrarians()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createAgrarian($input)
 	{
 		$answer = [];

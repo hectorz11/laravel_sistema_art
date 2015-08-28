@@ -2,9 +2,18 @@
 
 class PenalController extends \BaseController {
 
+	protected $penal = null;
+
+	public function __construct(Penal $penal)
+	{
+		$this->penal = $penal;
+	}
+
 	public function getAdminIndex()
 	{
-		return View::make('penals.admin.index');
+		if (Sentry::hasAnyAccess(['penal_index'])) {
+			return Response::json($this->penal->allPenals());
+		}
 	}
 
 	public function getAdminCreate()

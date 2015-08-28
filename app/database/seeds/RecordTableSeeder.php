@@ -16,9 +16,9 @@ class RecordTableSeeder extends Seeder {
 			$record->number_starting = $faker->randomNumber($nbDigits = 4);
 			$record->folio = $faker->randomNumber($nbDigits = 3);
 			$record->file = $faker->randomNumber($nbDigits = 3);
-			$record->date = $faker->date($format = 'Y-m-d', $max = 'now');,
-			$record->interested_m = $faker->firstNameMale.' '.$faker->lastNameMale;
-			$record->interested_f = $faker->firstNameFemale.' '.$faker->lastNameFemale;
+			$record->date = $faker->date($format = 'Y-m-d', $max = 'now');
+			$record->interested_m = $faker->firstNameMale.' '.$faker->lastName;
+			$record->interested_f = $faker->firstNameFemale.' '.$faker->lastName;
 			$record->starting = $faker->word;
 			$record->description = $faker->sentence($nbWords = 6);
 			$record->status = 1;

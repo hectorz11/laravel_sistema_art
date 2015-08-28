@@ -11,6 +11,11 @@ class Notary extends \Eloquent {
 		return $this->hasMany('Deed','notary_id');
 	}
 
+	public function allNotaries()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createNotary($input)
 	{
 		$answer = [];

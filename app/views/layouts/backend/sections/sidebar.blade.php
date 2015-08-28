@@ -2,7 +2,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="zapana/index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#deeds">
@@ -10,8 +10,8 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="deeds" class="collapse">
-                            <li><a href="{{ URL::route('admin_deed_index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin_deed_create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.deeds.index') }}">Lista</a></li>
+                            <li><a href="{{ URL::route('admin.deeds.create') }}">Crear</a></li>
                         </ul>
                     </li>
                     <li>
@@ -20,8 +20,8 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="agrarians" class="collapse">
-                            <li><a href="{{ URL::route('admin_agrarian_index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin_agrarian_create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.agrarians.index') }}">Lista</a></li>
+                            <li><a href="{{ URL::route('admin.agrarians.create') }}">Crear</a></li>
                         </ul>
                     </li>
                     <li>
@@ -30,8 +30,8 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="civils" class="collapse">
-                            <li><a href="{{ URL::route('admin_civil_index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin_civil_create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.civils.index') }}">Lista</a></li>
+                            <li><a href="{{ URL::route('admin.civils.create') }}">Crear</a></li>
                         </ul>
                     </li>
                     <li>
@@ -40,8 +40,8 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="penals" class="collapse">
-                            <li><a href="{{ URL::route('admin_penal_index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin_penal_create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.penals.index') }}">Lista</a></li>
+                            <li><a href="{{ URL::route('admin.penals.create') }}">Crear</a></li>
                         </ul>
                     </li>
                     <li>

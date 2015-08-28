@@ -12,6 +12,11 @@ class Record extends \Eloquent {
 		return $this->belongsTo('Municipality','municipality_id');
 	}
 
+	public function allRecords()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createRecord($input)
 	{
 		$answer = [];

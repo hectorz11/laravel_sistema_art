@@ -2,14 +2,18 @@
 
 class NotaryController extends \BaseController {
 
-	public function getAdminIndex()
+	protected $notary = null;
+
+	public function __construct(Notary $notary)
 	{
-		return View::make('notaries.admin.index');
+		$this->notary = $notary;
 	}
 
-	public function getAdminCreate()
+	public function getAdminIndex()
 	{
-		return View::make('notaries.admin.create');
+		if (Sentry::hasAnyAccess(['notary_index'])) {
+			return Response::json($this->notary->allNotaries());
+		}
 	}
 
 	public function postAdminCreate()

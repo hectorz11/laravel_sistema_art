@@ -7,6 +7,11 @@ class Penal extends \Eloquent {
 	protected $fillable = ['number_penal','acussed','start_date','crime','aggrieved','judge',
 		'scribe','references','description','status'];
 
+	public function allPenals()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createPenal($input)
 	{
 		$answer = [];

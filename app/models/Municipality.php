@@ -11,6 +11,11 @@ class Municipality extends \Eloquent {
 		return $this->hasMany('Record','municipality_id');
 	}
 
+	public function allMunicipalities()
+	{
+		return self::whereStatus(1)->get();
+	}
+
 	public static function createMunicipality($input)
 	{
 		$answer = [];

@@ -2,9 +2,18 @@
 
 class CivilController extends \BaseController {
 
+	protected $civil = null;
+
+	public function __construct(Civil $civil)
+	{
+		$this->civil = $civil;
+	}
+
 	public function getAdminIndex()
 	{
-		return View::make('civils.admin.index');
+		if (Sentry::hasAnyAccess(['civil_index'])) {
+			return Response::json($this->civil->allCivils());
+		}
 	}
 
 	public function getAdminCreate()

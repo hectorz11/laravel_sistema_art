@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_deed_index') }}">
+                            <a href="{{ URL::route('admin.deeds.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_agrarian_index') }}">
+                            <a href="{{ URL::route('admin.agrarians.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_civil_index') }}">
+                            <a href="{{ URL::route('admin.civils.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_penal_index') }}">
+                            <a href="{{ URL::route('admin.penals.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_deed_index') }}">
+                            <a href="{{ URL::route('admin.deeds.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_agrarian_index') }}">
+                            <a href="{{ URL::route('admin.agrarians.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -180,7 +180,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_civil_index') }}">
+                            <a href="{{ URL::route('admin.civils.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -202,7 +202,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin_penal_index') }}">
+                            <a href="{{ URL::route('admin.penals.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
