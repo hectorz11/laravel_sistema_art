@@ -100,13 +100,14 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 
 	Route::group(array('prefix' => '/deeds'), function() {
 
-		Route::get('/index', ['uses' => 'DeedController@index']);
 		Route::get('/', array(
 			'as' => 'admin.deeds.index', 'uses' => 'DeedController@getAdminIndex'));
 		Route::get('/create', array(
 			'as' => 'admin.deeds.create', 'uses' => 'DeedController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.deeds.edit', 'uses' => 'DeedController@getAdminUpdate'));
+		Route::get('/datatable', array(
+			'as' => 'admin.deeds.datatable', 'uses' => 'DeedController@getDatatable'));
 
 		Route::group(array('before' => 'csrf'), function() {
 
