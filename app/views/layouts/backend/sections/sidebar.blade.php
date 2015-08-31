@@ -6,32 +6,32 @@
                     </li>
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#deeds">
-                            <i class="fa fa-fw fa-bar-chart-o"></i> Escrituras Públicas 
+                            <i class="fa fa-fw fa-desktop"></i> Escrituras Públicas 
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="deeds" class="collapse">
-                            <li><a href="{{ URL::route('admin.deeds.index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin.deeds.create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.deeds.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#agrarians">
-                            <i class="fa fa-fw fa-table"></i> Expedientes Agrarios 
+                            <i class="fa fa-fw fa-desktop"></i> Expedientes Agrarios 
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="agrarians" class="collapse">
-                            <li><a href="{{ URL::route('admin.agrarians.index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin.agrarians.create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.agrarians.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.agrarians.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#civils">
-                            <i class="fa fa-fwfa fa-fw fa-edit"></i> Expedientes Civiles 
+                            <i class="fa fa-fw fa-desktop"></i> Expedientes Civiles 
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="civils" class="collapse">
-                            <li><a href="{{ URL::route('admin.civils.index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin.civils.create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.civils.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.civils.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         </ul>
                     </li>
                     <li>
@@ -40,8 +40,18 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="penals" class="collapse">
-                            <li><a href="{{ URL::route('admin.penals.index') }}">Lista</a></li>
-                            <li><a href="{{ URL::route('admin.penals.create') }}">Crear</a></li>
+                            <li><a href="{{ URL::route('admin.penals.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.penals.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#records">
+                            <i class="fa fa-fw fa-desktop"></i> Registros Civiles 
+                            <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="records" class="collapse">
+                            <li><a href="{{ URL::route('admin.records.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.records.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         </ul>
                     </li>
                     <li>

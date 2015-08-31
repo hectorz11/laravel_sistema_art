@@ -11,7 +11,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Crear
@@ -21,15 +21,17 @@
                 </div>
                 <!-- /.row -->
 
+                @if(Session::has('message'))
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
+                        <div class="alert alert-{{ Session::get('class') }} alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+                            <i class="fa fa-info-circle"></i>  {{ Session::get('message') }}
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
+                @endif
 
                 <div class="row">
                     <form role="form">
@@ -82,8 +84,8 @@
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="3" placeholder="Descripción"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Aceptar</button>
-                            <button type="reset" class="btn btn-danger">Resetear</button>
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
+                            <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
                         </div>
                     </form>
                 </div>

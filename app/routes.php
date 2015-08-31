@@ -128,6 +128,8 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			'as' => 'admin.agrarians.create', 'uses' => 'AgrarianController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.agrarians.edit', 'uses' => 'AgrarianController@getAdminUpdate'));
+		Route::get('/datatable', array(
+			'as' => 'admin.agrarians.datatable', 'uses' => 'AgrarianController@getDatatable'));
 
 		Route::group(array('before' => 'csrf'), function() {
 
@@ -148,6 +150,8 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			'as' => 'admin.civils.create', 'uses' => 'CivilController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.civils.edit', 'uses' => 'CivilController@getAdminUpdate'));
+		Route::get('/datatable', array(
+			'as' => 'admin.civils.datatable', 'uses' => 'CivilController@getDatatable'));
 
 		Route::group(array('before' => 'csrf'), function() {
 
@@ -168,6 +172,8 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			'as' => 'admin.records.create', 'uses' => 'RecordController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.records.edit', 'uses' => 'RecordController@getAdminUpdate'));
+		Route::get('/datatable', array(
+			'as' => 'admin.records.datatable', 'uses' => 'RecordController@getDatatable'));
 
 		Route::group(array('before' => 'csrf'), function() {
 
@@ -188,6 +194,8 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			'as' => 'admin.penals.create', 'uses' => 'PenalController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.penals.edit', 'uses' => 'PenalController@getAdminUpdate'));
+		Route::get('/datatable', array(
+			'as' => 'admin.penals.datatable', 'uses' => 'PenalController@getDatatable'));
 
 		Route::group(array('before' => 'csrf'), function() {
 

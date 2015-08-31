@@ -17,7 +17,7 @@ class AgrarianTableSeeder extends Seeder {
 			$agrarian->demandant = $faker->firstName.' '.$faker->lastName;
 			$agrarian->defendant = $faker->firstName.' '.$faker->lastName;
 			$agrarian->matery = $faker->word;
-			$agrarian->secretary = $faker->word;
+			$agrarian->secretary = $faker->firstName.' '.$faker->lastName;
 			$agrarian->file = $faker->randomNumber($nbDigits = 3);
 			$agrarian->references = $faker->sentence($nbWords = 6);
 			$agrarian->description = $faker->sentence($nbWords = 6);

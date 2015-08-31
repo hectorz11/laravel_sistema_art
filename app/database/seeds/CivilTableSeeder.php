@@ -17,7 +17,7 @@ class CivilTableSeeder extends Seeder {
 			$civil->demandant = $faker->firstName.' '.$faker->lastName;
 			$civil->defendant = $faker->firstName.' '.$faker->lastName;
 			$civil->matery = $faker->word;
-			$civil->secretary = $faker->word;
+			$civil->secretary = $faker->firstName.' '.$faker->lastName;
 			$civil->file = $faker->randomNumber($nbDigits = 3);
 			$civil->references = $faker->sentence($nbWords = 6);
 			$civil->description = $faker->sentence($nbWords = 6);

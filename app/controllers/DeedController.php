@@ -14,10 +14,9 @@ class DeedController extends \BaseController {
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deed_index'])) {
-			$deed = $this->deed->allDeeds();
-			//return Response::json($deed);
-			$notaries = $this->notary->allNotaries();
 			$deeds = $this->deed->allDeeds();
+			//return Response::json($deeds);
+			$notaries = $this->notary->allNotaries();
 			return View::make('deeds.admin.index')
 			->with(['deeds' => $deeds, 'notaries' => $notaries]);
 		}
@@ -27,19 +26,20 @@ class DeedController extends \BaseController {
 	{
 		$result = DB::table('deeds')
 		->select(array(
-			'notaries.name as n',
-			'deeds.number_deeds as nd',
-			'deeds.protocol as p',
-			'deeds.folio as f',
-			'deeds.given_by as gb',
-			'deeds.pro as pr'))
+			'deeds.id',
+			'notaries.name as name',
+			'deeds.number_deeds as number',
+			'deeds.protocol as protocol',
+			'deeds.folio as folio',
+			'deeds.given_by as given',
+			'deeds.pro as pro'))
 		->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
-		->where('status', '=', 1);
+		->where('deeds.status', '=', 1);
 
 		return Datatable::query($result)
 		->searchColumns('notaries.name','deeds.number_deeds','deeds.protocol','deeds.given_by','deeds.pro')
-		->orderColumns('id')
-		->showColumns('id','n','nd','p','f','gb','pr')
+		->orderColumns('id','deeds.number_deeds')
+		->showColumns('id','name','number','protocol','folio','given','pro')
 		->addColumn('Operaciones', function($model)
 		{
 			return "<a href='#' id=$model->id data-toggle='modal'>
