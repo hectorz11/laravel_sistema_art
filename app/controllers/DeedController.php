@@ -11,14 +11,19 @@ class DeedController extends \BaseController {
 		$this->notary = $notary;
 	}
 
+	public function index()
+	{
+		$deeds = $this->deed->allDeeds();
+		return Response::json(['deeds' => $deeds]);
+	}
+
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deed_index'])) {
 			$deeds = $this->deed->allDeeds();
-			//return Response::json($deeds);
 			$notaries = $this->notary->allNotaries();
-			return View::make('deeds.admin.index')
-			->with(['deeds' => $deeds, 'notaries' => $notaries]);
+			//return Response::json(['deeds' => $deeds, 'notaries' => $notaries]);
+			return View::make('deeds.admin.index');
 		}
 	}
 

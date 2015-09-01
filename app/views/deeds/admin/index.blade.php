@@ -78,6 +78,9 @@
             </div>
             <!-- /.container-fluid -->
 
+@stop
+
+@section('scripts')
 <script src="{{ URL::asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
 <script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
@@ -91,6 +94,12 @@
             "bServerSide": true,
             "sAjaxSource": '/admin/deeds/datatable',
         });
+
+        $(function() {
+            var PATH = "http://localhost";
+
+            
+        })
     });
 </script>
 @stop

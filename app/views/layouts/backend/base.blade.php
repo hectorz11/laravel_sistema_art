@@ -67,6 +67,9 @@
     </div>
     <!-- /#wrapper -->
 
+    <!-- Script the datatable -->
+            @yield('scripts')
+
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('/zapana/js/bootstrap.min.js') }}"></script>
 
