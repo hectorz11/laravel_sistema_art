@@ -94,12 +94,6 @@
             "bServerSide": true,
             "sAjaxSource": '/admin/deeds/datatable',
         });
-
-        $(function() {
-            var PATH = "http://localhost";
-
-            
-        })
     });
 </script>
 @stop
