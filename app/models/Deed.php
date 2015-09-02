@@ -9,7 +9,7 @@ class Deed extends \Eloquent {
 
 	public function notaries()
 	{
-		return $this->belongsTo('Deed','notary_id');
+		return $this->belongsTo('Notary','notary_id');
 	}
 
 	public function allDeeds() 

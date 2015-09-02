@@ -11,19 +11,32 @@ class DeedController extends \BaseController {
 		$this->notary = $notary;
 	}
 
-	public function index()
-	{
-		$deeds = $this->deed->allDeeds();
-		return Response::json(['deeds' => $deeds]);
-	}
-
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deed_index'])) {
-			$deeds = $this->deed->allDeeds();
-			$notaries = $this->notary->allNotaries();
-			//return Response::json(['deeds' => $deeds, 'notaries' => $notaries]);
-			return View::make('deeds.admin.index');
+			
+			$deeds = DB::table('deeds')
+			->select(array(
+				'deeds.id',
+				'notaries.name as name',
+				'deeds.number_deeds as number_deeds',
+				'deeds.protocol as protocol',
+				'deeds.folio as folio',
+				'deeds.given_by as given_by',
+				'deeds.pro as pro'))
+			->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
+			->where('deeds.status', '=', 1)->paginate(5);
+			
+			//$deeds = $this->deed->allDeeds();
+
+			if (Request::ajax()) {
+				return Response::json(View::make('deeds.admin.posts', ['deeds' => $deeds])->render());
+				//return Response::json(['deeds' => $deeds]);
+			} else {
+				return View::make('deeds.admin.index', ['deeds' => $deeds]);
+			}
+		} else {
+			return View::make('pages.error');
 		}
 	}
 
