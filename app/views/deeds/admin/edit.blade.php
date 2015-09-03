@@ -14,7 +14,11 @@
                                 <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
+<<<<<<< HEAD
                                 <i class="fa fa-edit"></i> Crear
+=======
+                                <i class="fa fa-edit"></i> Editar
+>>>>>>> 9c072125118d19e0196e7ed510a2d7d41497cdca
                             </li>
                         </ol>
                     </div>
@@ -34,31 +38,31 @@
                 @endif
 
                 <div class="row">
-                    <form role="form">
+                    <form role="form" id="formEdit">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nro. de Escrituras Públicas</label>
-                                <input class="form-control" placeholder="Nro. de Escrituras Públicas">
+                                {{ Form::text('number_deeds', '', ['class' => 'form-control', 'id' => 'number_deeds']) }}
                             </div>
                             <div class="form-group">
                                 <label>Protocolo</label>
-                                <input class="form-control" placeholder="Protocolo">
+                                {{ Form::text('protocol', '', ['class' => 'form-control', 'id' => 'protocol']) }}
                             </div>
                             <div class="form-group">
                                 <label>Folio</label>
-                                <input class="form-control" placeholder="Folio">
+                                {{ Form::text('folio', '', ['class' => 'form-control', 'id' => 'folio']) }}
                             </div>
                             <div class="form-group">
                                 <label>Otorgado por</label>
-                                <input class="form-control" placeholder="Otorgado por">
+                                {{ Form::text('given_by', '', ['class' => 'form-control', 'id' => 'given_by']) }}
                             </div>
                             <div class="form-group">
                                 <label>A Favor</label>
-                                <input class="form-control" placeholder="A Favor">
+                                {{ Form::text('pro', '', ['class' => 'form-control', 'id' => 'pro']) }}
                             </div>
                             <div class="form-group">
                                 <label>Tipo de Escritura</label>
-                                <input class="form-control" placeholder="Tipo de Escritura">
+                                {{ Form::text('type_writing', '', ['class' => 'form-control', 'id' => 'type_writing']) }}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -74,16 +78,17 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
-                                <input class="form-control" placeholder="Fecha (AAAA-MM-DD)">
+                                {{ Form::text('date', '', ['class' => 'form-control', 'id' => 'date']) }}
                             </div>
                             <div class="form-group">
                                 <label>Nro. de Fojas</label>
-                                <input class="form-control" placeholder="Nro. de Fojas">
+                                {{ Form::text('number_folios', '', ['class' => 'form-control', 'id' => 'number_folios']) }}
                             </div>
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea class="form-control" rows="3" placeholder="Descripción"></textarea>
+                                {{ Form::textArea('description', '', ['class' => 'form-control', 'rows' => 3]) }}
                             </div>
+                            {{ Form::hidden('id', $deed->id, ['id' => 'id']) }}
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
                             <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
                         </div>
@@ -96,5 +101,13 @@
 @stop
 
 @section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#formEdit').on(function() {
+            var id = row.data('id');
 
+            alert(id);
+        });
+    });
+</script>
 @stop

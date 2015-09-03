@@ -78,12 +78,25 @@ class DeedController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
+<<<<<<< HEAD
 		$deeds = $this->deed->allDeeds();
 		$notaries = $this->notary->allNotaries();
 		if (Request::ajax()) {
 			return Response::json(['deeds' => $deeds, 'notaries' => $notaries]);
 		}
 		return View::make('deeds.admin.edit');
+=======
+		if (Sentry::hasAnyAccess(['deed_update'])) {
+			$deed = $this->deed->selectDeed($id);
+			if (Request::ajax()) {
+				return Response::json(['deed' => $deed]);
+			} else {
+				return View::make('deeds.admin.edit', ['deed' => $deed]);
+			}
+		} else {
+			return View::make('pages.error');
+		}
+>>>>>>> 9c072125118d19e0196e7ed510a2d7d41497cdca
 	}
 
 	public function postAdminUpdate($id)

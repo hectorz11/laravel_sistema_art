@@ -93,9 +93,6 @@
 
             </div>
             <!-- /.container-fluid -->
-
-            
-
 @stop
 
 @section('scripts')

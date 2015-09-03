@@ -17,6 +17,11 @@ class Deed extends \Eloquent {
 		return self::whereStatus(1)->get();
 	}
 
+	public function selectDeed($id)
+	{
+		return self::find($id);
+	}
+
 	public static function createDeed($input)
 	{
 		$answer = [];
