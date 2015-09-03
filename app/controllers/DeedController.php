@@ -14,7 +14,6 @@ class DeedController extends \BaseController {
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deed_index'])) {
-			
 			$deeds = DB::table('deeds')
 			->select(array(
 				'deeds.id',
@@ -26,9 +25,7 @@ class DeedController extends \BaseController {
 				'deeds.pro as pro'))
 			->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
 			->where('deeds.status', '=', 1)->paginate(5);
-			
 			//$deeds = $this->deed->allDeeds();
-
 			if (Request::ajax()) {
 				return Response::json(View::make('deeds.admin.posts', ['deeds' => $deeds])->render());
 				//return Response::json(['deeds' => $deeds]);
@@ -81,7 +78,12 @@ class DeedController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		return View::make('deeds.admin.update');
+		$deeds = $this->deed->allDeeds();
+		$notaries = $this->notary->allNotaries();
+		if (Request::ajax()) {
+			return Response::json(['deeds' => $deeds, 'notaries' => $notaries]);
+		}
+		return View::make('deeds.admin.edit');
 	}
 
 	public function postAdminUpdate($id)
