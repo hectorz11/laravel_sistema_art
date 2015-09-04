@@ -64,22 +64,38 @@ class DeedController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		return View::make('deeds.admin.create');
+		if (Sentry::hasAnyAccess(['deed_create'])) {
+			return View::make('deeds.admin.create');
+		} else {
+			return View::make('pages.error');
+		}
 	}
 
 	public function postAdminCreate()
 	{
-		//
+		if (Sentry::hasAnyAccess(['deed_create'])) {
+			$answer = Deed::createDeed(Input::all());
+			if ($answer['error'] == true) {
+				return Redirect::route('admin.deeds.create')
+				->withErrors($answer['message'])->withInput();
+			} else {
+				return Redirect::route('admin.deeds.index')
+				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
+		} else {
+			return View::make('pages.error');
+		}
 	}
 
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['deed_update'])) {
+			$notaries = $this->notary->allNotaries();
 			$deed = $this->deed->selectDeed($id);
 			if (Request::ajax()) {
-				return Response::json(['deed' => $deed]);
+				return Response::json(['deed' => $deed, 'notaries' => $notaries]);
 			} else {
-				return View::make('deeds.admin.edit', ['deed' => $deed]);
+				return View::make('deeds.admin.edit', ['deed' => $deed, 'notaries' => $notaries]);
 			}
 		} else {
 			return View::make('pages.error');
@@ -88,7 +104,18 @@ class DeedController extends \BaseController {
 
 	public function postAdminUpdate($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['deed_update'])) {
+			$answer = Deed::updateDeed(Input::all(), $id);
+			if ($answer['error'] == true) {
+				return Redirect::route('admin.deeds.edit', $id)
+				->withErrors($answer['message'])->withInput();
+			} else {
+				return Redirect::route('admin.deeds.edit', $id)
+				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
+		} else {
+			return View::make('pages.error');
+		}
 	}
 
 	public function postAdminDelete($id)
