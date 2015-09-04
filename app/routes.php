@@ -106,9 +106,6 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			'as' => 'admin.deeds.create', 'uses' => 'DeedController@getAdminCreate'));
 		Route::get('/{id}/edit', array(
 			'as' => 'admin.deeds.edit', 'uses' => 'DeedController@getAdminUpdate'));
-		Route::get('/datatable', array(
-			'as' => 'admin.deeds.datatable', 'uses' => 'DeedController@getDatatable'));
-		Route::get('/index', array('uses' => 'DeedController@index'));
 
 		Route::group(array('before' => 'csrf'), function() {
 

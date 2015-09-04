@@ -14,11 +14,7 @@
                                 <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
-<<<<<<< HEAD
-                                <i class="fa fa-edit"></i> Crear
-=======
                                 <i class="fa fa-edit"></i> Editar
->>>>>>> 9c072125118d19e0196e7ed510a2d7d41497cdca
                             </li>
                         </ol>
                     </div>
@@ -42,27 +38,27 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nro. de Escrituras Públicas</label>
-                                {{ Form::text('number_deeds', '', ['class' => 'form-control', 'id' => 'number_deeds']) }}
+                                {{ Form::text('number_deeds', $deed->number_deeds, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Protocolo</label>
-                                {{ Form::text('protocol', '', ['class' => 'form-control', 'id' => 'protocol']) }}
+                                {{ Form::text('protocol', $deed->protocol, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Folio</label>
-                                {{ Form::text('folio', '', ['class' => 'form-control', 'id' => 'folio']) }}
+                                {{ Form::text('folio', $deed->folio, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Otorgado por</label>
-                                {{ Form::text('given_by', '', ['class' => 'form-control', 'id' => 'given_by']) }}
+                                {{ Form::text('given_by', $deed->given_by, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>A Favor</label>
-                                {{ Form::text('pro', '', ['class' => 'form-control', 'id' => 'pro']) }}
+                                {{ Form::text('pro', $deed->pro, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Tipo de Escritura</label>
-                                {{ Form::text('type_writing', '', ['class' => 'form-control', 'id' => 'type_writing']) }}
+                                {{ Form::text('type_writing', $deed->type_writing, ['class' => 'form-control']) }}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -78,23 +74,34 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
-                                {{ Form::text('date', '', ['class' => 'form-control', 'id' => 'date']) }}
+                                {{ Form::text('date', $deed->date, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Nro. de Fojas</label>
-                                {{ Form::text('number_folios', '', ['class' => 'form-control', 'id' => 'number_folios']) }}
+                                {{ Form::text('number_folios', $deed->number_folios, ['class' => 'form-control']) }}
                             </div>
                             <div class="form-group">
                                 <label>Descripción</label>
                                 {{ Form::textArea('description', '', ['class' => 'form-control', 'rows' => 3]) }}
                             </div>
-                            {{ Form::hidden('id', $deed->id, ['id' => 'id']) }}
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
                             <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
                         </div>
                     </form>
                 </div>
                 <!-- /.row -->
+
+                <div class='row'>
+                    <!--al pulsar en el botón debajo de éste mostraremos los usuarios registrados-->
+                    <div class='col-lg-12'>
+                        {{ HTML::link(URL::to('#'), 'Ver usuarios registrados', ['class' => 'show_users']) }}  
+                        <!--div para mostrar un preloader mientras cargamos los usuarios-->
+                        <div style='margin: 10px 0px 0px 300px' class='preload_users'></div>
+                        <!--aquí se mostrarán los Expedientes Públicos-->
+                        <table class='load_ajax table table-striped table-bordered table-hover'>
+                        </table>
+                    </div>
+                </div>
 
             </div>
             <!-- /.container-fluid -->
@@ -107,6 +114,27 @@
             var id = row.data('id');
 
             alert(id);
+        });
+
+        $('.show_users').bind('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                var id = row.data('1');
+                url: '/admin/deeds/' + id + '/edit';
+                success: function (data) {
+                    $('.preload_users').html('');
+                    $('.load_ajax').html(findDeed)
+                    var findDeed = '';  
+                    findDeed += '<div>' + data.deed.name + '</div>';
+                    findDeed += '<div>' + data.deed.number_deed + '</div>';
+                    findDeed += '<div>' + data.deed.protocol + '</div>';
+                    findDeed += '<div>' + data.deed.folio + '</div>';
+                    findDeed += '<div>' + data.deed.given_by + '</div>';
+                    findDeed += '<div>' + data.deed.pro + '</div>';
+                    $('.load_ajax').html(findDeed)
+                }
+            })
         });
     });
 </script>

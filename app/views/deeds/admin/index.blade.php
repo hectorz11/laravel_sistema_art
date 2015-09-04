@@ -86,11 +86,7 @@
                         </table>
                     </div>
                 </div>
-
-                <div class="posts">
-                    @include('deeds.admin.posts')
-                </div>
-
+                
             </div>
             <!-- /.container-fluid -->
 @stop
@@ -118,7 +114,7 @@
             "displayLength":10,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": '/admin/deeds/datatable',
+            "sAjaxSource": '/admin/deeds',
         });
 
         $('.show_users').bind('click', function(e) {
