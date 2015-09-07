@@ -150,7 +150,7 @@
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
                             <a href="{{ URL::route('admin.deeds.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
                 <!-- /.row -->
 
