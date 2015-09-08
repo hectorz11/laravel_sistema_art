@@ -106,14 +106,22 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>A Notario</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select id="notar_id" class="form-control">
+                                    <option>A Notario</option>
+                            @if(isset($notaries))
+                                @foreach($notaries as $notary)
+                                    <option value="{{ $notary->id }}">{{ $notary->name }}</option>
+                                @endforeach
+                            @endif
                                 </select>
                             </div>
+                            @if( $errors->has('notary_id') )
+                                <div class="alert alert-danger">
+                                @foreach($errors->get('notary_id') as $error)
+                                    * {{$error}}</br>
+                                @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
                                 {{ Form::text('date', Input::old('date'), ['class' => 'form-control', 'placeholder' => 'Fecha (AAAA-MM-DD)']) }}
@@ -143,7 +151,7 @@
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
                             <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
                 <!-- /.row -->
 

@@ -65,7 +65,8 @@ class DeedController extends \BaseController {
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['deed_create'])) {
-			return View::make('deeds.admin.create');
+			$notaries = $this->notary->allNotaries();
+			return View::make('deeds.admin.create', ['notaries' => $notaries]);
 		} else {
 			return View::make('pages.error');
 		}
