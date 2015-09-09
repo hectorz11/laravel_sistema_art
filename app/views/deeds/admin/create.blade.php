@@ -106,7 +106,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>A Notario</label>
-                                <select id="notar_id" class="form-control">
+                                <select name="notary_id" class="form-control">
                                     <option>A Notario</option>
                             @if(isset($notaries))
                                 @foreach($notaries as $notary)
@@ -149,7 +149,7 @@
                                 {{ Form::textArea('description', Input::old('description'), ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Descripción']) }}
                             </div>
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
+                            <a href="{{ URL::route('admin.deeds.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>

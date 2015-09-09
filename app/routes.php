@@ -52,9 +52,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/create', array(
 				'as' => 'admin_user_create_post', 'uses' => 'UserController@postAdminCreate'));
 			Route::put('/update/{id}', array(
-				'as' => 'admin_user_update_post', 'uses' => 'UserController@postAdminUpdate'));
+				'as' => 'admin_user_update_post', 'uses' => 'UserController@putAdminUpdate'));
 			Route::delete('/delete/{id}', array(
-				'as' => 'admin_user_delete_post', 'uses' => 'UserController@postAdminDelete'));
+				'as' => 'admin_user_delete_post', 'uses' => 'UserController@deleteAdminDelete'));
 		});
 	});
 
@@ -72,9 +72,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.notaries.store', 'uses' => 'NotaryController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.notaries.update', 'uses' => 'NotaryController@postAdminUpdate'));
+				'as' => 'admin.notaries.update', 'uses' => 'NotaryController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.notaries.destroy', 'uses' => 'NotaryController@postAdminDelete'));
+				'as' => 'admin.notaries.destroy', 'uses' => 'NotaryController@deleteAdminDelete'));
 		});
 	});
 
@@ -92,9 +92,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.municipalities.store', 'uses' => 'MunicipalityController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.municipalities.update', 'uses' => 'MunicipalityController@postAdminUpdate'));
+				'as' => 'admin.municipalities.update', 'uses' => 'MunicipalityController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.municipalities.destroy', 'uses' => 'MunicipalityController@postAdminDelete'));
+				'as' => 'admin.municipalities.destroy', 'uses' => 'MunicipalityController@deleteAdminDelete'));
 		});
 	});
 
@@ -112,9 +112,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.deeds.store', 'uses' => 'DeedController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.deeds.update', 'uses' => 'DeedController@postAdminUpdate'));
+				'as' => 'admin.deeds.update', 'uses' => 'DeedController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.deeds.destroy', 'uses' => 'DeedController@postAdminDelete'));
+				'as' => 'admin.deeds.destroy', 'uses' => 'DeedController@deleteAdminDelete'));
 		});
 	});
 
@@ -132,9 +132,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.agrarians.store', 'uses' => 'AgrarianController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.agrarians.update', 'uses' => 'AgrarianController@postAdminUpdate'));
+				'as' => 'admin.agrarians.update', 'uses' => 'AgrarianController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.agrarians.destroy', 'uses' => 'AgrarianController@postAdminDelete'));
+				'as' => 'admin.agrarians.destroy', 'uses' => 'AgrarianController@deleteAdminDelete'));
 		});
 	});
 
@@ -152,9 +152,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.civils.store', 'uses' => 'CivilController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.civils.update', 'uses' => 'CivilController@postAdminUpdate'));
+				'as' => 'admin.civils.update', 'uses' => 'CivilController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.civils.destroy', 'uses' => 'CivilController@postAdminDelete'));
+				'as' => 'admin.civils.destroy', 'uses' => 'CivilController@deleteAdminDelete'));
 		});
 	});
 
@@ -172,9 +172,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.records.store', 'uses' => 'RecordController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.records.update', 'uses' => 'RecordController@postAdminUpdate'));
+				'as' => 'admin.records.update', 'uses' => 'RecordController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.records.destroy', 'uses' => 'RecordController@postAdminDelete'));
+				'as' => 'admin.records.destroy', 'uses' => 'RecordController@deleteAdminDelete'));
 		});
 	});
 
@@ -192,9 +192,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 			Route::post('/', array(
 				'as' => 'admin.penals.store', 'uses' => 'PenalController@postAdminCreate'));
 			Route::put('/{id}', array(
-				'as' => 'admin.penals.update', 'uses' => 'PenalController@postAdminUpdate'));
+				'as' => 'admin.penals.update', 'uses' => 'PenalController@putAdminUpdate'));
 			Route::delete('/{id}', array(
-				'as' => 'admin.penals.destroy', 'uses' => 'PenalController@postAdminDelete'));
+				'as' => 'admin.penals.destroy', 'uses' => 'PenalController@deleteAdminDelete'));
 		});
 	});
 

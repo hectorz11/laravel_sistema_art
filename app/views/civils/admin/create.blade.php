@@ -39,32 +39,39 @@
                             <div class="form-group">
                                 <label>Nro. de Expediente Civil</label>
                                 <input class="form-control" placeholder="Nro. de Expediente Civil">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Nro de Expediente Civil']) }}
                             </div>
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
                                 <input class="form-control" placeholder="Fecha (AAAA-MM-DD)">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Fecha (AAAA-MM-DD)']) }}
                             </div>
                             <div class="form-group">
                                 <label>Demandante</label>
                                 <input class="form-control" placeholder="Demandante">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Demandante']) }}
                             </div>
                             <div class="form-group">
                                 <label>Demandado</label>
                                 <input class="form-control" placeholder="Demandado">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Demandado']) }}
                             </div>
                             <div class="form-group">
                                 <label>Materia</label>
                                 <input class="form-control" placeholder="Materia">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Materia']) }}
                             </div>
                             <div class="form-group">
                                 <label>Secretario</label>
                                 <input class="form-control" placeholder="Secretario">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Secretario']) }}
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Legajo</label>
                                 <input class="form-control" placeholder="Legajo">
+                                {{ Form::text('', Input::old(''), ['class' => 'form-control', 'placeholder' => 'Legajo']) }}
                             </div>
                             <div class="form-group">
                                 <label>Referencias</label>
