@@ -34,7 +34,7 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.deeds.update', $deed->id]]) }}
+                    {{ Form::open(['route' => ['admin.deeds.update', $deed->id], 'method' => 'PUT']) }}
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nro. de Escrituras Públicas</label>
