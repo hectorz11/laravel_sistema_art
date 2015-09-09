@@ -12,6 +12,11 @@ class Agrarian extends \Eloquent {
 		return self::whereStatus(1)->get();
 	}
 
+	public function selectAgrarian($id)
+	{
+		return self::find($id);
+	}
+
 	public static function createAgrarian($input)
 	{
 		$answer = [];
@@ -30,7 +35,7 @@ class Agrarian extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$agrarian = new Agrarian;
+			$agrarian = new self;
 			$agrarian->number_agrarian = Input::get('number_agrarian');
 			$agrarian->date = Input::get('date');
 			$agrarian->demandant = Input::get('demandant');
@@ -71,7 +76,7 @@ class Agrarian extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$agrarian = Agrarian::find($id);
+			$agrarian = self::find($id);
 			$agrarian->number_agrarian = Input::get('number_agrarian');
 			$agrarian->date = Input::get('date');
 			$agrarian->demandant = Input::get('demandant');

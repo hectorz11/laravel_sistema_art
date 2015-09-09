@@ -103,7 +103,7 @@ class DeedController extends \BaseController {
 		}
 	}
 
-	public function postAdminUpdate($id)
+	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['deed_update'])) {
 			$answer = Deed::updateDeed(Input::all(), $id);
@@ -119,7 +119,7 @@ class DeedController extends \BaseController {
 		}
 	}
 
-	public function postAdminDelete($id)
+	public function deleteAdminDelete($id)
 	{
 		//
 	}

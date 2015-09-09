@@ -42,7 +42,7 @@ class Deed extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$deed = new Deed;
+			$deed = new self;
 			$deed->notary_id = Input::get('notary_id');
 			$deed->number_deeds = Input::get('number_deeds');
 			$deed->protocol = Input::get('protocol');
@@ -86,7 +86,7 @@ class Deed extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$deed = Deed::find($id);
+			$deed = self::find($id);
 			$deed->notary_id = Input::get('notary_id');
 			$deed->number_deeds = Input::get('number_deeds');
 			$deed->protocol = Input::get('protocol');

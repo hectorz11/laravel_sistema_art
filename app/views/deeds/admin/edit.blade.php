@@ -34,11 +34,11 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.deeds.update', $deed->id]]) }}
+                    {{ Form::open(['route' => ['admin.deeds.update', $deed->id], 'method' => 'PUT']) }}
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nro. de Escrituras Públicas</label>
-                                {{ Form::text('number_deeds', $deed->number_deeds, ['class' => 'form-control']) }}
+                                {{ Form::text('number_deeds', $deed->number_deeds, ['class' => 'form-control', 'placeholder' => 'Nro. de Escrituras Públicas']) }}
                             </div>
                             @if( $errors->has('number_deeds') )
                                 <div class="alert alert-danger">
@@ -49,7 +49,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Protocolo</label>
-                                {{ Form::text('protocol', $deed->protocol, ['class' => 'form-control']) }}
+                                {{ Form::text('protocol', $deed->protocol, ['class' => 'form-control', 'placeholder' => 'Protocolo']) }}
                             </div>
                             @if( $errors->has('protocol') )
                                 <div class="alert alert-danger">
@@ -60,7 +60,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Folio</label>
-                                {{ Form::text('folio', $deed->folio, ['class' => 'form-control']) }}
+                                {{ Form::text('folio', $deed->folio, ['class' => 'form-control', 'placeholder' => 'Folio']) }}
                             </div>
                             @if( $errors->has('folio') )
                                 <div class="alert alert-danger">
@@ -71,7 +71,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Otorgado por</label>
-                                {{ Form::text('given_by', $deed->given_by, ['class' => 'form-control']) }}
+                                {{ Form::text('given_by', $deed->given_by, ['class' => 'form-control', 'placeholder' => 'Otorgado por']) }}
                             </div>
                             @if( $errors->has('given_by') )
                                 <div class="alert alert-danger">
@@ -82,7 +82,7 @@
                             @endif
                             <div class="form-group">
                                 <label>A Favor</label>
-                                {{ Form::text('pro', $deed->pro, ['class' => 'form-control']) }}
+                                {{ Form::text('pro', $deed->pro, ['class' => 'form-control', 'placeholder' => 'A Favor']) }}
                             </div>
                             @if( $errors->has('pro') )
                                 <div class="alert alert-danger">
@@ -93,7 +93,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Tipo de Escritura</label>
-                                {{ Form::text('type_writing', $deed->type_writing, ['class' => 'form-control']) }}
+                                {{ Form::text('type_writing', $deed->type_writing, ['class' => 'form-control', 'placeholder' => 'Tipo de Escritura']) }}
                             </div>
                             @if( $errors->has('type_writing') )
                                 <div class="alert alert-danger">
@@ -123,7 +123,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
-                                {{ Form::text('date', $deed->date, ['class' => 'form-control']) }}
+                                {{ Form::text('date', $deed->date, ['class' => 'form-control', 'placeholder' => 'Fecha (AAAA-MM-DD)']) }}
                             </div>
                             @if( $errors->has('date') )
                                 <div class="alert alert-danger">
@@ -134,7 +134,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Nro. de Fojas</label>
-                                {{ Form::text('number_folios', $deed->number_folios, ['class' => 'form-control']) }}
+                                {{ Form::text('number_folios', $deed->number_folios, ['class' => 'form-control', 'placeholder' => 'Nro. de Fojas']) }}
                             </div>
                             @if( $errors->has('number_folios') )
                                 <div class="alert alert-danger">
@@ -145,7 +145,7 @@
                             @endif
                             <div class="form-group">
                                 <label>Descripción</label>
-                                {{ Form::textArea('description', $deed->description, ['class' => 'form-control', 'rows' => 3]) }}
+                                {{ Form::textArea('description', $deed->description, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Descripción']) }}
                             </div>
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
                             <a href="{{ URL::route('admin.deeds.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>

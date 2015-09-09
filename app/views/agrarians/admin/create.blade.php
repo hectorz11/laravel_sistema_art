@@ -34,50 +34,99 @@
                 @endif
 
                 <div class="row">
-                    <form role="form">
+                    {{ Form::open(['route' => 'admin.agrarians.store']) }}
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nro. de Expediente Agrario</label>
-                                <input class="form-control" placeholder="Nro. de Expediente Agrario">
+                                {{ Form::text('number_agrarian', Input::old('number_agrarian'), ['class' => 'form-control', 'placeholder' => 'Nro']) }}
                             </div>
+                            @if( $errors->has('number_agrarian') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('number_agrarian') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Fecha (AAAA-MM-DD)</label>
-                                <input class="form-control" placeholder="Fecha (AAAA-MM-DD)">
+                                {{ Form::text('date', Input::old('date'), ['class' => 'form-control', 'placeholder' => 'Fecha']) }}
                             </div>
+                            @if( $errors->has('date') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('date') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Demandante</label>
-                                <input class="form-control" placeholder="Demandante">
+                                {{ Form::text('demandant', Input::old('demandant'), ['class' => 'form-control', 'placeholder' => 'Demandante']) }}
                             </div>
+                            @if( $errors->has('demandant') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('demandant') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Demandado</label>
-                                <input class="form-control" placeholder="Demandado">
+                                {{ Form::text('defendant', Input::old('defendant'), ['class' => 'form-control', 'placeholder' => 'Demandado']) }}
                             </div>
+                            @if( $errors->has('defendant') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('defendant') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Materia</label>
-                                <input class="form-control" placeholder="Materia">
+                                {{ Form::text('matery', Input::old('matery'), ['class' => 'form-control', 'placeholder' => 'Materia']) }}
                             </div>
+                            @if( $errors->has('matery') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('matery') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Secretario</label>
-                                <input class="form-control" placeholder="Secretario">
+                                {{ Form::text('secretary', Input::old('secretary'), ['class' => 'form-control', 'placeholder' => 'Secretario']) }}
                             </div>
+                            @if( $errors->has('secretary') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('secretary') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Legajo</label>
-                                <input class="form-control" placeholder="Legajo">
+                                {{ Form::text('file', Input::old('file'), ['class' => 'form-control', 'placeholder' => 'Legajo']) }}
                             </div>
+                            @if( $errors->has('file') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('file') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label>Referencias</label>
-                                <textarea class="form-control" rows="3" placeholder="Referencias"></textarea>
+                                {{ Form::textArea('references', Input::old('references'), ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Referencias']) }}
                             </div>
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea class="form-control" rows="3" placeholder="Descripción"></textarea>
+                                {{ Form::textArea('description', Input::old('description'), ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Descripción']) }}
                             </div>
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Resetear</button>
+                            <a href="{{ URL::route('admin.agrarians.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
                 <!-- /.row -->
 
