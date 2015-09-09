@@ -12,6 +12,11 @@ class Penal extends \Eloquent {
 		return self::whereStatus(1)->get();
 	}
 
+	public function selectPenal($id)
+	{
+		return self::find($id);
+	}
+
 	public static function createPenal($input)
 	{
 		$answer = [];
@@ -30,7 +35,7 @@ class Penal extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$penal = new Penal;
+			$penal = new self;
 			$penal->number_penal = Input::get('number_penal');
 			$penal->acussed = Input::get('acussed');
 			$penal->start_date = Input::get('start_date');
@@ -71,7 +76,7 @@ class Penal extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$penal = Penal::find($id);
+			$penal = self::find($id);
 			$penal->number_penal = Input::get('number_penal');
 			$penal->acussed = Input::get('acussed');
 			$penal->start_date = Input::get('start_date');

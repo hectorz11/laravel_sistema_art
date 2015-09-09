@@ -81,16 +81,5 @@
 <script src="{{ URL::asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
 <script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        event.preventDefault()
-        $('#tableRecords').dataTable({
-            "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [ 6 ]},{ "bVisible": false, "aTargets": [0] }],
-            "displayLength":10,
-            "bProcessing": true,
-            "bServerSide": true,
-            "sAjaxSource": '/admin/records/datatable',
-        });
-    });
-</script>
+<script src="{{ URL::asset('/scripts/records.js') }}"></script>
 @stop

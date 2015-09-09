@@ -12,6 +12,11 @@ class Civil extends \Eloquent {
 		return self::whereStatus(1)->get();
 	}
 
+	public function selectCivil($id)
+	{
+		return self::find($id);
+	}
+
 	public static function createCivil($input)
 	{
 		$answer = [];
@@ -30,7 +35,7 @@ class Civil extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$civil = new Civil;
+			$civil = new self;
 			$civil->number_civil = Input::get('number_civil');
 			$civil->date = Input::get('date');
 			$civil->demandant = Input::get('demandant');
@@ -71,7 +76,7 @@ class Civil extends \Eloquent {
 			$answer['message'] = $validation;
 			$answer['error'] = true;
 		} else {
-			$civil = Civil::find($id);
+			$civil = self::find($id);
 			$civil->number_civil = Input::get('number_civil');
 			$civil->date = Input::get('date');
 			$civil->demandant = Input::get('demandant');

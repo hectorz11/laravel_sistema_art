@@ -17,6 +17,11 @@ class Record extends \Eloquent {
 		return self::whereStatus(1)->get();
 	}
 
+	public function selectRecord($id)
+	{
+		return self::find($id);
+	}
+
 	public static function createRecord($input)
 	{
 		$answer = [];

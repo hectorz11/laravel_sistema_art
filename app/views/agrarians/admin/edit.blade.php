@@ -7,14 +7,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Crear <small>Expedientes Agrarios</small>
+                            Editar <small>Expedientes Agrarios</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Crear
+                                <i class="fa fa-edit"></i> Editar
                             </li>
                         </ol>
                     </div>
