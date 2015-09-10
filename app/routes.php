@@ -19,8 +19,8 @@ Route::get('/signin', array(
 
 Route::group(array('before' => 'guest'), function() {
 
-	Route::get('/registro/{userId}/activacion/{activationCode}', array(
-		'as' => 'registro_activated', 'uses' => 'AccountController@getRegistroActivated'));
+	Route::get('/register/{userId}/activated/{activationCode}', array(
+		'as' => 'register.activated', 'uses' => 'HomeController@getRegisterActivated'));
 	
 	Route::group(array('before' => 'csrf'), function() {
 		Route::post('/signin', array(
@@ -199,3 +199,9 @@ Route::group(array('prefix' => '/admin', 'before' => 'admin:admin'), function() 
 	});
 
 });
+
+Route::get('/facebook', array(
+	'as' => 'facebook', 'uses' => 'OAuthController@loginWithFacebook'));
+
+Route::get('/google', array(
+	'as' => 'google', 'uses' => 'OAuthController@loginWithGoogle'));

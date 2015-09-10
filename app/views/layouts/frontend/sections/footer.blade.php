@@ -5,9 +5,9 @@
             </div>
             <div class="pull-right fnav">
                 <ul class="footer-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ URL::route('facebook') }}"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="{{ URL::route('google') }}"><i class="fa fa-google-plus"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 </ul>
             </div>

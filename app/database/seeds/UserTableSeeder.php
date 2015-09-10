@@ -1,9 +1,14 @@
 <?php
 
+use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 class UserTableSeeder extends Seeder {
 
 	public function run()
 	{
+		$faker = Faker::create();
+
 		DB::table('users')->delete();
 		
 		$groupAdministrador = Sentry::findGroupByName('administrador');
@@ -20,6 +25,16 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupAdministrador);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'male';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'norberto.lanchipa@yopmail.com',
@@ -29,6 +44,16 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupDirector);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'male';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'milagros.liendo@yopmail.com',
@@ -38,6 +63,16 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupSecretaria);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'female';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'laura.salas@yopmail.com',
@@ -47,6 +82,16 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupSecretaria);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'female';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'wilton.condori@yopmail.com',
@@ -56,15 +101,35 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupPracticante);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'male';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'hector.zapana@yopmail.com',
-			'first_name' => 'Mirella',
-			'last_name' => 'Lanchipa Palza',
+			'first_name' => 'Hector Raul',
+			'last_name' => 'Zapana Condori',
 			'password' => '123456',
 			'activated' => true
 		));
 		$sentry->addGroup($groupPracticante);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'male';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'diana.cardenas@yopmail.com',
@@ -74,5 +139,15 @@ class UserTableSeeder extends Seeder {
 			'activated' => true
 		));
 		$sentry->addGroup($groupUsuario);
+		$user = User::find($sentry->id);
+
+		$profile = new Profile;
+		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
+		$profile->phone = $faker->unique()->phoneNumber;
+		$profile->gender = 'female';
+		$profile->user_id = $user->id;
+		$profile->status = 1;
+		$profile->save();
 	}
 }

@@ -54,9 +54,14 @@ class HomeController extends BaseController {
 					return Redirect::route('/')->withInput();
 				}
 			} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
-		     	return Redirect::route('home')->withInput();
-			} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		    	return Redirect::route('home')->withInput();
+		     	return Redirect::route('home')
+		     	->with(['message' => 'Contraseña incorrecta', 'class' => 'warning']);
+			} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
+		    	return Redirect::route('home')
+		    	->with(['message' => 'Usuario no activado', 'class' => 'warning']);
+		    } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+		    	return Redirect::route('home')
+		    	->with(['message' => 'Usuario no registrado', 'class' => 'danger']);
 			}
 		}
 	}
@@ -65,5 +70,39 @@ class HomeController extends BaseController {
 	{
 		Sentry::logout();
 		return Redirect::route('home');
+	}
+
+	public function postSignUp()
+	{
+		$answer = User::createUser(Input::all());
+		if ($answer['error'] == true) {
+			return Redirect::route('home');
+		} else {
+			$user = $answer['data'];
+			$data['activationCode'] = $user->GetActivationCode();
+			$data['email'] = $user->email;
+			$data['userId'] = $user->getId();
+			$data['password'] = Input::get('password');
+
+			Mail::send('emails.auth.activated', $data, function($m) use ($data) {
+				$m->to($data['email'])->subject('Gracias por registrarse - Support Team ART');
+			});
+
+			return Redirect::route('signin');
+		}
+	}
+
+	public function getRegisterActivated($userId, $activationCode)
+	{
+		$user = Sentry::findUserById($userId);
+		if($user->attemptActivation($activationCode)) {
+			return Redirect::route('signin')
+			->with('message', 'La activación de usuario fue un éxito, porfavor ingresa arriba.')
+			->with('class', 'success');
+		} else {
+			return Redirect::route('signin')
+			->with('message', 'No se puede activar el usuario inténtalo de nuevo más tarde o póngase en contacto con equipo de apoyo.')
+			->with('class', 'danger');
+		}
 	}
 }
