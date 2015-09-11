@@ -18,6 +18,7 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<img src="{{ $photoURL }}" name="photo" width="250" height="200">
+							{{ Form::hidden('photo', $photoURL) }}
 						</div>
 					</div>
 					<div class="col-lg-6">
