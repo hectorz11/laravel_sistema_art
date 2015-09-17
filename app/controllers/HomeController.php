@@ -15,6 +15,13 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	protected $user = null;
+
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
 	public function showWelcome()
 	{
 		return View::make('hello');
@@ -22,7 +29,8 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		return View::make('pages.home');
+		$users = $this->user->allUsers();
+		return View::make('pages.home', ['users' => $users]);
 	}
 
 	public function getSignIn()

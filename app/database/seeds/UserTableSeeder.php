@@ -29,6 +29,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Administrador';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
@@ -48,6 +49,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Director del Archivo Regional de Tacna';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
@@ -67,6 +69,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Secretaria Jefe';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
@@ -86,6 +89,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Directora del Archivo Histórico';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
@@ -105,6 +109,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Practicante';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
@@ -124,6 +129,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Practicante';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
@@ -143,6 +149,7 @@ class UserTableSeeder extends Seeder {
 
 		$profile = new Profile;
 		$profile->photo = $faker->unique()->imageUrl($width = 640, $height = 480, 'cats');
+		$profile->position = 'Practicante';
 		$profile->birthday = $faker->date($format = 'd/m/Y', $max = 'now');
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
