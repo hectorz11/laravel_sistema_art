@@ -2,6 +2,11 @@
 
 class User extends Cartalyst\Sentry\Users\Eloquent\User
 {
+	public static $login_rules = [
+		'email' => 'required',
+		'password' => 'required',
+	];
+
 	public function allUsers()
 	{
 		return self::all();

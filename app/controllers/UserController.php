@@ -8,7 +8,23 @@ class UserController extends \BaseController {
 	{
 		$this->user = $user;
 	}
+	/*
+	|--------------------------------------------------------------------------
+	| Controlador que gestionar los procesos del Usuario
+	|--------------------------------------------------------------------------
+	|
+	*/
+	public function getIndex()
+	{
+		//
+	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| Controlador que gestiona los procesos del Administrador
+	|--------------------------------------------------------------------------
+	|
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['user_index'])) {
