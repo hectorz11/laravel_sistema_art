@@ -17,7 +17,9 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 		$answer = [];
 		$rules = [
 			'email' => 'required|email',
-			'password' => 'required'
+			'first_name' => 'required',
+			'last_name' => 'required',
+			'password' => 'required',
 		];
 
 		$validation = Validator::make($input, $rules);
@@ -38,6 +40,8 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 			$user = User::find($sentry->id);
 
 			$profile = new Profile;
+			if (Input::has('idFb')) $profile->uid = Input::get('idFb');
+			else $profile->uid = '';
 			if (Input::has('photo')) $profile->photo = Input::get('photo');
 			else $profile->photo = '';
 			if (Input::has('birthday')) $profile->birthday = Input::get('birthday');

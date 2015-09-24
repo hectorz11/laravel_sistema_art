@@ -20,6 +20,8 @@ class CreateProfiles extends Migration {
 			$table->string('phone')->nullable();
 			$table->string('gender')->nullable();
 			$table->integer('user_id')->unsigned();
+			$table->bigInteger('uid')->unsigned():
+			$table->string('access_token')->nullable();
 			$table->integer('status')->unsigned();
 			$table->timestamps();
 		});
