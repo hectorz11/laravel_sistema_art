@@ -34,6 +34,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -54,6 +56,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -74,6 +78,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -94,6 +100,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -114,6 +122,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -134,6 +144,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 
@@ -154,6 +166,8 @@ class UserTableSeeder extends Seeder {
 		$profile->phone = $faker->unique()->phoneNumber;
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
+		$profile->social_id = 0;
+		$profile->provider = '';
 		$profile->status = 1;
 		$profile->save();
 	}

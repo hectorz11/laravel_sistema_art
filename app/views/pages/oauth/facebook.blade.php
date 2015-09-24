@@ -22,11 +22,13 @@
 						</div>
 					</div>
 					<div class="col-lg-6">
-						{{ Form::hidden('idFb', $idFacebook) }}
+						{{ Form::hidden('idFb', $idFb) }}
 						{{ Form::hidden('birthday', $birthday) }}
 						{{ Form::hidden('first_name', $first_name) }}
 						{{ Form::hidden('last_name', $last_name) }}
 						{{ Form::hidden('gender', $gender) }}
+						{{ Form::hidden('token', $token) }}
+						{{ Form::hidden('provider', $provider) }}
 						<div class="form-group">
 							<label>Email</label>
 							{{ Form::email('email', $email, ['class' => 'form-control']) }}

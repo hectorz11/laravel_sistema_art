@@ -30,7 +30,7 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$users = $this->user->allUsers();
-		return View::make('pages.home', ['users' => $users]);
+		return View::make('pages.guest.home', ['users' => $users]);
 	}
 
 	public function getSignIn()

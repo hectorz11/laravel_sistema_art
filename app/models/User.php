@@ -45,8 +45,12 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 			$user = User::find($sentry->id);
 
 			$profile = new Profile;
-			if (Input::has('idFb')) $profile->uid = Input::get('idFb');
-			else $profile->uid = '';
+			if (Input::has('idFb')) $profile->social_id = Input::get('idFb');
+			else $profile->social_id = 0;
+			if (Input::has('token')) $profile->access_token = Input::get('token');
+			else $profile->access_token = '';
+			if (Input::has('provider')) $profile->provider = Input::get('provider');
+			else $profile->provider = '';
 			if (Input::has('photo')) $profile->photo = Input::get('photo');
 			else $profile->photo = '';
 			if (Input::has('birthday')) $profile->birthday = Input::get('birthday');

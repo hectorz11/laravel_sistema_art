@@ -21,7 +21,7 @@ class OAuthController extends \BaseController {
 			// Enviar una solicitud con ella
 			$result = json_decode( $fb->request( '/me' ), true );
 
-			$idFacebook = $result['id'];
+			$idFb = $result['id'];
 			if (isset($result['email'])) 
 				$email = $result['email'];
 			else $email = '';
@@ -46,16 +46,18 @@ class OAuthController extends \BaseController {
 
 			//Var_dump
 			//display whole array().
-			//dd($result);
+			dd($result, $code);
 			//return Response::json([$message, $result]);
-			return View::make('pages.facebook')
-			->with('idFacebook', $idFacebook)
+			return View::make('pages.oauth.facebook')
+			->with('idFb', $idFb)
 			->with('birthday', $birthday)
 			->with('email', $email)
 			->with('first_name', $first_name)
 			->with('last_name', $last_name)
 			->with('gender', $gender)
-			->with('photoURL', $photoURL);
+			->with('photoURL', $photoURL)
+			->with('token', $code)
+			->with('provider', 'facebook');
 
 		}
 	    // Si no pide permiso primero
@@ -114,7 +116,7 @@ class OAuthController extends \BaseController {
 	        //return Response::json($result);
 	        //display whole array().
 	        //dd($result);
-	        return View::make('pages.google')
+	        return View::make('pages.oauth.google')
 			->with('idGoogle', $idGoogle)
 			->with('email', $email)
 			->with('given_name', $given_name)
