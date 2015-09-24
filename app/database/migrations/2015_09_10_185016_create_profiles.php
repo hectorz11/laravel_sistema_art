@@ -16,6 +16,7 @@ class CreateProfiles extends Migration {
 		{
 			$table->increments('id');
 			$table->string('photo')->nullable();
+			$table->string('position')->nullable();
 			$table->string('birthday')->nullable();
 			$table->string('phone')->nullable();
 			$table->string('gender')->nullable();
