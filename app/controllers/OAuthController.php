@@ -20,44 +20,64 @@ class OAuthController extends \BaseController {
 
 			// Enviar una solicitud con ella
 			$result = json_decode( $fb->request( '/me' ), true );
-
 			$idFb = $result['id'];
-			if (isset($result['email'])) 
-				$email = $result['email'];
-			else $email = '';
 
-			if (isset($result['first_name'])) 
-				$first_name = $result['first_name'];
-			else $first_name = '';
+			$profile = Profile::whereSocialId($idFb)->first();
 
-			if (isset($result['last_name'])) 
-				$last_name = $result['last_name'];
-			else $last_name = '';
+			if (empty($profile)) {
+				if (isset($result['email'])) 
+					$email = $result['email'];
+				else $email = '';
 
-			if (isset($result['birthday'])) 
-				$birthday = $result['birthday']; 
-			else $birthday = '';
+				if (isset($result['first_name'])) 
+					$firstName = $result['first_name'];
+				else $firstName = '';
 
-			if (isset($result['gender'])) 
-				$gender = $result['gender'];
-			else $gender = '';
+				if (isset($result['last_name'])) 
+					$lastName = $result['last_name'];
+				else $lastName = '';
 
-			$photoURL = 'http://graph.facebook.com/'.$result['id'].'/picture?type=large';
+				if (isset($result['birthday'])) 
+					$birthday = $result['birthday']; 
+				else $birthday = '';
 
-			//Var_dump
-			//display whole array().
-			dd($result, $code);
-			//return Response::json([$message, $result]);
-			return View::make('pages.oauth.facebook')
-			->with('idFb', $idFb)
-			->with('birthday', $birthday)
-			->with('email', $email)
-			->with('first_name', $first_name)
-			->with('last_name', $last_name)
-			->with('gender', $gender)
-			->with('photoURL', $photoURL)
-			->with('token', $code)
-			->with('provider', 'facebook');
+				if (isset($result['gender'])) 
+					$gender = $result['gender'];
+				else $gender = '';
+
+				$photoURL = 'http://graph.facebook.com/'.$result['id'].'/picture?type=large';
+				$accessToken = $token->getAccessToken();
+
+				//Var_dump
+				//display whole array().
+				//dd($result, $token->getAccessToken());
+				//return Response::json([$message, $result]);
+				return View::make('pages.oauth.facebook')
+				->with('idFb', $idFb)
+				->with('birthday', $birthday)
+				->with('email', $email)
+				->with('first_name', $firstName)
+				->with('last_name', $lastName)
+				->with('gender', $gender)
+				->with('photoURL', $photoURL)
+				->with('token', $accessToken)
+				->with('provider', 'facebook');
+			}
+
+			$profile->access_token = $token->getAccessToken();
+			$profile->save();
+
+			$user = Sentry::findUserById($profile->users->id);
+			$login = Sentry::login($user, false);
+
+			if(Sentry::check()) {
+				$sentry = Sentry::getUser();
+				$user = Sentry::findGroupByName('usuario');
+
+				if($sentry->inGroup($user)) {
+					return Redirect::route('user.dashboard');
+				}
+			}			
 
 		}
 	    // Si no pide permiso primero

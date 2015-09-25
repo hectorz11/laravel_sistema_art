@@ -4,14 +4,19 @@
                     <li class="active">
                         <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+                    @if (Sentry::getUser()->hasAccess(['admin']))
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#deeds">
                             <i class="fa fa-fw fa-desktop"></i> Escrituras Públicas 
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="deeds" class="collapse">
+                        @if (Sentry::getUser()->hasAccess(['deeds_index']))
                             <li><a href="{{ URL::route('admin.deeds.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @else
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
+                        @endif
                         </ul>
                     </li>
                     <li>
@@ -20,8 +25,12 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="agrarians" class="collapse">
+                        @if (Sentry::getUser()->hasAccess(['agrarians_index']))
                             <li><a href="{{ URL::route('admin.agrarians.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.agrarians.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @else
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
+                        @endif
                         </ul>
                     </li>
                     <li>
@@ -30,8 +39,12 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="civils" class="collapse">
+                        @if (Sentry::getUser()->hasAccess(['civils_index']))
                             <li><a href="{{ URL::route('admin.civils.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.civils.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @else
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
+                        @endif
                         </ul>
                     </li>
                     <li>
@@ -40,8 +53,12 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="penals" class="collapse">
+                        @if (Sentry::getUser()->hasAccess(['penals_index']))
                             <li><a href="{{ URL::route('admin.penals.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.penals.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @else
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
+                        @endif
                         </ul>
                     </li>
                     <li>
@@ -50,15 +67,20 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="records" class="collapse">
+                        @if (Sentry::getUser()->hasAccess(['records_index']))
                             <li><a href="{{ URL::route('admin.records.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.records.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @else
+                            <li><a href="{{ URL::route('admin.deeds.create') }}"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
+                        @endif
                         </ul>
                     </li>
+                    @endif
                     <li>
                         <a href="zapana/bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                     </li>
                     <li>
-                        <a href="zapana/javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#">Dropdown Item</a>

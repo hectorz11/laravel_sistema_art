@@ -16,7 +16,9 @@ class UserController extends \BaseController {
 	*/
 	public function getIndex()
 	{
-		//
+		$sentry = Sentry::getUser();
+		$user = $this->user->selectUser($sentry->id);
+		return View::make('pages.user.user', ['user' => $user]);
 	}
 
 	/*

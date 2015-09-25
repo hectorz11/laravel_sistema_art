@@ -12,6 +12,11 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 		return self::all();
 	}
 
+	public function selectUser($id)
+	{
+		return self::find($id);
+	}
+
 	public function profiles()
 	{
 		return $this->hasOne('Profile','user_id');
