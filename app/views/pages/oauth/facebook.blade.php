@@ -22,7 +22,7 @@
 						</div>
 					</div>
 					<div class="col-lg-6">
-						{{ Form::hidden('idFb', $idFb) }}
+						{{ Form::hidden('social_id', $idFb) }}
 						{{ Form::hidden('birthday', $birthday) }}
 						{{ Form::hidden('first_name', $first_name) }}
 						{{ Form::hidden('last_name', $last_name) }}

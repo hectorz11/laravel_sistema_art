@@ -112,7 +112,8 @@ class OAuthController extends \BaseController {
 	        //$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
 	        //echo $message. "<br/>";
 
-	        $idGoogle = $result['id'];
+	        $idGg = $result['id'];
+
 	        if (isset($result['email'])) 
 				$email = $result['email'];
 			else $email = '';
@@ -133,16 +134,20 @@ class OAuthController extends \BaseController {
 				$photoURL = $result['picture'];
 			else $photoURL = '';
 
+			$accessToken = $token->getAccessToken();
+
 	        //return Response::json($result);
 	        //display whole array().
 	        //dd($result);
 	        return View::make('pages.oauth.google')
-			->with('idGoogle', $idGoogle)
+			->with('idGg', $idGg)
 			->with('email', $email)
 			->with('given_name', $given_name)
 			->with('family_name', $family_name)
 			->with('gender', $gender)
-			->with('photoURL', $photoURL);
+			->with('photoURL', $photoURL)
+			->with('token', $accessToken)
+			->with('provider', 'google');;
 
 	    }
 	    // if not ask for permission first
