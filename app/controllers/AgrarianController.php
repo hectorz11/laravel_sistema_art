@@ -104,5 +104,36 @@ class AgrarianController extends \BaseController {
 	{
 		//
 	}
+	//--------------------------------------------------------------------------------------------
+	public function getUserIndex()
+	{
+		if (Sentry::hasAnyAccess(['user'])) {
+			if (Request::ajax()) {
+				$result = DB::table('agrarians')
+				->select(array(
+					'agrarians.id',
+					'agrarians.number_agrarian as number',
+					'agrarians.date as date',
+					'agrarians.demandant as demandant',
+					'agrarians.defendant as defendant',
+					'agrarians.secretary as secretary',
+					'agrarians.matery as matery'))
+				->where('agrarians.status', '=', 1);
+
+				return Datatable::query($result)
+				->searchColumns('agrarians.number_agrarian','agrarians.date','agrarians.demandant','agrarians.defendant','agrarians.secretary','agrarians.matery')
+				->orderColumns('id','agrarians.number_agrarian')
+				->showColumns('id','number','date','demandant','defendant','secretary','matery')
+				->addColumn('Operaciones', function($model)
+				{
+					return "";
+				})->make();
+			} else {
+				return View::make('agrarians.user.index');
+			}
+		} else {
+			return View::make('pages.error');
+		}
+	}
 
 }

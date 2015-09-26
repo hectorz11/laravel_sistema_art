@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.deeds.index') }}">
+                            <a href="{{ URL::route('user.deeds.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.agrarians.index') }}">
+                            <a href="{{ URL::route('user.agrarians.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.civils.index') }}">
+                            <a href="{{ URL::route('user.civils.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.penals.index') }}">
+                            <a href="{{ URL::route('user.penals.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -131,12 +131,12 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Deed::all()) }}</div>
-                                        <div>Escrituras Públicas</div>
+                                        <div class="huge">{{ count(Record::all()) }}</div>
+                                        <div>Registros Civiles</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.deeds.index') }}">
+                            <a href="{{ URL::route('user.records.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.agrarians.index') }}">
+                            <a href="{{ URL::route('user.agrarians.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -180,7 +180,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.civils.index') }}">
+                            <a href="{{ URL::route('user.civils.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -202,7 +202,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.penals.index') }}">
+                            <a href="{{ URL::route('user.penals.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

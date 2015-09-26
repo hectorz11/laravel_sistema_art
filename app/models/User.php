@@ -51,7 +51,7 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 
 			$profile = new Profile;
 			if (Input::has('social_id')) $profile->social_id = Input::get('social_id');
-			else $profile->social_id = 0;
+			else $profile->social_id = '';
 			if (Input::has('token')) $profile->access_token = Input::get('token');
 			else $profile->access_token = '';
 			if (Input::has('provider')) $profile->provider = Input::get('provider');

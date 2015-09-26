@@ -108,5 +108,37 @@ class RecordController extends \BaseController {
 	{
 		//
 	}
+	//----------------------------------------------------------------------------------------------------------
+	public function getUserIndex()
+	{
+		if (Sentry::hasAnyAccess(['user'])) {
+			if (Request::ajax()) {
+				$result = DB::table('records')
+				->select(array(
+					'records.id',
+					'municipalities.name as name',
+					'records.number_starting as number',
+					'records.date as date',
+					'records.interested_m as interested_m',
+					'records.interested_f as interested_f',
+					'records.starting as starting'))
+				->join('municipalities', 'records.municipality_id', '=', 'municipalities.id')
+				->where('records.status', '=', 1);
+
+				return Datatable::query($result)
+				->searchColumns('municipalities.name','records.number_starting','records.interested_m','records.interested_f','records.starting')
+				->orderColumns('id','records.number_starting')
+				->showColumns('id','name','number','date','interested_m','interested_f','starting')
+				->addColumn('Operaciones', function($model)
+				{
+					return "";
+				})->make();
+			} else {
+				return View::make('records.user.index');
+			}
+		} else {
+			return View::make('pages.error');
+		}
+	}
 
 }

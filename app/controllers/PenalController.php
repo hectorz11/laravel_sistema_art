@@ -104,5 +104,36 @@ class PenalController extends \BaseController {
 	{
 		//
 	}
+	//-------------------------------------------------------------------------------------------
+	public function getUserIndex()
+	{
+		if (Sentry::hasAnyAccess(['user'])) {
+			if (Request::ajax()) {
+				$result = DB::table('penals')
+				->select(array(
+					'penals.id',
+					'penals.number_penal as number',
+					'penals.start_date as date',
+					'penals.acussed as acussed',
+					'penals.aggrieved as aggrieved',
+					'penals.judge as judge',
+					'penals.scribe as scribe'))
+				->where('penals.status', '=', 1);
+
+				return Datatable::query($result)
+				->searchColumns('penals.number_penal','penals.date','penals.acussed','penals.aggrieved','penals.judge','penals.scribe')
+				->orderColumns('id','penals.number_penal')
+				->showColumns('id','number','date','acussed','aggrieved','judge','scribe')
+				->addColumn('Operaciones', function($model)
+				{
+					return "";
+				})->make();
+			} else {
+				return View::make('penals.user.index');
+			}
+		} else {
+			return View::make('pages.error');
+		}
+	}
 
 }

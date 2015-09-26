@@ -123,4 +123,37 @@ class DeedController extends \BaseController {
 	{
 		//
 	}
+
+	//-----------------------------------------------------------------------------
+	public function getUserIndex()
+	{
+		if (Sentry::hasAnyAccess(['user'])) {
+			if (Request::ajax()) {
+				$result = DB::table('deeds')
+				->select(array(
+					'deeds.id',
+					'notaries.name as name',
+					'deeds.number_deeds as number',
+					'deeds.protocol as protocol',
+					'deeds.folio as folio',
+					'deeds.given_by as given',
+					'deeds.pro as pro'))
+				->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
+				->where('deeds.status', '=', 1);
+
+				return Datatable::query($result)
+				->searchColumns('notaries.name','deeds.number_deeds','deeds.protocol','deeds.given_by','deeds.pro')
+				->orderColumns('id','deeds.number_deeds')
+				->showColumns('id','name','number','protocol','folio','given','pro')
+				->addColumn('Operaciones', function($model)
+				{
+					return "";
+				})->make();
+			} else {
+				return View::make('deeds.user.index');
+			}
+		} else {
+			return View::make('pages.error');
+		}
+	}
 }

@@ -77,8 +77,7 @@ class OAuthController extends \BaseController {
 				if($sentry->inGroup($user)) {
 					return Redirect::route('user.dashboard');
 				}
-			}			
-
+			}
 		}
 	    // Si no pide permiso primero
 	    else {
@@ -111,44 +110,60 @@ class OAuthController extends \BaseController {
 
 	        //$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
 	        //echo $message. "<br/>";
-
 	        $idGg = $result['id'];
 
-	        if (isset($result['email'])) 
-				$email = $result['email'];
-			else $email = '';
+	        $profile = Profile::whereSocialId($idGg)->first();
 
-			if (isset($result['given_name'])) 
-				$given_name = $result['given_name'];
-			else $given_name = '';
+			if (empty($profile)) {
+		        if (isset($result['email'])) 
+					$email = $result['email'];
+				else $email = '';
 
-			if (isset($result['family_name'])) 
-				$family_name = $result['family_name'];
-			else $family_name = '';
+				if (isset($result['given_name'])) 
+					$given_name = $result['given_name'];
+				else $given_name = '';
 
-			if (isset($result['gender'])) 
-				$gender = $result['gender'];
-			else $gender = '';
+				if (isset($result['family_name'])) 
+					$family_name = $result['family_name'];
+				else $family_name = '';
 
-			if (isset($result['picture']))
-				$photoURL = $result['picture'];
-			else $photoURL = '';
+				if (isset($result['gender'])) 
+					$gender = $result['gender'];
+				else $gender = '';
 
-			$accessToken = $token->getAccessToken();
+				if (isset($result['picture']))
+					$photoURL = $result['picture'];
+				else $photoURL = '';
 
-	        //return Response::json($result);
-	        //display whole array().
-	        //dd($result);
-	        return View::make('pages.oauth.google')
-			->with('idGg', $idGg)
-			->with('email', $email)
-			->with('given_name', $given_name)
-			->with('family_name', $family_name)
-			->with('gender', $gender)
-			->with('photoURL', $photoURL)
-			->with('token', $accessToken)
-			->with('provider', 'google');;
+				$accessToken = $token->getAccessToken();
 
+		        //return Response::json($result);
+		        //display whole array().
+		        //dd($result);
+		        return View::make('pages.oauth.google')
+				->with('idGg', $idGg)
+				->with('email', $email)
+				->with('given_name', $given_name)
+				->with('family_name', $family_name)
+				->with('gender', $gender)
+				->with('photoURL', $photoURL)
+				->with('token', $accessToken)
+				->with('provider', 'google');
+			}
+			$profile->access_token = $token->getAccessToken();
+			$profile->save();
+
+			$user = Sentry::findUserById($profile->users->id);
+			$login = Sentry::login($user, false);
+
+			if(Sentry::check()) {
+				$sentry = Sentry::getUser();
+				$user = Sentry::findGroupByName('usuario');
+
+				if($sentry->inGroup($user)) {
+					return Redirect::route('user.dashboard');
+				}
+			}
 	    }
 	    // if not ask for permission first
 	    else {

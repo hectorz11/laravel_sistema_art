@@ -131,8 +131,8 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Deed::all()) }}</div>
-                                        <div>Escrituras Públicas</div>
+                                        <div class="huge">{{ count(Record::all()) }}</div>
+                                        <div>Registros Civiles</div>
                                     </div>
                                 </div>
                             </div>

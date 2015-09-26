@@ -104,5 +104,36 @@ class CivilController extends \BaseController {
 	{
 		//
 	}
+	//-----------------------------------------------------------------------------------------
+	public function getUserIndex()
+	{
+		if (Sentry::hasAnyAccess(['user'])) {
+			if (Request::ajax()) {
+				$result = DB::table('civils')
+				->select(array(
+					'civils.id',
+					'civils.number_civil as number',
+					'civils.date as date',
+					'civils.demandant as demandant',
+					'civils.defendant as defendant',
+					'civils.secretary as secretary',
+					'civils.matery as matery'))
+				->where('civils.status', '=', 1);
+
+				return Datatable::query($result)
+				->searchColumns('civils.number_civil','civils.date','civils.demandant','civils.defendant','civils.secretary','civils.matery')
+				->orderColumns('id','civils.number_civil')
+				->showColumns('id','number','date','demandant','defendant','secretary','matery')
+				->addColumn('Operaciones', function($model)
+				{
+					return "";
+				})->make();
+			} else {
+				return View::make('civils.user.index');
+			}
+		} else {
+			return View::make('pages.error');
+		}
+	}
 
 }
