@@ -11,7 +11,7 @@ class NotaryController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['notary_index'])) {
+		if (Sentry::hasAnyAccess(['notaries_index'])) {
 			return Response::json($this->notary->allNotaries());
 		}
 	}

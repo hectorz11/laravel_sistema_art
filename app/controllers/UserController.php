@@ -29,7 +29,7 @@ class UserController extends \BaseController {
 	*/
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['user_index'])) {
+		if (Sentry::hasAnyAccess(['users_index'])) {
 			return Response::json($this->user->allUsers());
 		}
 	}

@@ -11,7 +11,7 @@ class PenalController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['penal_index'])) {
+		if (Sentry::hasAnyAccess(['penals_index'])) {
 			if (Request::ajax()) {
 				$result = DB::table('penals')
 				->select(array(
@@ -47,7 +47,7 @@ class PenalController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['penal_create'])) {
+		if (Sentry::hasAnyAccess(['penals_create'])) {
 			return View::make('penals.admin.create');
 		} else {
 			return View::make('pages.error');
@@ -56,7 +56,7 @@ class PenalController extends \BaseController {
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['penal_create'])) {
+		if (Sentry::hasAnyAccess(['penals_create'])) {
 			$answer = Penal::createPenal(Input::all());
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.penals.create')
@@ -72,7 +72,7 @@ class PenalController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['penal_update'])) {
+		if (Sentry::hasAnyAccess(['penals_update'])) {
 			$penal = $this->penal->selectPenal($id);
 			if (Request::ajax()) {
 				return Response::json(['penal' => $penal]);
@@ -86,7 +86,7 @@ class PenalController extends \BaseController {
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['penal_update'])) {
+		if (Sentry::hasAnyAccess(['penals_update'])) {
 			$answer = Penal::updatePenal(Input::all(), $id);
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.penals.edit', $id)
@@ -107,7 +107,7 @@ class PenalController extends \BaseController {
 	//-------------------------------------------------------------------------------------------
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['user'])) {
+		if (Sentry::hasAnyAccess(['users'])) {
 			if (Request::ajax()) {
 				$result = DB::table('penals')
 				->select(array(

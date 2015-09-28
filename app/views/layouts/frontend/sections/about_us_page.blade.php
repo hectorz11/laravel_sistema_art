@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="hector/img/02.png" class="img-responsive">
+                    <img src="https://scontent-mia1-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/11017864_275704902600003_4327339252310626854_n.jpg?oh=246f54dd23e50e0763532e88e180540d&oe=565E5EA2" class="img-responsive">
                 </div>
                 <div class="col-md-6">
                     <div class="about-text">

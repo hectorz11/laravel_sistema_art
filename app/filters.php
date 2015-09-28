@@ -106,7 +106,7 @@ Route::filter('admin', function($route, $request, $value)
 		return Redirect::route('/');
 	}
 });
-Route::filter('user', function($route, $request, $value)
+Route::filter('users', function($route, $request, $value)
 {
 	try {
 		$user = Sentry::getUser();

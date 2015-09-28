@@ -12,7 +12,7 @@ class RecordController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['record_index'])) {
+		if (Sentry::hasAnyAccess(['records_index'])) {
 			if (Request::ajax()) {
 				$result = DB::table('records')
 				->select(array(
@@ -49,7 +49,7 @@ class RecordController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['record_create'])) {
+		if (Sentry::hasAnyAccess(['records_create'])) {
 			$municipalities = $this->municipality->allMunicipalities();
 			return View::make('records.admin.create', ['municipalities' => $municipalities]);
 		} else {
@@ -59,7 +59,7 @@ class RecordController extends \BaseController {
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['record_create'])) {
+		if (Sentry::hasAnyAccess(['records_create'])) {
 			$answer = Record::createRecord(Input::all());
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.records.create')
@@ -75,7 +75,7 @@ class RecordController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['record_update'])) {
+		if (Sentry::hasAnyAccess(['records_update'])) {
 			$municipalities = $this->municipality->allMunicipalities();
 			$record = $this->record->selectRecord($id);
 			if (Request::ajax()) {
@@ -90,7 +90,7 @@ class RecordController extends \BaseController {
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['record_update'])) {
+		if (Sentry::hasAnyAccess(['records_update'])) {
 			$answer = Record::updateRecord(Input::all(), $id);
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.records.edit', $id)
@@ -111,7 +111,7 @@ class RecordController extends \BaseController {
 	//----------------------------------------------------------------------------------------------------------
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['user'])) {
+		if (Sentry::hasAnyAccess(['users'])) {
 			if (Request::ajax()) {
 				$result = DB::table('records')
 				->select(array(

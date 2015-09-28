@@ -28,7 +28,6 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 		$rules = [
 			'email' => 'required|email',
 			'first_name' => 'required',
-			'last_name' => 'required',
 			'password' => 'required',
 		];
 

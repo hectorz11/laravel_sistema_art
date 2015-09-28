@@ -11,7 +11,7 @@ class AgrarianController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['agrarian_index'])) {
+		if (Sentry::hasAnyAccess(['agrarians_index'])) {
 			if (Request::ajax()) {
 				$result = DB::table('agrarians')
 				->select(array(
@@ -47,7 +47,7 @@ class AgrarianController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['agrarian_create'])) {
+		if (Sentry::hasAnyAccess(['agrarians_create'])) {
 			return View::make('agrarians.admin.create');
 		} else {
 			return View::make('pages.error');
@@ -56,7 +56,7 @@ class AgrarianController extends \BaseController {
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['agrarian_create'])) {
+		if (Sentry::hasAnyAccess(['agrarians_create'])) {
 			$answer = Agrarian::createAgrarian(Input::all());
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.agrarians.create')
@@ -72,7 +72,7 @@ class AgrarianController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['agrarian_update'])) {
+		if (Sentry::hasAnyAccess(['agrarians_update'])) {
 			$agrarian = $this->agrarian->selectAgrarian($id);
 			if (Request::ajax()) {
 				return Response::json(['agrarian' => $agrarian]);
@@ -86,7 +86,7 @@ class AgrarianController extends \BaseController {
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['agrarian_update'])) {
+		if (Sentry::hasAnyAccess(['agrarians_update'])) {
 			$answer = Agrarian::updateAgrarian(Input::all(), $id);
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.agrarians.edit', $id)
@@ -107,7 +107,7 @@ class AgrarianController extends \BaseController {
 	//--------------------------------------------------------------------------------------------
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['user'])) {
+		if (Sentry::hasAnyAccess(['users'])) {
 			if (Request::ajax()) {
 				$result = DB::table('agrarians')
 				->select(array(

@@ -11,7 +11,7 @@ class MunicipalityController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['municipality_index'])) {
+		if (Sentry::hasAnyAccess(['municipalities_index'])) {
 			return Response::json($this->municipality->allMunicipalities());
 		}
 	}

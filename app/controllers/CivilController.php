@@ -11,7 +11,7 @@ class CivilController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['civil_index'])) {
+		if (Sentry::hasAnyAccess(['civils_index'])) {
 			if (Request::ajax()) {
 				$result = DB::table('civils')
 				->select(array(
@@ -47,7 +47,7 @@ class CivilController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['civil_create'])) {
+		if (Sentry::hasAnyAccess(['civils_create'])) {
 			return View::make('civils.admin.create');
 		} else {
 			return View::make('pages.error');
@@ -56,7 +56,7 @@ class CivilController extends \BaseController {
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['civil_create'])) {
+		if (Sentry::hasAnyAccess(['civils_create'])) {
 			$answer = Civil::createCivil(Input::all());
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.civils.create')
@@ -72,7 +72,7 @@ class CivilController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['civil_update'])) {
+		if (Sentry::hasAnyAccess(['civils_update'])) {
 			$civil = $this->civil->selectCivil($id);
 			if (Request::ajax()) {
 				return Response::json(['civil' => $civil]);
@@ -86,7 +86,7 @@ class CivilController extends \BaseController {
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['civil_update'])) {
+		if (Sentry::hasAnyAccess(['civils_update'])) {
 			$answer = Civil::updateCivil(Input::all(), $id);
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.civils.edit', $id)
@@ -107,7 +107,7 @@ class CivilController extends \BaseController {
 	//-----------------------------------------------------------------------------------------
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['user'])) {
+		if (Sentry::hasAnyAccess(['users'])) {
 			if (Request::ajax()) {
 				$result = DB::table('civils')
 				->select(array(

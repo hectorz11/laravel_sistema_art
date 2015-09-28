@@ -7,7 +7,7 @@
                 <div class="col-md-8 col-md-offset-2">
 
                     <div class="section-title center">
-                        <h2>Feel free to <strong>contact us</strong></h2>
+                        <h2>SIÉNTETE LIBRE DE <strong>CONTACTARNOS</strong></h2>
                         <div class="line">
                             <hr>
                         </div>

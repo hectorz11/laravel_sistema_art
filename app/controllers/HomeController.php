@@ -40,9 +40,10 @@ class HomeController extends BaseController {
 
 	public function postSignIn()
 	{
+		//return Input::all();
 		$validation = Validator::make(Input::all(), User::$login_rules);
 		if($validation->fails()) {
-			return Redirect::route('/')->withInput();
+			return Redirect::route('home')->withInput();
 		} else {
 			try {
 				$credenciales = array(
@@ -55,11 +56,11 @@ class HomeController extends BaseController {
 					if($sentry->hasAnyAccess(['admin'])) {
 						return Redirect::route('admin.dashboard')
 						->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
-					} else if($sentry->hasAnyAccess(['user'])) {
-						return Redirect::route('home');
+					} else if($sentry->hasAnyAccess(['users'])) {
+						return Redirect::route('user.dashboard');
 					}
 				} else {
-					return Redirect::route('/')->withInput();
+					return Redirect::route('home')->withInput();
 				}
 			} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
 		     	return Redirect::route('home')

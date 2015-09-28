@@ -19,8 +19,9 @@
     <link rel="apple-touch-icon" sizes="114x114" href="{{ URL::asset('/hector/img/apple-touch-icon-114x114.png') }}">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="{{ URL::asset('/hector/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/fonts/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/signin.css') }}">
 
     <!-- Slider
     ================================================== -->
@@ -29,7 +30,7 @@
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="{{ URL::asset('/hector/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/responsive.css') }}">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>

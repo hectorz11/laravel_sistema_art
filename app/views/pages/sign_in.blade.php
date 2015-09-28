@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('/zapana/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/hector/css/signin.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ URL::asset('/zapana/css/sb-admin.css') }}" rel="stylesheet">
@@ -39,7 +40,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Porfavor, Inicie Sesión</h3>
                     </div>
                     <div class="panel-body">
                         {{ Form::open(['route' => 'signin.post', 'class' => 'form']) }}
@@ -59,6 +60,12 @@
                                 <input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
                             </fieldset>
                         {{ Form::close() }}
+                        <p><a href="#">¿Se te olvidó tu contraseña?</a></p>
+                        <p class="or-social">O utilizar una Red Social</p>
+                        <a href="{{ route('facebook') }}" class="btn btn-lg btn-primary btn-block facebook" type="submit">Facebook</a>
+                        <a href="{{ route('twitter') }}" class="btn btn-lg btn-primary btn-block twitter" type="submit">Twitter</a>
+                        <a href="{{ route('google') }}" class="btn btn-lg btn-primary btn-block google" type="submit">Google</a>
+                        <a href="{{ route('github') }}" class="btn btn-lg btn-primary btn-block github" type="submit">Git Hub</a>
                     </div>
                 </div>
             </div>

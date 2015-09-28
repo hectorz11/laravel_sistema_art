@@ -160,7 +160,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 
 });
 
-Route::group(['prefix' => '/user', 'before' => 'user:user'], function() {
+Route::group(['prefix' => '/user', 'before' => 'users:users'], function() {
 
 	Route::get('/', ['as' => 'user.dashboard', 'uses' => 'UserController@getIndex']);
 	Route::get('/deeds', ['as' => 'user.deeds.index', 'uses' => 'DeedController@getUserIndex']);
@@ -175,4 +175,6 @@ Route::group(['prefix' => '/user', 'before' => 'user:user'], function() {
 });
 
 Route::get('/facebook', ['as' => 'facebook', 'uses' => 'OAuthController@loginWithFacebook']);
+Route::get('/twitter', ['as' => 'twitter', 'uses' => 'OAuthController@loginWithTwitter']);
 Route::get('/google', ['as' => 'google', 'uses' => 'OAuthController@loginWithGoogle']);
+Route::get('/github', ['as' => 'github', 'uses' => 'OAuthController@loginWithGitHub']);

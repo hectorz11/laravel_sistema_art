@@ -13,7 +13,7 @@ class DeedController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['deed_index'])) {
+		if (Sentry::hasAnyAccess(['deeds_index'])) {
 			/*$deeds = DB::table('deeds')
 			->select(array(
 				'deeds.id',
@@ -64,7 +64,7 @@ class DeedController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['deed_create'])) {
+		if (Sentry::hasAnyAccess(['deeds_create'])) {
 			$notaries = $this->notary->allNotaries();
 			return View::make('deeds.admin.create', ['notaries' => $notaries]);
 		} else {
@@ -74,7 +74,7 @@ class DeedController extends \BaseController {
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['deed_create'])) {
+		if (Sentry::hasAnyAccess(['deeds_create'])) {
 			$answer = Deed::createDeed(Input::all());
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.deeds.create')
@@ -90,7 +90,7 @@ class DeedController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['deed_update'])) {
+		if (Sentry::hasAnyAccess(['deeds_update'])) {
 			$notaries = $this->notary->allNotaries();
 			$deed = $this->deed->selectDeed($id);
 			if (Request::ajax()) {
@@ -105,7 +105,7 @@ class DeedController extends \BaseController {
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['deed_update'])) {
+		if (Sentry::hasAnyAccess(['deeds_update'])) {
 			$answer = Deed::updateDeed(Input::all(), $id);
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.deeds.edit', $id)
@@ -127,7 +127,7 @@ class DeedController extends \BaseController {
 	//-----------------------------------------------------------------------------
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['user'])) {
+		if (Sentry::hasAnyAccess(['users'])) {
 			if (Request::ajax()) {
 				$result = DB::table('deeds')
 				->select(array(

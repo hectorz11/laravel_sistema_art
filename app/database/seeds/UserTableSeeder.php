@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -57,7 +57,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -79,7 +79,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -101,7 +101,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -123,7 +123,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -145,7 +145,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'male';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 
@@ -167,7 +167,7 @@ class UserTableSeeder extends Seeder {
 		$profile->gender = 'female';
 		$profile->user_id = $user->id;
 		$profile->social_id = 0;
-		$profile->provider = '';
+		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
 	}
