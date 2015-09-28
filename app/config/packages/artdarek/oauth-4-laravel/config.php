@@ -40,8 +40,8 @@ return array(
 		 * Twitter
 		 */
 		'Twitter' => array(
-    		'client_id'     => 'YlX8o3x8VHUiYKpH2v4DQFgj5',
-    		'client_secret' => 'prwqn7ZRpyKv6hE4w3DYQUKkHv6j1KH9sO5hwD3bQm6elsgvkH',
+    		'client_id'     => 'OYpBkaznZ5YbZXkBCIRJOITl0',
+    		'client_secret' => 'Xl1ciV6qEJUfiSIpNM99BrW2cxZ4xfsPnpdsZD1iIZmnXGz3LV',
    			 // No scope - oauth1 doesn't need scope
 		),
 

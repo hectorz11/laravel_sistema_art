@@ -25,24 +25,19 @@ class OAuthController extends \BaseController {
 			$profile = Profile::whereSocialId($idFb)->first();
 
 			if (empty($profile)) {
-				if (isset($result['email'])) 
-					$email = $result['email'];
+				if (isset($result['email'])) $email = $result['email'];
 				else $email = '';
 
-				if (isset($result['first_name'])) 
-					$firstName = $result['first_name'];
+				if (isset($result['first_name'])) $firstName = $result['first_name'];
 				else $firstName = '';
 
-				if (isset($result['last_name'])) 
-					$lastName = $result['last_name'];
+				if (isset($result['last_name'])) $lastName = $result['last_name'];
 				else $lastName = '';
 
-				if (isset($result['birthday'])) 
-					$birthday = $result['birthday']; 
+				if (isset($result['birthday'])) $birthday = $result['birthday']; 
 				else $birthday = '';
 
-				if (isset($result['gender'])) 
-					$gender = $result['gender'];
+				if (isset($result['gender'])) $gender = $result['gender'];
 				else $gender = '';
 
 				$photoURL = 'http://graph.facebook.com/'.$result['id'].'/picture?type=large';
@@ -89,50 +84,86 @@ class OAuthController extends \BaseController {
 	    }
 	}
 
+	public function loginWithTwitter() {
+
+	    // get data from input
+		$token = Input::get( 'oauth_token' );
+		$verify = Input::get( 'oauth_verifier' );
+
+		// get twitter service
+		$tw = OAuth::consumer( 'Twitter' );
+
+		// check if code is valid
+
+		// if code is provided get user data and sign in
+		if ( !empty( $token ) && !empty( $verify ) ) {
+
+			// This was a callback request from twitter, get the token
+			$token = $tw->requestAccessToken( $token, $verify, $token->getRequestTokenSecret() );
+
+			// Send a request with it
+			$result = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
+
+			$message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+			echo $message. "<br/>";
+
+			//Var_dump
+			//display whole array().
+			dd($result);
+
+		}
+		// if not ask for permission first
+		else {
+			// get request token
+			$reqToken = $tw->requestRequestToken();
+
+			// get Authorization Uri sending the request token
+			$url = $tw->getAuthorizationUri(array('oauth_token' => $reqToken->getRequestToken()));
+
+			// return to twitter login url
+			return Redirect::to( (string)$url );
+		}
+	}
+
 	public function loginWithGoogle() {
 
 	    // get data from input
-	    $code = Input::get( 'code' );
+		$code = Input::get( 'code' );
 
-	    // get google service
-	    $googleService = OAuth::consumer( 'Google' );
+		// get google service
+		$googleService = OAuth::consumer( 'Google' );
 
-	    // check if code is valid
+		// check if code is valid
 
-	    // if code is provided get user data and sign in
-	    if ( !empty( $code ) ) {
+		// if code is provided get user data and sign in
+		if ( !empty( $code ) ) {
 
-	        // This was a callback request from google, get the token
-	        $token = $googleService->requestAccessToken( $code );
+			// This was a callback request from google, get the token
+			$token = $googleService->requestAccessToken( $code );
 
-	        // Send a request with it
-	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+			// Send a request with it
+			$result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
 
-	        //$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        //echo $message. "<br/>";
-	        $idGg = $result['id'];
+			//$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+			//echo $message. "<br/>";
+			$idGg = $result['id'];
 
-	        $profile = Profile::whereSocialId($idGg)->first();
+			$profile = Profile::whereSocialId($idGg)->first();
 
 			if (empty($profile)) {
-		        if (isset($result['email'])) 
-					$email = $result['email'];
+				if (isset($result['email'])) $email = $result['email'];
 				else $email = '';
 
-				if (isset($result['given_name'])) 
-					$given_name = $result['given_name'];
+				if (isset($result['given_name'])) $given_name = $result['given_name'];
 				else $given_name = '';
 
-				if (isset($result['family_name'])) 
-					$family_name = $result['family_name'];
+				if (isset($result['family_name'])) $family_name = $result['family_name'];
 				else $family_name = '';
 
-				if (isset($result['gender'])) 
-					$gender = $result['gender'];
+				if (isset($result['gender'])) $gender = $result['gender'];
 				else $gender = '';
 
-				if (isset($result['picture']))
-					$photoURL = $result['picture'];
+				if (isset($result['picture'])) $photoURL = $result['picture'];
 				else $photoURL = '';
 
 				$accessToken = $token->getAccessToken();
@@ -164,72 +195,31 @@ class OAuthController extends \BaseController {
 					return Redirect::route('user.dashboard');
 				}
 			}
-	    }
+		}
 	    // if not ask for permission first
 	    else {
-	        // get googleService authorization
-	        $url = $googleService->getAuthorizationUri();
+			// get googleService authorization
+			$url = $googleService->getAuthorizationUri();
 
-	        // return to google login url
+			// return to google login url
 	        return Redirect::to( (string)$url );
-	    }
-	}
-
-	public function loginWithTwitter() {
-
-	    // get data from input
-	    $token = Input::get( 'oauth_token' );
-	    $verify = Input::get( 'oauth_verifier' );
-
-	    // get twitter service
-	    $tw = OAuth::consumer( 'Twitter' );
-
-	    // check if code is valid
-
-	    // if code is provided get user data and sign in
-	    if ( !empty( $token ) && !empty( $verify ) ) {
-
-	        // This was a callback request from twitter, get the token
-	        $token = $tw->requestAccessToken( $token, $verify );
-
-	        // Send a request with it
-	        $result = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
-
-	        $message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        echo $message. "<br/>";
-
-	        //Var_dump
-	        //display whole array().
-	        dd($result);
-
-	    }
-	    // if not ask for permission first
-	    else {
-	        // get request token
-	        $reqToken = $tw->requestRequestToken();
-
-	        // get Authorization Uri sending the request token
-	        $url = $tw->getAuthorizationUri(array('oauth_token' => $reqToken->getRequestToken()));
-
-	        // return to twitter login url
-	        return Redirect::to( (string)$url );
-	    }
+		}
 	}
 
 	public function loginWithGitHub() {
 
-	    // get data from input
-	    $code = Input::get( 'code' );
+		// get data from input
+		$code = Input::get( 'code' );
 
-	    // get google service
-	    $gitHubService = OAuth::consumer( 'GitHub' );
+		// get google service
+		$gitHubService = OAuth::consumer( 'GitHub' );
 
-	    // check if code is valid
+		// check if code is valid
 
-	    // if code is provided get user data and sign in
-	    if ( !empty( $code ) ) {
+		// if code is provided get user data and sign in
+		if ( !empty( $code ) ) {
 
-	        // This was a callback request from google, get the token
+			// This was a callback request from google, get the token
 			$token = $gitHubService->requestAccessToken( $code );
 
 			// Send a request with it
@@ -242,24 +232,21 @@ class OAuthController extends \BaseController {
 			$profile = Profile::whereSocialId($idGH)->first();
 
 			if (empty($profile)) {
-				if (isset($result['email'])) 
-					$email = $result['email'];
+				if (isset($result['email'])) $email = $result['email'];
 				else $email = '';
 
-				if (isset($result['name'])) 
-					$name = $result['name'];
+				if (isset($result['name'])) $name = $result['name'];
 				else $name = '';
 
-				if (isset($result['avatar_url']))
-					$photoURL = $result['avatar_url'];
+				if (isset($result['avatar_url'])) $photoURL = $result['avatar_url'];
 				else $photoURL = '';
 
 				$accessToken = $token->getAccessToken();
 
-		        //return Response::json($result);
-		        //display whole array().
-		        //dd($result);
-		        return View::make('pages.oauth.github')
+				//return Response::json($result);
+				//display whole array().
+				//dd($result);
+				return View::make('pages.oauth.github')
 				->with('idGH', $idGH)
 				->with('email', $email)
 				->with('name', $name)
@@ -281,14 +268,14 @@ class OAuthController extends \BaseController {
 					return Redirect::route('user.dashboard');
 				}
 			}
-	    }
+	}
 	    // if not ask for permission first
 	    else {
-	        // get gitHubService authorization
-	        $url = $gitHubService->getAuthorizationUri();
+			// get gitHubService authorization
+			$url = $gitHubService->getAuthorizationUri();
 
-	        // return to google login url
+			// return to google login url
 	        return Redirect::to( (string)$url );
-	    }
+		}
 	}
 }
