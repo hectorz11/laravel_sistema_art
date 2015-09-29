@@ -170,6 +170,13 @@ class GroupTableSeeder extends Seeder {
 			'name' => 'usuario',
 			'permissions' => array(
 				'users' => 1,
+				'deeds_index' => 1,
+				'agrarians_index' => 1,
+				'civils_index' => 1,
+				'penals_index' => 1,
+				'records_index' => 1,
+				'notaries_index' => 1,
+				'municipalities_index' => 1,
 			)
 		));
 	}

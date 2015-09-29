@@ -13,12 +13,11 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get('/signin', ['as' => 'signin', 'uses' => 'HomeController@getSignIn']);
-
 Route::group(['before' => 'guest'], function() 
 {
 	Route::get('/register/{userId}/activated/{activationCode}', [
 		'as' => 'register.activated', 'uses' => 'HomeController@getRegisterActivated']);
+	Route::get('/signin', ['as' => 'signin', 'uses' => 'HomeController@getSignIn']);
 	
 	Route::group(['before' => 'csrf'], function() {
 		Route::post('/signin', ['as' => 'signin.post', 'uses' => 'HomeController@postSignIn']);
