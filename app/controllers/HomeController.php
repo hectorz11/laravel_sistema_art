@@ -40,39 +40,38 @@ class HomeController extends BaseController {
 
 	public function postSignIn()
 	{
-		//return Input::all();
-		$validation = Validator::make(Input::all(), User::$login_rules);
-		if($validation->fails()) {
-			return Redirect::route('home')->withInput();
-		} else {
-			try {
-				$credenciales = array(
-					'email' => Input::get('email'),
-					'password' => Input::get('password')
-				);
-				$sentry = Sentry::authenticate($credenciales, false);
-				if(Sentry::check()) {
-
-					if($sentry->hasAnyAccess(['admin'])) {
-						return Redirect::route('admin.dashboard')
-						->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
-					} else if($sentry->hasAnyAccess(['users'])) {
-						return Redirect::route('user.dashboard');
-					}
-				} else {
-					return Redirect::route('home')->withInput();
+		try {
+			$credenciales = array(
+				'email' => Input::get('email'),
+				'password' => Input::get('password')
+			);
+			$sentry = Sentry::authenticate($credenciales, false);
+			if(Sentry::check()) {
+				if($sentry->hasAnyAccess(['admin'])) {
+					return Redirect::route('admin.dashboard')
+					->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
+				} else if($sentry->hasAnyAccess(['users'])) {
+					return Redirect::route('user.dashboard');
 				}
-			} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
-		     	return Redirect::route('home')
-		     	->with(['message' => 'Contraseña incorrecta', 'class' => 'warning']);
-			} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
-		    	return Redirect::route('home')
-		    	->with(['message' => 'Usuario no activado', 'class' => 'warning']);
-		    } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		    	return Redirect::route('home')
-		    	->with(['message' => 'Usuario no registrado', 'class' => 'danger']);
+			} else {
+				return Redirect::route('home')->withInput();
 			}
-		}
+		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'E-mail es requerido', 'class' => 'warning']);
+		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'Password es requerido', 'class' => 'warning']);
+		} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'Contraseña incorrecta', 'class' => 'warning']);
+		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'Usuario no registrado', 'class' => 'danger']);
+		} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'Usuario no activado', 'class' => 'warning']);
+	    }
 	}
 
 	public function getSignOut()
