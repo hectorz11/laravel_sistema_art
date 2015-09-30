@@ -46,10 +46,15 @@ class HomeController extends BaseController {
 				'password' => Input::get('password')
 			);
 			$sentry = Sentry::authenticate($credenciales, false);
+			$token = hash('sha256', Str::random(10), false);
+			$sentry->api_token = $token;
+			$sentry->save();
+
 			if(Sentry::check()) {
 				if($sentry->hasAnyAccess(['admin'])) {
-					return Redirect::route('admin.dashboard')
-					->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
+					return Response::json(['token' => $token, 'user' => $sentry->toArray()]);
+					/*return Redirect::route('admin.dashboard')
+					->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);*/
 				} else if($sentry->hasAnyAccess(['users'])) {
 					return Redirect::route('user.dashboard');
 				}

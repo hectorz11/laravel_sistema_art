@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function() 
+Route::group(['prefix' => '/admin', 'before' => 'admin:admin|auth.token'], function() 
 {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
 
