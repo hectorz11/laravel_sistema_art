@@ -85,45 +85,47 @@ class OAuthController extends \BaseController {
 	}
 
 	public function loginWithTwitter() {
+        // get data from input
+        $code = \Input::get( 'go' );
 
-	    // get data from input
-		$token = Input::get( 'oauth_token' );
-		$verify = Input::get( 'oauth_verifier' );
+        // get Twitter service
+        /** @var $twitterService Twitter */
+        $twitterService = OAuth::consumer( 'Twitter' );
 
-		// get twitter service
-		$tw = OAuth::consumer( 'Twitter' );
+        // check if code is valid
 
-		// check if code is valid
+        // Instantiate the twitter service using the credentials, http client and storage mechanism for the token
 
-		// if code is provided get user data and sign in
-		if ( !empty( $token ) && !empty( $verify ) ) {
+        if (Input::get('oauth_token')) {
 
-			// This was a callback request from twitter, get the token
-			$token = $tw->requestAccessToken( $token, $verify, $token->getRequestTokenSecret() );
+            $token = $twitterService->getStorage()->retrieveAccessToken('Twitter');
 
-			// Send a request with it
-			$result = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
+            // This was a callback request from twitter, get the token
+            $twitterService->requestAccessToken(
+                Input::get('oauth_token'),
+                \Input::get('oauth_verifier'),
+                $token->getRequestTokenSecret()
+            );
 
-			$message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-			echo $message. "<br/>";
+            // Send a request now that we have access token
+            $result = json_decode($twitterService->request('account/verify_credentials.json'));
 
-			//Var_dump
-			//display whole array().
-			dd($result);
+            dd($result);
 
-		}
-		// if not ask for permission first
-		else {
-			// get request token
-			$reqToken = $tw->requestRequestToken();
+        } elseif (!empty($code) && $code === 'go') {
 
-			// get Authorization Uri sending the request token
-			$url = $tw->getAuthorizationUri(array('oauth_token' => $reqToken->getRequestToken()));
+            // extra request needed for oauth1 to request a request token :-)
+            $token = $twitterService->requestRequestToken();
 
-			// return to twitter login url
-			return Redirect::to( (string)$url );
-		}
-	}
+            $url = $twitterService->getAuthorizationUri(array('oauth_token' => $token->getRequestToken()));
+            header('Location: ' . $url);
+            exit;
+        } else {
+            $url = URL::current() . '?go=go';
+            echo "Login with Twitter!";
+            exit;
+        }
+    }
 
 	public function loginWithGoogle() {
 

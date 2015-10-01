@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => '/admin', 'before' => 'admin:admin|auth.token'], function() 
+Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function() 
 {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
 
@@ -50,7 +50,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin|auth.token'], funct
 		});
 	});
 
-	Route::group(['prefix' => '/deeds'], function() 
+	Route::group(['prefix' => '/deeds', 'before' => 'auth.token'], function() 
 	{
 		$deeG = 'admin.deeds';
 		Route::get('/', ['as' => $deeG . '.index', 'uses' => 'DeedController@getAdminIndex']);

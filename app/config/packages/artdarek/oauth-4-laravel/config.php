@@ -28,21 +28,20 @@ return array(
         ),
 
         /**
+		 * Twitter
+		 */
+		'Twitter' => array(
+    		'client_id'     => 'OYpBkaznZ5YbZXkBCIRJOITl0',
+    		'client_secret' => 'Xl1ciV6qEJUfiSIpNM99BrW2cxZ4xfsPnpdsZD1iIZmnXGz3LV',
+		),
+
+        /**
          * Google
          */
         'Google' => array(
 		    'client_id'     => '382943520733-6of2p0sini7h68g6b3bg7ag1urb66qig.apps.googleusercontent.com',
 		    'client_secret' => 'jgbOhNrCzmzsSXbciy_u_VSu',
 		    'scope'         => array('userinfo_email', 'userinfo_profile'),
-		),
-
-		/**
-		 * Twitter
-		 */
-		'Twitter' => array(
-    		'client_id'     => 'OYpBkaznZ5YbZXkBCIRJOITl0',
-    		'client_secret' => 'Xl1ciV6qEJUfiSIpNM99BrW2cxZ4xfsPnpdsZD1iIZmnXGz3LV',
-   			 // No scope - oauth1 doesn't need scope
 		),
 
 		/**

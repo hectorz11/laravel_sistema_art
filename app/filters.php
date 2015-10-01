@@ -100,7 +100,7 @@ Route::filter('auth.token', function($route, $request)
 
     $userModel = Sentry::getUserProvider()->createModel();
 
-    $user =  $userModel->where('api_token',$payload)->first();
+    $user =  $userModel->where('api_token', $payload)->first();
 
     if(!$payload || !$user) {
 
