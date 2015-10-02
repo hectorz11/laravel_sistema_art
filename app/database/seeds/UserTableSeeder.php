@@ -40,6 +40,8 @@ class UserTableSeeder extends Seeder {
 		$profile->save();
 
 		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'norberto.lanchipa@yopmail.com',
@@ -63,6 +65,10 @@ class UserTableSeeder extends Seeder {
 		$profile->status = 1;
 		$profile->save();
 
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
+
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'milagros.liendo@yopmail.com',
 			'first_name' => 'Milagros',
@@ -84,6 +90,10 @@ class UserTableSeeder extends Seeder {
 		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
+
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'laura.salas@yopmail.com',
@@ -107,6 +117,10 @@ class UserTableSeeder extends Seeder {
 		$profile->status = 1;
 		$profile->save();
 
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
+
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'wilton.condori@yopmail.com',
 			'first_name' => 'Wilton',
@@ -128,6 +142,10 @@ class UserTableSeeder extends Seeder {
 		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
+
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
 
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'hector.zapana@yopmail.com',
@@ -151,6 +169,10 @@ class UserTableSeeder extends Seeder {
 		$profile->status = 1;
 		$profile->save();
 
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
+
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'diana.cardenas@yopmail.com',
 			'first_name' => 'Diana',
@@ -172,5 +194,9 @@ class UserTableSeeder extends Seeder {
 		$profile->provider = 'ART';
 		$profile->status = 1;
 		$profile->save();
+
+		$token = new Token;
+		$token->user_id = $user->id;
+		$token->save();
 	}
 }

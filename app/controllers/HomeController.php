@@ -46,9 +46,14 @@ class HomeController extends BaseController {
 				'password' => Input::get('password')
 			);
 			$sentry = Sentry::authenticate($credenciales, false);
-			//$token = hash('sha256', Str::random(10), false);
-			//$sentry->api_token = $token;
-			//$sentry->save();
+			$user = User::find($sentry->id);
+			if (!$user->tokens()->where('client', BrowserDetect::toString())->first()) {
+				$token = [];
+				$token['api_token'] = hash('sha256', Str::random(10), false);
+				$token['client'] = BrowserDetect::toString();
+				$token['expires_on'] = Carbon::now()->addMonth()->toDateTimeString();
+				$user->tokens()->save(new Token($token));
+			}
 
 			if(Sentry::check()) {
 				if($sentry->hasAnyAccess(['admin'])) {

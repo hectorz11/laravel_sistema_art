@@ -96,24 +96,56 @@ Route::filter('csrf', function()
 */
 Route::filter('auth.token', function($route, $request)
 {
-    $payload = $request->header('X-Auth-Token');
+    $authenticated = false;
 
-    $userModel = Sentry::getUserProvider()->createModel();
+    if($email = $request->getUser() && $password = $request->getPassword())
+    {
+    //Read request for credentials
+		$credentials = array(
+			'email' => $request->getUser(), 
+			'password' => $request->getPassword()
+		);
 
-    $user =  $userModel->where('api_token', $payload)->first();
+    //Authenticate using Laravel's Auth
 
-    if(!$payload || !$user) {
+		if(Auth::once($credentials))
+		{
+			$authenticated = true;
 
+			//Check user already has a token
+			if(!Auth::user()->tokens()->where('client',BrowserDetect::toString())->first())
+			{
+				$token = [];
+
+				$token['api_token'] = hash('sha256',Str::random(10),false);
+				$token['client'] = BrowserDetect::toString();
+				$token['expires_on'] = Carbon::now()->addMonth()->toDateTimeString();          
+				//Else create it
+				Auth::user()->tokens()->save(new Token($token));
+			}
+        }
+    }
+
+    //Inform Sentry the same!        
+    if($authenticated && !Sentry::check()) {
+        Sentry::login(Auth::user());
+    }
+
+    if(!$authenticated)
+    {
         $response = Response::json([
-            'error' => true,
-            'message' => 'Not authenticated',
-            'code' => 401],
-            401
-        );
+			    'error' => true,
+                'message' => 'Not authenticated',
+                'code' => 401],
+                401
+            );
 
         $response->header('Content-Type', 'application/json');
-    	return $response;
+
+        return $response;
     }
+
+
 });
 
 Route::filter('admin', function($route, $request, $value)
