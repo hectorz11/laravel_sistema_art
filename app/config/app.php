@@ -126,6 +126,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'hisorange\BrowserDetect\Provider\BrowserDetectService',
+		'Tappleby\AuthToken\AuthTokenServiceProvider',
 
 	),
 
@@ -197,6 +198,8 @@ return array(
 		'Datatable' 	  => 'Chumper\Datatable\Facades\DatatableFacade',
 		'OAuth' 		  => 'Artdarek\OAuth\Facade\OAuth',
 		'BrowserDetect'   => 'hisorange\BrowserDetect\Facade\Parser',
+		'AuthToken' 	  => 'Tappleby\Support\Facades\AuthToken',
+		'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'
 
 	),
 
