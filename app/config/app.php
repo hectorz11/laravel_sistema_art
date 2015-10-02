@@ -125,6 +125,7 @@ return array(
 		'Chumper\Datatable\DatatableServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
+		'hisorange\BrowserDetect\Provider\BrowserDetectService',
 
 	),
 
@@ -195,6 +196,7 @@ return array(
 		'Sentry' 		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'Datatable' 	  => 'Chumper\Datatable\Facades\DatatableFacade',
 		'OAuth' 		  => 'Artdarek\OAuth\Facade\OAuth',
+		'BrowserDetect'   => 'hisorange\BrowserDetect\Facade\Parser',
 
 	),
 

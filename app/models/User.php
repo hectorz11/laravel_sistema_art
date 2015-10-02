@@ -1,6 +1,8 @@
 <?php
 
-class User extends Cartalyst\Sentry\Users\Eloquent\User
+use Cartalyst\Sentry\Users\Eloquent\User as SentryUserModel;
+
+class User extends SentryUserModel 
 {
 	public static $login_rules = [
 		'email' => 'required',
@@ -20,6 +22,11 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User
 	public function profiles()
 	{
 		return $this->hasOne('Profile','user_id');
+	}
+
+	public function tokens()
+	{
+		return $this->hasMany('Token', 'user_id');
 	}
 
 	public static function createUser($input)

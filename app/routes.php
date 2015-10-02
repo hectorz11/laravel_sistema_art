@@ -11,10 +11,10 @@
 |
 */
 
-require __DIR__.'/routes/page.php';
+require __DIR__.'/routes/route_page.php';
 
-require __DIR__.'/routes/authenticate.php';
+require __DIR__.'/routes/route_auth.php';
 
-require __DIR__.'/routes/admin.php';
+require __DIR__.'/routes/route_admin.php';
 
-require __DIR__.'/routes/user.php';
+require __DIR__.'/routes/route_user.php';

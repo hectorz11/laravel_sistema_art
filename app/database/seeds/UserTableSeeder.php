@@ -39,6 +39,8 @@ class UserTableSeeder extends Seeder {
 		$profile->status = 1;
 		$profile->save();
 
+		$token = new Token;
+
 		$sentry = Sentry::getUserProvider()->create(array(
 			'email' => 'norberto.lanchipa@yopmail.com',
 			'first_name' => 'Norberto',
