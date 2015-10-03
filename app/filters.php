@@ -96,21 +96,21 @@ Route::filter('csrf', function()
 */
 Route::filter('auth.token', function($route, $request)
 {
-    if($payload = Request::header('X-Auth-Token')) {
-	    $userModel = Sentry::getUserProvider()->createModel();
+    $authenticated = false;
 
-	    $token = Token::valid()->where('api_token',$payload)
-	                    ->where('client',BrowserDetect::toString())
-	                    ->first();
+    if(!$authenticated)
+    {
+        $response = Response::json([
+                'error' => true,
+                'message' => 'Not authenticated',
+                'code' => 401],
+                401
+            );
 
-	    if($token) {
-	        Sentry::login($token->users);
-	        $authenticated = true;
-	    }
+        $response->header('Content-Type', 'application/json');
+        return $response;
+    }
 
-	} else {
-		return Redirect::route('home');
-	}
 });
 
 Route::filter('admin', function($route, $request, $value)
