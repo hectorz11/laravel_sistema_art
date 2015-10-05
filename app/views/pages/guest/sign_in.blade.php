@@ -7,6 +7,9 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Porfavor, Inicie Sesión</h3>
                     </div>
+                    @if(Session::has('mensaje'))
+                        <div class="alert alert-{{ Session::get('class') }}"><strong>{{ Session::get('mensaje') }}</strong><button type="button" class="close" data-dismiss="alert">×</button></div>
+                    @endif
                     <div class="panel-body">
                         {{ Form::open(['route' => 'signin.post', 'class' => 'form']) }}
                             <fieldset>
@@ -22,10 +25,15 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
+                                <div class="col-md-6">
+                                    <input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{ URL::route('home') }}" class="btn btn-lg btn-info btn-block">Home</a>
+                                </div>
                             </fieldset>
                         {{ Form::close() }}
-                        <p><a href="#">¿Se te olvidó tu contraseña?</a></p>
+                        <p><a href="{{ URL::route('forgot.password') }}">¿Se te olvidó tu contraseña?</a></p>
                         <p class="or-social">O utilizar una Red Social</p>
                         <a href="{{ route('facebook') }}" class="btn btn-lg btn-primary btn-block facebook" type="submit">Facebook</a>
                         <a href="{{ route('twitter') }}" class="btn btn-lg btn-primary btn-block twitter" type="submit">Twitter</a>

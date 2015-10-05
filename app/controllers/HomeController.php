@@ -146,7 +146,7 @@ class HomeController extends BaseController {
 				$resetCode = $sentry->getResetPasswordCode();
 				$user = User::find($sentry->id);
 
-				Mail::send("emails.reset_password", array('email' => $email, 'resetCode' => $resetCode),
+				Mail::send("emails.auth.reset_password", array('email' => $email, 'resetCode' => $resetCode),
 					function($message) use ($email, $resetCode) {
 						$message->to($email)->subject('Siga el enlace para restablecer tu contraseña');
 					}
@@ -161,18 +161,18 @@ class HomeController extends BaseController {
 			}
 		} else {
 			return Redirect::route('forgot.password')
-			->with(['mensaje' => 'TEAM ART: Error email', 'class' => 'danger');
+			->with(['mensaje' => 'TEAM ART: Error email', 'class' => 'danger']);
 		}
 	}
 
 	public function getNewPassword()
 	{
-		if(Input::has('email') && Input::has('resetcode')) {
+		if (Input::has('email') && Input::has('resetcode')) {
 			try {
-				$user = Sentry::findUserByLogin(Input::get('email'));
-				if($user->checkResetPasswordCode(Input::get('resetcode'))) {
+				$sentry = Sentry::findUserByLogin(Input::get('email'));
+				if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) {
 					return View::make('pages.guest.new_password')
-					->with('user', $user);
+					->with('user', $sentry);
 				} else {
 					return Redirect::route('forgot.password')
 					->with('mensaje', 'Solicitud no válida. Introduzca DNI para restablecer su contraseña.')
@@ -195,15 +195,16 @@ class HomeController extends BaseController {
 			'password' => 'required|min:6|max:32',
 			're_password' => 'required|min:6|max:32|same:password'
 		);
+
 		$validation = Validator::make(Input::all(), $rules);
-		if($validation->passes()) {
-			if(Input::has('email') && Input::get('resetcode')) {
+		if ($validation->passes()) {
+			if (Input::has('email') && Input::has('resetcode')) {
 				try {
-					$user = Sentry::findUserByLogin(Input::get('email'));
-					if($user->checkResetPasswordCode(Input::get('resetcode'))) {
-						if($user->attemptResetPassword(Input::get('resetcode'), Input::get('password'))) {
+					$sentry = Sentry::findUserByLogin(Input::get('email'));
+					if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) {
+						if ($sentry->attemptResetPassword(Input::get('resetcode'), Input::get('password'))) {
 							return Redirect::route('signin')
-							->with('mensaje', 'Cambio de contraseña fue un éxito. Por favor ingresa abajo.')
+							->with('mensaje', 'Cambio de contraseña fue un éxito. Por favor ingresa abajo con su nueva contraseña.')
 							->with('class', 'success');
 						} else {
 							return Redirect::route('forgot.password')
@@ -217,16 +218,17 @@ class HomeController extends BaseController {
 					}
 				} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
                     return Redirect::route('forgot.password')
-                    ->with('mensaje', 'Usuario no encontrado.')->with('class', 'danger');
+                    ->with('mensaje', 'Usuario no encontrado.')
+                    ->with('class', 'danger');
                 }
             } else {
                 return Redirect::route('forgot.password')
-                ->with('mensaje', 'Solicitud no válida. Introduzca correo electrónico para restablecer su contraseña.')->with('class', 'danger');
+                ->with('mensaje', 'Solicitud no válida. Introduzca correo electrónico para restablecer su contraseña.')
+                ->with('class', 'danger');
             }
         } else {
-            return Redirect::to('/newpassword?email='.Input::get('email').'&resetcode='.Input::get('resetcode'))
-			->withErrors($validation)
-			->withInput();
+            return Redirect::to('/new/password?email='.Input::get('email').'&resetcode='.Input::get('resetcode'))
+			->withErrors($validation)->withInput();
         }
 	}
 }
