@@ -9,24 +9,26 @@
                 <div class="col-md-6">
                     <div class="about-text">
                         <div class="section-title">
-                            <h4>About us</h4>
-                            <h2>Some words <strong>about us</strong></h2>
+                            <h4>Archivo Regional de Tacna</h4>
+                            <h2>Sobre <strong>nosotros</strong></h2>
                             <hr>
                             <div class="clearfix"></div>
                         </div>
-                        <p class="intro">We love building and rebuilding brands through our  specific skills. Using colour, fonts, and illustration, we brand companies in a way they will never forget.</p>
+                        <p class="intro">Archivo Regional de Tacna.</p>
                         <ul class="about-list">
                             <li>
                                 <span class="fa fa-dot-circle-o"></span>
-                                <strong>Mission</strong> - <em>We deliver uniqueness and quality</em>
+                                <strong>Mision</strong> - <em>El Archivo Regional de Tacna, institución modelo y líder del 
+                                istema Nacional de Archivos, caracterizada por su calidad, tecnología y personal altamente 
+                                calificado en una organización eficiente, puesta al servicio de la sociedad como fuente de 
+                                información e investigación en apoyo a la educación y cultura.</em>
                             </li>
                             <li>
                                 <span class="fa fa-dot-circle-o"></span>
-                                <strong>Skills</strong> - <em>Delivering fast and excellent results</em>
-                            </li>
-                            <li>
-                                <span class="fa fa-dot-circle-o"></span>
-                                <strong>Clients</strong> - <em>Satisfied clients thanks to our experience</em>
+                                <strong>Vision</strong> - <em>Conducir y controlar el desarrollo del Sistema Nacional de 
+                                Archivos en su jurisdicción, asegurando la conservación del Patrimonio Documental  de la 
+                                Nación, en función a las técnicas archivísticas, así como a la modernización y capacitación 
+                                especializada, para optimizar los servicios a la ciudadanía en genera.</em>
                             </li>
                         </ul>
                     </div>

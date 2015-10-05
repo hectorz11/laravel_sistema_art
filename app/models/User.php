@@ -33,9 +33,10 @@ class User extends SentryUserModel
 	{
 		$answer = [];
 		$rules = [
-			'email' => 'required|email',
+			'email' => 'required|email|unique:users,email',
 			'first_name' => 'required',
 			'password' => 'required',
+			're_password' => 'required|same:password',
 		];
 
 		$validation = Validator::make($input, $rules);

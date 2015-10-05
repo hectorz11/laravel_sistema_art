@@ -41,7 +41,8 @@
                         
                         <button type="submit" class="btn tf-btn btn-default">Submit</button>
                     </form>
-
+                        <a href="{{ URL::route('signin') }}" class="btn btn-primary">Iniciar Sesión</a>
+                        <a href="{{ URL::route('signup') }}" class="btn btn-success">Registrarse</a>
                 </div>
             </div>
 

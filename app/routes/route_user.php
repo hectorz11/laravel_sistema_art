@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => '/user', 'before' => 'users:users|auth.token'], function() {
+Route::group(['prefix' => '/user', 'before' => 'users:users'], function() {
 
 	Route::get('/', ['as' => 'user.dashboard', 'uses' => 'UserController@getIndex']);
 	Route::get('/deeds', ['as' => 'user.deeds.index', 'uses' => 'DeedController@getUserIndex']);

@@ -1,7 +1,9 @@
-            <!-- Top Menu Items -->
-            <?php 
-                $user = Sentry::getUser();
+            <!-- Sentry and Model User -->
+            <?php
+                $sentry = Sentry::getUser();
+                $user = User::find($sentry->id);
             ?>
+            <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
