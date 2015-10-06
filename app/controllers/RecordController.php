@@ -10,6 +10,12 @@ class RecordController extends \BaseController {
 		$this->municipality = $municipality;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['records_index'])) {
@@ -50,7 +56,7 @@ class RecordController extends \BaseController {
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['records_create'])) {
-			$municipalities = $this->municipality->allMunicipalities();
+			$municipalities = $this->municipality->allMunicipalitiesActivated();
 			return View::make('records.admin.create', ['municipalities' => $municipalities]);
 		} else {
 			return View::make('pages.error');
@@ -76,7 +82,7 @@ class RecordController extends \BaseController {
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['records_update'])) {
-			$municipalities = $this->municipality->allMunicipalities();
+			$municipalities = $this->municipality->allMunicipalitiesActivated();
 			$record = $this->record->selectRecord($id);
 			if (Request::ajax()) {
 				return Response::json(['record' => $record, 'municipalities' => $municipalities]);
@@ -108,7 +114,13 @@ class RecordController extends \BaseController {
 	{
 		//
 	}
-	//----------------------------------------------------------------------------------------------------------
+	
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

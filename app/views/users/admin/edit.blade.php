@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Editar <small>Municipalidad</small>
+                            Editar <small>Grupo</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -34,25 +34,44 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.municipalities.update', $municipality->id], 'method' => 'PUT']) }}
-                        <div class="col-lg-6">
+                    {{ Form::open(['route' => ['admin.groups.update', $user->id], 'method' => 'PUT']) }}
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Nombre</label>
-                                {{ Form::text('name', $municipality->name, ['class' => 'form-control', 'placeholder' => 'Nombre de la Municipalidad']) }}
+                                <label>Nombre(s)</label>
+                                {{ Form::text('first_name', $user->first_name, ['class' => 'form-control', 'placeholder' => 'Nombre(s)']) }}
                             </div>
-                            @if( $errors->has('name') )
+                            @if( $errors->has('first_name') )
                                 <div class="alert alert-danger">
-                                  @foreach($errors->get('name') as $error)
+                                  @foreach($errors->get('first_name') as $error)
                                     * {{$error}}</br>
                                   @endforeach
                                 </div>
                             @endif
                             <div class="form-group">
-                                <label>Status</label>
-                                {{ Form::checkBox('status', 1, $municipality->valor($municipality->id), ['class' => 'form-control']) }}
+                                <label>Apellidos</label>
+                                {{ Form::text('last_name', $user->last_name, ['class' => 'form-control', 'placeholder' => 'Apellidos']) }}
                             </div>
+                            @if( $errors->has('last_name') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('last_name') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                {{ Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
+                            </div>
+                            @if( $errors->has('email') )
+                                <div class="alert alert-danger">
+                                  @foreach($errors->get('email') as $error)
+                                    * {{$error}}</br>
+                                  @endforeach
+                                </div>
+                            @endif
+                            
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <a href="{{ URL::route('admin.municipalities.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
+                            <a href="{{ URL::route('admin.groups.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>

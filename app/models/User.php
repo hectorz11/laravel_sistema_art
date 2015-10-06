@@ -55,29 +55,29 @@ class User extends SentryUserModel
 		} else {
 			$adminGroup = Sentry::findGroupByName('usuario');
 			$sentry = Sentry::getUserProvider()->create(array(
-				'first_name' => Input::get('first_name'),
-				'last_name' => Input::get('last_name'),
-				'email' => Input::get('email'),
-				'password' => Input::get('password'),
+				'first_name' => $input['first_name'],
+				'last_name' => $input['last_name'],
+				'email' => $input['email'],
+				'password' => $input['password'],
 				'activated' => false,
 			));
 			$sentry->addGroup($adminGroup);
 			$user = User::find($sentry->id);
 
 			$profile = new Profile;
-			if (Input::has('social_id')) $profile->social_id = Input::get('social_id');
+			if (Input::has('social_id')) $profile->social_id = $input['social_id'];
 			else $profile->social_id = '';
-			if (Input::has('token')) $profile->access_token = Input::get('token');
+			if (Input::has('token')) $profile->access_token = $input['token'];
 			else $profile->access_token = '';
-			if (Input::has('provider')) $profile->provider = Input::get('provider');
+			if (Input::has('provider')) $profile->provider = $input['provider'];
 			else $profile->provider = '';
-			if (Input::has('photo')) $profile->photo = Input::get('photo');
+			if (Input::has('photo')) $profile->photo = $input['photo'];
 			else $profile->photo = '';
-			if (Input::has('birthday')) $profile->birthday = Input::get('birthday');
+			if (Input::has('birthday')) $profile->birthday = $input['birthday'];
 			else $profile->birthday = '';
-			if (Input::has('phone')) $profile->phone = Input::get('phone');
+			if (Input::has('phone')) $profile->phone = $input['phone'];
 			else $profile->phone = '';
-			if (Input::has('gender')) $profile->gender = Input::get('gender');
+			if (Input::has('gender')) $profile->gender = $input['gender'];
 			else $profile->gender = '';
 			$profile->user_id = $user->id;
 			$profile->status = 1;

@@ -48,8 +48,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Grupo</th>
-                                                    <th>Fecha de Creacion</th>
-                                                    <th>Fecha de Actualizacion</th>
+                                                    <th>Fecha de Creación</th>
+                                                    <th>Fecha de Actualización</th>
                                                     <th>Operaciones</th>
                                                 </tr>
                                             </thead>

@@ -81,9 +81,9 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="municipalities" class="collapse">
-                        @if (Sentry::getUser()->hasAccess(['records_index']))
-                            <li><a href="{{ URL::route('admin.records.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
-                            <li><a href="{{ URL::route('admin.records.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @if (Sentry::getUser()->hasAccess(['municipalities_index']))
+                            <li><a href="{{ URL::route('admin.municipalities.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.municipalities.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         @else
                             <li><a href="#"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
                         @endif
@@ -95,9 +95,9 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="notaries" class="collapse">
-                        @if (Sentry::getUser()->hasAccess(['records_index']))
-                            <li><a href="{{ URL::route('admin.records.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
-                            <li><a href="{{ URL::route('admin.records.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                        @if (Sentry::getUser()->hasAccess(['notaries_index']))
+                            <li><a href="{{ URL::route('admin.notaries.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
+                            <li><a href="{{ URL::route('admin.notaries.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         @else
                             <li><a href="#"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
                         @endif
@@ -123,7 +123,7 @@
                             <i class="fa fa-fw fa-caret-down"></i>
                         </a>
                         <ul id="users" class="collapse">
-                        @if (Sentry::getUser()->hasAccess(['groups_index']))
+                        @if (Sentry::getUser()->hasAccess(['users_index']))
                             <li><a href="{{ URL::route('admin.groups.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                             <li><a href="{{ URL::route('admin.groups.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
                         @else

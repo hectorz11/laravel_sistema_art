@@ -36,15 +36,15 @@ class Agrarian extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$agrarian = new self;
-			$agrarian->number_agrarian = Input::get('number_agrarian');
-			$agrarian->date = Input::get('date');
-			$agrarian->demandant = Input::get('demandant');
-			$agrarian->defendant = Input::get('defendant');
-			$agrarian->matery = Input::get('matery');
-			$agrarian->secretary = Input::get('secretary');
-			$agrarian->file = Input::get('file');
-			$agrarian->references = Input::get('references');
-			$agrarian->description = Input::get('description');
+			$agrarian->number_agrarian = $input['number_agrarian'];
+			$agrarian->date = $input['date'];
+			$agrarian->demandant = $input['demandant'];
+			$agrarian->defendant = $input['defendant'];
+			$agrarian->matery = $input['matery'];
+			$agrarian->secretary = $input['secretary'];
+			$agrarian->file = $input['file'];
+			$agrarian->references = $input['references'];
+			$agrarian->description = $input['description'];
 			$agrarian->status = 1;
 
 			if ($agrarian->save()) {
@@ -77,15 +77,15 @@ class Agrarian extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$agrarian = self::find($id);
-			$agrarian->number_agrarian = Input::get('number_agrarian');
-			$agrarian->date = Input::get('date');
-			$agrarian->demandant = Input::get('demandant');
-			$agrarian->defendant = Input::get('defendant');
-			$agrarian->matery = Input::get('matery');
-			$agrarian->secretary = Input::get('secretary');
-			$agrarian->file = Input::get('file');
-			$agrarian->references = Input::get('references');
-			$agrarian->description = Input::get('description');
+			$agrarian->number_agrarian = $input['number_agrarian'];
+			$agrarian->date = $input['date'];
+			$agrarian->demandant = $input['demandant'];
+			$agrarian->defendant = $input['defendant'];
+			$agrarian->matery = $input['matery'];
+			$agrarian->secretary = $input['secretary'];
+			$agrarian->file = $input['file'];
+			$agrarian->references = $input['references'];
+			$agrarian->description = $input['description'];
 
 			if ($agrarian->save()) {
 				$answer['message'] = 'Editado con exito!';

@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.agrarians.index') }}">
+                            <a href="{{ URL::route('admin.municipalities.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -180,7 +180,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('admin.civils.index') }}">
+                            <a href="{{ URL::route('admin.notaries.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

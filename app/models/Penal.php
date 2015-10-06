@@ -36,15 +36,15 @@ class Penal extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$penal = new self;
-			$penal->number_penal = Input::get('number_penal');
-			$penal->acussed = Input::get('acussed');
-			$penal->start_date = Input::get('start_date');
-			$penal->crime = Input::get('crime');
-			$penal->aggrieved = Input::get('aggrieved');
-			$penal->judge = Input::get('judge');
-			$penal->scribe = Input::get('scribe');
-			$penal->references = Input::get('references');
-			$penal->description = Input::get('description');
+			$penal->number_penal = $input['number_penal'];
+			$penal->acussed = $input['acussed'];
+			$penal->start_date = $input['start_date'];
+			$penal->crime = $input['crime'];
+			$penal->aggrieved = $input['aggrieved'];
+			$penal->judge = $input['judge'];
+			$penal->scribe = $input['scribe'];
+			$penal->references = $input['references'];
+			$penal->description = $input['description'];
 			$penal->status = 1;
 
 			if ($penal->save()) {
@@ -77,15 +77,15 @@ class Penal extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$penal = self::find($id);
-			$penal->number_penal = Input::get('number_penal');
-			$penal->acussed = Input::get('acussed');
-			$penal->start_date = Input::get('start_date');
-			$penal->crime = Input::get('crime');
-			$penal->aggrieved = Input::get('aggrieved');
-			$penal->judge = Input::get('judge');
-			$penal->scribe = Input::get('scribe');
-			$penal->references = Input::get('references');
-			$penal->description = Input::get('description');
+			$penal->number_penal = $input['number_penal'];
+			$penal->acussed = $input['acussed'];
+			$penal->start_date = $input['start_date'];
+			$penal->crime = $input['crime'];
+			$penal->aggrieved = $input['aggrieved'];
+			$penal->judge = $input['judge'];
+			$penal->scribe = $input['scribe'];
+			$penal->references = $input['references'];
+			$penal->description = $input['description'];
 
 			if ($penal->save()) {
 				$answer['message'] = 'Editado con exito!';

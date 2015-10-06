@@ -43,16 +43,16 @@ class Deed extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$deed = new self;
-			$deed->notary_id = Input::get('notary_id');
-			$deed->number_deeds = Input::get('number_deeds');
-			$deed->protocol = Input::get('protocol');
-			$deed->folio = Input::get('folio');
-			$deed->given_by = Input::get('given_by');
-			$deed->pro = Input::get('pro');
-			$deed->type_writing = Input::get('type_writing');
-			$deed->date = Input::get('date');
-			$deed->number_folios = Input::get('number_folios');
-			$deed->description = Input::get('description');
+			$deed->notary_id = $input['notary_id'];
+			$deed->number_deeds = $input['number_deeds'];
+			$deed->protocol = $input['protocol'];
+			$deed->folio = $input['folio'];
+			$deed->given_by = $input['given_by'];
+			$deed->pro = $input['pro'];
+			$deed->type_writing = $input['type_writing'];
+			$deed->date = $input['date'];
+			$deed->number_folios = $input['number_folios'];
+			$deed->description = $input['description'];
 			$deed->status = 1;
 
 			if ($deed->save()) {
@@ -87,16 +87,16 @@ class Deed extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$deed = self::find($id);
-			$deed->notary_id = Input::get('notary_id');
-			$deed->number_deeds = Input::get('number_deeds');
-			$deed->protocol = Input::get('protocol');
-			$deed->folio = Input::get('folio');
-			$deed->given_by = Input::get('given_by');
-			$deed->pro = Input::get('pro');
-			$deed->type_writing = Input::get('type_writing');
-			$deed->date = Input::get('date');
-			$deed->number_folios = Input::get('number_folios');
-			$deed->description = Input::get('description');
+			$deed->notary_id = $input['notary_id'];
+			$deed->number_deeds = $input['number_deeds'];
+			$deed->protocol = $input['protocol'];
+			$deed->folio = $input['folio'];
+			$deed->given_by = $input['given_by'];
+			$deed->pro = $input['pro'];
+			$deed->type_writing = $input['type_writing'];
+			$deed->date = $input['date'];
+			$deed->number_folios = $input['number_folios'];
+			$deed->description = $input['description'];
 
 			if ($deed->save()) {
 				$answer['message'] = 'Editado con exito!';

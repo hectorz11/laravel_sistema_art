@@ -36,15 +36,15 @@ class Civil extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$civil = new self;
-			$civil->number_civil = Input::get('number_civil');
-			$civil->date = Input::get('date');
-			$civil->demandant = Input::get('demandant');
-			$civil->defendant = Input::get('defendant');
-			$civil->matery = Input::get('matery');
-			$civil->secretary = Input::get('secretary');
-			$civil->file = Input::get('file');
-			$civil->references = Input::get('references');
-			$civil->description = Input::get('description');
+			$civil->number_civil = $input['number_civil'];
+			$civil->date = $input['date'];
+			$civil->demandant = $input['demandant'];
+			$civil->defendant = $input['defendant'];
+			$civil->matery = $input['matery'];
+			$civil->secretary = $input['secretary'];
+			$civil->file = $input['file'];
+			$civil->references = $input['references'];
+			$civil->description = $input['description'];
 			$civil->status = 1;
 
 			if ($civil->save()) {
@@ -77,15 +77,15 @@ class Civil extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$civil = self::find($id);
-			$civil->number_civil = Input::get('number_civil');
-			$civil->date = Input::get('date');
-			$civil->demandant = Input::get('demandant');
-			$civil->defendant = Input::get('defendant');
-			$civil->matery = Input::get('matery');
-			$civil->secretary = Input::get('secretary');
-			$civil->file = Input::get('file');
-			$civil->references = Input::get('references');
-			$civil->description = Input::get('description');
+			$civil->number_civil = $input['number_civil'];
+			$civil->date = $input['date'];
+			$civil->demandant = $input['demandant'];
+			$civil->defendant = $input['defendant'];
+			$civil->matery = $input['matery'];
+			$civil->secretary = $input['secretary'];
+			$civil->file = $input['file'];
+			$civil->references = $input['references'];
+			$civil->description = $input['description'];
 
 			if ($civil->save()) {
 				$answer['message'] = 'Editado con exito!';

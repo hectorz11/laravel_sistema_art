@@ -11,6 +11,12 @@ class DeedController extends \BaseController {
 		$this->notary = $notary;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deeds_index'])) {
@@ -65,7 +71,7 @@ class DeedController extends \BaseController {
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['deeds_create'])) {
-			$notaries = $this->notary->allNotaries();
+			$notaries = $this->notary->allNotariesActivated();
 			return View::make('deeds.admin.create', ['notaries' => $notaries]);
 		} else {
 			return View::make('pages.error');
@@ -91,7 +97,7 @@ class DeedController extends \BaseController {
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['deeds_update'])) {
-			$notaries = $this->notary->allNotaries();
+			$notaries = $this->notary->allNotariesActivated();
 			$deed = $this->deed->selectDeed($id);
 			if (Request::ajax()) {
 				return Response::json(['deed' => $deed, 'notaries' => $notaries]);
@@ -124,7 +130,12 @@ class DeedController extends \BaseController {
 		//
 	}
 
-	//-----------------------------------------------------------------------------
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

@@ -9,6 +9,12 @@ class PenalController extends \BaseController {
 		$this->penal = $penal;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['penals_index'])) {
@@ -104,7 +110,13 @@ class PenalController extends \BaseController {
 	{
 		//
 	}
-	//-------------------------------------------------------------------------------------------
+	
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

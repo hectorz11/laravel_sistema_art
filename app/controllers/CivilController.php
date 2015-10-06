@@ -9,6 +9,12 @@ class CivilController extends \BaseController {
 		$this->civil = $civil;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['civils_index'])) {
@@ -104,7 +110,13 @@ class CivilController extends \BaseController {
 	{
 		//
 	}
-	//-----------------------------------------------------------------------------------------
+	
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

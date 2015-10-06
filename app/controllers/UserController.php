@@ -30,7 +30,10 @@ class UserController extends \BaseController {
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['users_index'])) {
-			return Response::json($this->user->allUsers());
+			$users = $this->user->allUsers();
+			return View::make('users.admin.index', ['users' => $users]);
+		} else {
+			return View::make('pages.error');
 		}
 	}
 
@@ -46,7 +49,13 @@ class UserController extends \BaseController {
 
 	public function getAdminUpdate($id)
 	{
-		return View::make('deeds.admin.update');
+		if (Sentry::hasAnyAccess(['users_update'])) {
+			$user = $this->user->selectUser();
+			return View::make('users.admin.edit', ['user' => $user]);
+		} else {
+			return View::make('pages.error');
+		}
+		
 	}
 
 	public function postAdminUpdate($id)

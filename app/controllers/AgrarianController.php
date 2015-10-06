@@ -9,6 +9,12 @@ class AgrarianController extends \BaseController {
 		$this->agrarian = $agrarian;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['agrarians_index'])) {
@@ -104,7 +110,13 @@ class AgrarianController extends \BaseController {
 	{
 		//
 	}
-	//--------------------------------------------------------------------------------------------
+
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

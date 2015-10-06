@@ -8,17 +8,19 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
 
-	Route::group(['prefix' => '/user'], function() 
+	Route::group(['prefix' => '/users'], function() 
 	{
-		Route::get('/index',['as' => 'admin_user_index', 'uses' => 'UserController@getAdminIndex']);
-		Route::get('/create',['as' => 'admin_user_create', 'uses' => 'UserController@getAdminCreate']);
-		Route::get('/update/{id}',['as' => 'admin_user_update', 'uses' => 'UserController@getAdminUpdate']);
+		$userG = 'admin.users';
+		Route::get('/',['as' => $userG . '.index', 'uses' => 'UserController@getAdminIndex']);
+		Route::get('/create',['as' => $userG . '.create', 'uses' => 'UserController@getAdminCreate']);
+		Route::get('/{id}',['as' => $userG . '.edit', 'uses' => 'UserController@getAdminUpdate']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
-			Route::post('/create',['as' => 'admin_user_create_post', 'uses' => 'UserController@postAdminCreate']);
-			Route::put('/update/{id}',['as' => 'admin_user_update_post', 'uses' => 'UserController@putAdminUpdate']);
-			Route::delete('/delete/{id}',['as' => 'admin_user_delete_post', 'uses' => 'UserController@deleteAdminDelete']);
+			$userP = 'admin.users';
+			Route::post('/',['as' => $userP . '.store', 'uses' => 'UserController@postAdminCreate']);
+			Route::put('/{id}',['as' => $userP . '.update', 'uses' => 'UserController@putAdminUpdate']);
+			Route::delete('/{id}',['as' => $userP . '.delete', 'uses' => 'UserController@deleteAdminDelete']);
 		});
 	});
 

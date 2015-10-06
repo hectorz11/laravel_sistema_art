@@ -42,15 +42,15 @@ class Record extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$record = new Record;
-			$record->municipality_id = Input::get('municipality_id');
-			$record->number_starting = Input::get('number_starting');
-			$record->folio = Input::get('folio');
-			$record->file = Input::get('file');
-			$record->date = Input::get('date');
-			$record->interested_m = Input::get('interested_m');
-			$record->interested_f = Input::get('interested_f');
-			$record->starting = Input::get('starting');
-			$record->description = Input::get('description');
+			$record->municipality_id = $input['municipality_id'];
+			$record->number_starting = $input['number_starting'];
+			$record->folio = $input['folio'];
+			$record->file = $input['file'];
+			$record->date = $input['date'];
+			$record->interested_m = $input['interested_m'];
+			$record->interested_f = $input['interested_f'];
+			$record->starting = $input['starting'];
+			$record->description = $input['description'];
 			$record->status = 1;
 
 			if ($record->save()) {
@@ -84,15 +84,15 @@ class Record extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$record = Record::find($id);
-			$record->municipality_id = Input::get('municipality_id');
-			$record->number_starting = Input::get('number_starting');
-			$record->folio = Input::get('folio');
-			$record->file = Input::get('file');
-			$record->date = Input::get('date');
-			$record->interested_m = Input::get('interested_m');
-			$record->interested_f = Input::get('interested_f');
-			$record->starting = Input::get('starting');
-			$record->description = Input::get('description');
+			$record->municipality_id = $input['municipality_id'];
+			$record->number_starting = $input['number_starting'];
+			$record->folio = $input['folio'];
+			$record->file = $input['file'];
+			$record->date = $input['date'];
+			$record->interested_m = $input['interested_m'];
+			$record->interested_f = $input['interested_f'];
+			$record->starting = $input['starting'];
+			$record->description = $input['description'];
 
 			if ($record->save()) {
 				$answer['message'] = 'Editado con exito!';

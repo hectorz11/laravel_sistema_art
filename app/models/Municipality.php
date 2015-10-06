@@ -11,9 +11,26 @@ class Municipality extends \Eloquent {
 		return $this->hasMany('Record','municipality_id');
 	}
 
-	public function allMunicipalities()
+	public function allMunicipalitiesActivated()
 	{
 		return self::whereStatus(1)->get();
+	}
+
+	public function allMunicipalitiesDisabled()
+	{
+		return self::whereStatus(0)->get();
+	}
+
+	public function selectMunicipality($id)
+	{
+		return self::find($id);
+	}
+
+	public function valor($id)
+	{
+		$municipality = self::find($id);
+		if ($municipality->status == 1) return true;
+		else return false;
 	}
 
 	public static function createMunicipality($input)
@@ -26,7 +43,7 @@ class Municipality extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$municipality = new Municipality;
-			$municipality->name = Input::get('name');
+			$municipality->name = $input['name'];
 			$municipality->status = 1;
 
 			if ($municipality->save()) {
@@ -50,7 +67,9 @@ class Municipality extends \Eloquent {
 			$answer['error'] = true;
 		} else {
 			$municipality = Municipality::find($id);
-			$municipality->name = Input::get('name');
+			$municipality->name = $input['name'];
+			if (Input::has('status')) $municipality->status = $input['status'];
+			else $municipality->status = 0;
 
 			if ($municipality->save()) {
 				$answer['message'] = 'Editado con exito!';
