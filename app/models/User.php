@@ -19,6 +19,13 @@ class User extends SentryUserModel
 		return self::find($id);
 	}
 
+	public static function activatedUser($id)
+	{
+		$user = self::find($id);
+		if ($user->activated == 1) return true;
+		else return false;
+	}
+
 	public function profiles()
 	{
 		return $this->hasOne('Profile','user_id');
@@ -88,6 +95,38 @@ class User extends SentryUserModel
 				$answer['data'] = $sentry;
 			} else {
 				$answer['mensaje'] = 'PROFILE CREATE: error, team noob!';
+				$answer['error'] = false;
+			}
+		}
+		return $answer;
+	}
+
+	public static function updateUser($input, $id)
+	{
+		$answer = [];
+		$rules = [
+			'first_name' => 'required',
+			'email' => 'required|email',
+		];
+
+		$validation = Validator::make($input, $rules);
+
+		if ($validation->fails()) {
+			$answer['message'] = $validation;
+			$answer['error'] = true;
+		} else {
+			$user = self::find($id);
+			$user->first_name = $input['first_name'];
+			$user->last_name = $input['last_name'];
+			$user->email = $input['email'];
+			if (Input::has('activated')) $user->activated = $input['activated'];
+			else $user->activated = false;
+
+			if ($user->save()) {
+				$answer['message'] = 'Editado con exito!';
+				$answer['error'] = false;
+			} else {
+				$answer['message'] = 'USER UPDATE error, team noob!';
 				$answer['error'] = false;
 			}
 		}

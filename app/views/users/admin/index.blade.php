@@ -68,7 +68,7 @@
                                                 @endif
                                                     <td>{{ $user->created_at }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-sm">
+                                                        <a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-sm">
                                                             <i class='glyphicon glyphicon-edit'></i> Editar
                                                         </a>
                                                         <a href="#" class="btn btn-sm">

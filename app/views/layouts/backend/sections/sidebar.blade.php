@@ -124,8 +124,7 @@
                         </a>
                         <ul id="users" class="collapse">
                         @if (Sentry::getUser()->hasAccess(['users_index']))
-                            <li><a href="{{ URL::route('admin.groups.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
-                            <li><a href="{{ URL::route('admin.groups.create') }}"><i class="glyphicon glyphicon-log-in"></i> Crear</a></li>
+                            <li><a href="{{ URL::route('admin.users.index') }}"><i class="glyphicon glyphicon-new-window"></i> Lista</a></li>
                         @else
                             <li><a href="#"><i class="glyphicon glyphicon-minus-sign"></i> No tiene acceso</a></li>
                         @endif

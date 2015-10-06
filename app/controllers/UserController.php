@@ -50,7 +50,7 @@ class UserController extends \BaseController {
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
-			$user = $this->user->selectUser();
+			$user = $this->user->selectUser($id);
 			return View::make('users.admin.edit', ['user' => $user]);
 		} else {
 			return View::make('pages.error');
@@ -58,9 +58,20 @@ class UserController extends \BaseController {
 		
 	}
 
-	public function postAdminUpdate($id)
+	public function putAdminUpdate($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['users_update'])) {
+			$answer = User::updateUser(Input::all(), $id);
+			if ($answer['error'] == true) {
+				return Redirect::route('admin.users.edit', $id)
+				->withErrors($answer['message'])->withInput();
+			} else {
+				return Redirect::route('admin.users.edit', $id)
+				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
+		} else {
+			return View::make('pages.error');
+		}
 	}
 
 	public function postAdminDelete($id)

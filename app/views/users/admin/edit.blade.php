@@ -34,8 +34,8 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.groups.update', $user->id], 'method' => 'PUT']) }}
-                        <div class="col-lg-12">
+                    {{ Form::open(['route' => ['admin.users.update', $user->id], 'method' => 'PUT']) }}
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nombre(s)</label>
                                 {{ Form::text('first_name', $user->first_name, ['class' => 'form-control', 'placeholder' => 'Nombre(s)']) }}
@@ -69,9 +69,16 @@
                                   @endforeach
                                 </div>
                             @endif
-                            
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <a href="{{ URL::route('admin.groups.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Activación del Usuario</label>
+                                {{ Form::checkBox('activated', 1, User::activatedUser($user->id), ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
+                            <a href="{{ URL::route('admin.users.index') }}" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>
