@@ -24,11 +24,6 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$app->get('/cowsay', function() use($app) {
-  	$app['monolog']->addDebug('cowsay');
-  	return "<pre>".\League\Cowsayphp\Cow::say("Cool beans")."</pre>";
-});
-
 $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
