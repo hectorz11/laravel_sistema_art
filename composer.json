@@ -10,7 +10,6 @@
 		"fzaninotto/faker": "1.5.*@dev",
 		"way/generators": "~2.0",
   		"artdarek/oauth-4-laravel": "dev-master",
-  		"facebook/php-sdk-v4" : "~5.0",
   		"hisorange/browser-detect": "1.*",
   		"nesbot/Carbon": "*",
   		"tappleby/laravel-auth-token": "0.3.*"
