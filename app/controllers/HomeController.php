@@ -1,8 +1,5 @@
 <?php
 
-require 'vendor/autoload.php';
-use Carbon\Carbon;
-
 class HomeController extends BaseController {
 
 	/*
@@ -54,7 +51,7 @@ class HomeController extends BaseController {
 				$token = [];
 				$token['api_token'] = hash('sha256', Str::random(10), false);
 				$token['client'] = BrowserDetect::toString();
-				$token['expires_on'] = Carbon::now()->addMonth()->toDateTimeString();
+				$token['expires_on'] = 0;
 				$user->tokens()->save(new Token($token));
 			}
 
