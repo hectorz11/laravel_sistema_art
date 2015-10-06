@@ -1,6 +1,6 @@
 <?php
 
-$url = parse_url(getenv("HEROKU_POSTGRESQL_ORANGE_URL"));
+$url = parse_url(getenv("DATABASE_URL=HEROKU_POSTGRESQL_ORANGE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
