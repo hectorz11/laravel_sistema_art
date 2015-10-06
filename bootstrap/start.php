@@ -23,18 +23,12 @@ $app = new Illuminate\Foundation\Application;
 | given environment, then we will automatically detect it for you.
 |
 */
-/*
+
 $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
 
-));*/
-
-$env = $app->detectEnvironment(function()
-{
-	return getenv('APP_ENV') ?: 'local';
-});
-
+));
 
 /*
 |--------------------------------------------------------------------------
