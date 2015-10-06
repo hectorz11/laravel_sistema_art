@@ -17,7 +17,7 @@ class CreateTokensTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->string('api_token')->nullable();
-			$table->timestamp('expires_on')->nullable();
+			$table->string('expires_on')->nullable();
 			$table->string('client')->nullable();
 			$table->timestamps();
 		});
