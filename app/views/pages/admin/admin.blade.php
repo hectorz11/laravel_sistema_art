@@ -153,8 +153,8 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Agrarian::all()) }}</div>
-                                        <div>Expedientes Agrarios</div>
+                                        <div class="huge">{{ count(Municipality::all()) }}</div>
+                                        <div>Municipalidades</div>
                                     </div>
                                 </div>
                             </div>
@@ -175,8 +175,8 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Civil::all()) }}</div>
-                                        <div>Expedientes Civiles</div>
+                                        <div class="huge">{{ count(Notary::all()) }}</div>
+                                        <div>Notarios</div>
                                     </div>
                                 </div>
                             </div>
@@ -197,8 +197,8 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Penal::all()) }}</div>
-                                        <div>Expedientes Penales</div>
+                                        <div class="huge">{{ count(User::all()) }}</div>
+                                        <div>Usuarios</div>
                                     </div>
                                 </div>
                             </div>

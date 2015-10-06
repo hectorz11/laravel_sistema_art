@@ -29,6 +29,14 @@ class User extends SentryUserModel
 		return $this->hasMany('Token', 'user_id');
 	}
 
+	public static function permissions($id, $name_permissions)
+	{
+		$group = Sentry::findGroupById($id);
+		foreach ($group->getPermissions() as $name => $activated) {
+			if ($name_permissions == $name && $activated == 1) return True;
+		}
+	}
+
 	public static function createUser($input)
 	{
 		$answer = [];

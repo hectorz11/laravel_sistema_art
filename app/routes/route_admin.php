@@ -2,7 +2,7 @@
 
 Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
 Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
-Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
+Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@delete');
 
 Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function() 
 {
@@ -22,6 +22,22 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	Route::group(['prefix' => '/groups'], function()
+	{
+		$groG = 'admin.groups';
+		Route::get('/', ['as' => $groG . '.index', 'uses' => 'GroupController@getAdminIndex']);
+		Route::get('/create', ['as' => $groG . '.create', 'uses' => 'GroupController@getAdminCreate']);
+		Route::get('/{id}', ['as' => $groG . '.edit', 'uses' => 'GroupController@getAdminUpdate']);
+
+		Route::group(['before' => 'csrf'], function()
+		{
+			$groP = 'admin.groups';
+			Route::post('/', ['as' => $groP . '.store', 'uses' => 'GroupController@postAdminCreate']);
+			Route::put('/{id}', ['as' => $groP . '.update', 'uses' => 'GroupController@putAdminUpdate']);
+			Route::delete('/{id}', ['as' => $groP . '.delete', 'uses' => 'GroupController@deleteAdminDelete']);
+		});
+	});
+
 	Route::group(['prefix' => '/notaries'], function() 
 	{
 		$notG = 'admin.notaries';
@@ -34,7 +50,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$notP = 'admin.notaries';
 			Route::post('/', ['as' => $notP . '.store', 'uses' => 'NotaryController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $notP . '.update', 'uses' => 'NotaryController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $notP . '.destroy', 'uses' => 'NotaryController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $notP . '.delete', 'uses' => 'NotaryController@deleteAdminDelete']);
 		});
 	});
 
@@ -50,7 +66,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$munP = 'admin.municipalities';
 			Route::post('/', ['as' => $munP . '.store', 'uses' => 'MunicipalityController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $munP . '.update', 'uses' => 'MunicipalityController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $munP . '.destroy', 'uses' => 'MunicipalityController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $munP . '.delete', 'uses' => 'MunicipalityController@deleteAdminDelete']);
 		});
 	});
 
@@ -66,7 +82,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$deeP = 'admin.deeds';
 			Route::post('/', ['as' => $deeP . '.store', 'uses' => 'DeedController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $deeP . '.update', 'uses' => 'DeedController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $deeP . '.destroy', 'uses' => 'DeedController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $deeP . '.delete', 'uses' => 'DeedController@deleteAdminDelete']);
 		});
 	});
 
@@ -82,7 +98,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$agrP = 'admin.agrarians';
 			Route::post('/', ['as' => $agrP . '.store', 'uses' => 'AgrarianController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $agrP . '.update', 'uses' => 'AgrarianController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $agrP . '.destroy', 'uses' => 'AgrarianController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $agrP . '.delete', 'uses' => 'AgrarianController@deleteAdminDelete']);
 		});
 	});
 
@@ -98,7 +114,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$civP = 'admin.civils';
 			Route::post('/', ['as' => $civP . '.store', 'uses' => 'CivilController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $civP . '.update', 'uses' => 'CivilController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $civP . '.destroy', 'uses' => 'CivilController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $civP . '.delete', 'uses' => 'CivilController@deleteAdminDelete']);
 		});
 	});
 
@@ -114,7 +130,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$recP = 'admin.records';
 			Route::post('/', ['as' => $recP . '.store', 'uses' => 'RecordController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $recP . '.update', 'uses' => 'RecordController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $recP . '.destroy', 'uses' => 'RecordController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $recP . '.delete', 'uses' => 'RecordController@deleteAdminDelete']);
 		});
 	});
 
@@ -130,7 +146,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			$penP = 'admin.penals';
 			Route::post('/', ['as' => $penP . '.store', 'uses' => 'PenalController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $penP . '.update', 'uses' => 'PenalController@putAdminUpdate']);
-			Route::delete('/{id}', ['as' => $penP . '.destroy', 'uses' => 'PenalController@deleteAdminDelete']);
+			Route::delete('/{id}', ['as' => $penP . '.delete', 'uses' => 'PenalController@deleteAdminDelete']);
 		});
 	});
 
