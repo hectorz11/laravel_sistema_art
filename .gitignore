@@ -1,5 +1,7 @@
 /bootstrap/compiled.php
 /vendor
+/public/img
+/public/video
 .env.*.php
 .env.php
 .DS_Store
