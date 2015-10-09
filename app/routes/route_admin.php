@@ -11,16 +11,18 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 	Route::group(['prefix' => '/users'], function() 
 	{
 		$userG = 'admin.users';
-		Route::get('/',['as' => $userG . '.index', 'uses' => 'UserController@getAdminIndex']);
-		Route::get('/create',['as' => $userG . '.create', 'uses' => 'UserController@getAdminCreate']);
-		Route::get('/{id}',['as' => $userG . '.edit', 'uses' => 'UserController@getAdminUpdate']);
+		Route::get('/', ['as' => $userG . '.index', 'uses' => 'UserController@getAdminIndex']);
+		Route::get('/create', ['as' => $userG . '.create', 'uses' => 'UserController@getAdminCreate']);
+		Route::get('/{id}', ['as' => $userG . '.edit', 'uses' => 'UserController@getAdminUpdate']);
+		Route::get('/roles/users/{id}', ['as' => $userG . '.role', 'uses' => 'UserController@getAdminRole']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
 			$userP = 'admin.users';
-			Route::post('/',['as' => $userP . '.store', 'uses' => 'UserController@postAdminCreate']);
-			Route::put('/{id}',['as' => $userP . '.update', 'uses' => 'UserController@putAdminUpdate']);
-			Route::delete('/{id}',['as' => $userP . '.delete', 'uses' => 'UserController@deleteAdminDelete']);
+			Route::post('/', ['as' => $userP . '.store', 'uses' => 'UserController@postAdminCreate']);
+			Route::put('/{id}', ['as' => $userP . '.update', 'uses' => 'UserController@putAdminUpdate']);
+			Route::delete('/{id}', ['as' => $userP . '.delete', 'uses' => 'UserController@deleteAdminDelete']);
+			Route::post('/roles/users/{id}', ['as' => $userP . '.role.post', 'uses' => 'UserController@postAdminRole']);
 		});
 	});
 

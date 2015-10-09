@@ -71,8 +71,8 @@
                                                         <a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-sm">
                                                             <i class='glyphicon glyphicon-edit'></i> Editar
                                                         </a>
-                                                        <a href="#" class="btn btn-sm">
-                                                            <i class='glyphicon glyphicon-remove-circle'></i> Roles
+                                                        <a href="{{ URL::route('admin.users.role', $user->id) }}" class="btn btn-sm">
+                                                            <i class='glyphicon glyphicon-share'></i> Roles
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -85,9 +85,6 @@
                             </div>
                         </div>
                         <div class="form-actions" align="center">
-                            <a href="{{ URL::route('admin.groups.create') }}" class="btn btn-lg btn-primary" name="ingresar">
-                                <i class="glyphicon glyphicon-plus-sign"></i> Ingresar Nuevo Registro
-                            </a> 
                             <a href="{{ URL::route('admin.dashboard') }}" class="btn btn-lg btn-danger">
                                 <i class="glyphicon glyphicon-home"></i> Regresar al Menu Principal
                             </a>

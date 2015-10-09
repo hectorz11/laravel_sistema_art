@@ -9,6 +9,16 @@ class User extends SentryUserModel
 		'password' => 'required',
 	];
 
+	public function profiles()
+	{
+		return $this->hasOne('Profile','user_id');
+	}
+
+	public function tokens()
+	{
+		return $this->hasMany('Token', 'user_id');
+	}
+
 	public function allUsers()
 	{
 		return self::all();
@@ -26,21 +36,19 @@ class User extends SentryUserModel
 		else return false;
 	}
 
-	public function profiles()
-	{
-		return $this->hasOne('Profile','user_id');
-	}
-
-	public function tokens()
-	{
-		return $this->hasMany('Token', 'user_id');
-	}
-
 	public static function permissions($id, $name_permissions)
 	{
 		$group = Sentry::findGroupById($id);
 		foreach ($group->getPermissions() as $name => $activated) {
 			if ($name_permissions == $name && $activated == 1) return True;
+		}
+	}
+
+	public static function roles($id_group, $id_user)
+	{
+		$user = Sentry::findUserById($id_user);
+		foreach ($user->groups as $group) {
+			if ($group->id == $id_group) return true;
 		}
 	}
 
