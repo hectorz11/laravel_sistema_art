@@ -7,11 +7,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Editar <small>Registros Civiles</small>
+                            Editar <small>Registro Civil</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Editar
