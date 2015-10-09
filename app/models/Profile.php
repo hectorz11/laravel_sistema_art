@@ -9,5 +9,10 @@ class Profile extends \Eloquent {
 	public function users()
 	{
 		return $this->belongsTo('User','user_id');
-	} 
+	}
+
+	public function comments()
+	{
+		return $this->hasMany('Comment','profile_id');
+	}
 }
