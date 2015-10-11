@@ -26,6 +26,16 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	Route::group(['prefix' => '/profiles'], function()
+	{
+		Route::get('/{id}', ['as' => 'admin.profiles.edit', 'uses' => 'ProfileController@getAdminUpdate']);
+
+		Route::group(['before' => 'csrf'], function()
+		{
+			Route::put('/{id}', ['as' => 'admin.profiles.update', 'uses' => 'ProfileController@putAdminUpdate']);
+		});
+	});
+
 	Route::group(['prefix' => '/groups'], function()
 	{
 		$groG = 'admin.groups';

@@ -1,15 +1,17 @@
 <?php
 
-Route::group(['prefix' => '/user', 'before' => 'users:users'], function() {
+Route::group(['prefix' => '/users', 'before' => 'users:users'], function() 
+{
+	Route::get('/', ['as' => 'users.dashboard', 'uses' => 'UserController@getIndex']);
+	Route::get('/deeds', ['as' => 'users.deeds.index', 'uses' => 'DeedController@getUserIndex']);
+	Route::get('/agrarians', ['as' => 'users.agrarians.index', 'uses' => 'AgrarianController@getUserIndex']);
+	Route::get('/civils', ['as' => 'users.civils.index', 'uses' => 'CivilController@getUserIndex']);
+	Route::get('/penals', ['as' => 'users.penals.index', 'uses' => 'PenalController@getUserIndex']);
+	Route::get('/records', ['as' => 'users.records.index', 'uses' => 'RecordController@getUserIndex']);
+	Route::get('/profile/{id}', ['as' => 'users.profiles.edit', 'uses' => 'ProfileController@getUserUpdate']);
 
-	Route::get('/', ['as' => 'user.dashboard', 'uses' => 'UserController@getIndex']);
-	Route::get('/deeds', ['as' => 'user.deeds.index', 'uses' => 'DeedController@getUserIndex']);
-	Route::get('/agrarians', ['as' => 'user.agrarians.index', 'uses' => 'AgrarianController@getUserIndex']);
-	Route::get('/civils', ['as' => 'user.civils.index', 'uses' => 'CivilController@getUserIndex']);
-	Route::get('/penals', ['as' => 'user.penals.index', 'uses' => 'PenalController@getUserIndex']);
-	Route::get('/records', ['as' => 'user.records.index', 'uses' => 'RecordController@getUserIndex']);
-
-	Route::group(['before' => 'csrf'], function() {
-		Route::put('/{id}', ['as' => 'user.update', 'uses' => 'UserController@putUserUpdate']);
+	Route::group(['before' => 'csrf'], function() 
+	{
+		Route::put('/profile/{id}', ['as' => 'users.profiles.update', 'uses' => 'ProfileController@putUserUpdate']);
 	});
 });

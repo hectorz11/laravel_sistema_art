@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('user.deeds.index') }}">
+                            <a href="{{ URL::route('users.deeds.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('user.agrarians.index') }}">
+                            <a href="{{ URL::route('users.agrarians.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('user.civils.index') }}">
+                            <a href="{{ URL::route('users.civils.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalle</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('user.penals.index') }}">
+                            <a href="{{ URL::route('users.penals.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ URL::route('user.records.index') }}">
+                            <a href="{{ URL::route('users.records.index') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver detalles</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
