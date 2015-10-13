@@ -65,10 +65,10 @@ return array(
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'ec2-54-243-132-114.compute-1.amazonaws.com',
-			'database' => 'd122n56f6ksk05',
-			'username' => 'inmwurqtwwliyl',
-			'password' => 'Ctm0ebKyQHBIpSaMvOvjHdqkQM',
+			'host'     => 'localhost',
+			'database' => 'sistema_art',
+			'username' => 'ArchivoRegionalTacna',
+			'password' => 'archivoregionaltacna',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',

@@ -1,9 +1,5 @@
 <?php
 
-Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
-Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
-Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@delete');
-
 Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function() 
 {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);

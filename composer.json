@@ -16,7 +16,7 @@
 		"alrik11es/cowsayphp": "^1.0"
 	},
 	"require-dev": {
-    	"heroku/heroku-buildpack-php": "*"
+		"heroku/heroku-buildpack-php": "*"
   	},
 	"autoload": {
 		"classmap": [
