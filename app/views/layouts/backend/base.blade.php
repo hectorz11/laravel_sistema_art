@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>ART - Archivo Regional de Tacna</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('/zapana/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Arhivo Regional de Tacna</a>
+                <a class="navbar-brand" href="{{ URL::route('home') }}">Archivo Regional de Tacna</a>
             </div>
             <!-- Top Menu Items -->
             @include('layouts.backend.sections.header')

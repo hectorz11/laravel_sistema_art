@@ -7,14 +7,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Editar <small>Grupo</small>
+                            Asignar <small>Rol</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a>
+                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Editar
+                                <i class="fa fa-edit"></i> Asignar
                             </li>
                         </ol>
                     </div>
@@ -34,46 +34,26 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.users.update', $user->id], 'method' => 'PUT']) }}
+                    {{ Form::open(['route' => ['admin.users.role.post', $user->id]]) }}
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nombre(s)</label>
                                 {{ Form::text('first_name', $user->first_name, ['class' => 'form-control', 'placeholder' => 'Nombre(s)']) }}
                             </div>
-                            @if( $errors->has('first_name') )
-                                <div class="alert alert-danger">
-                                  @foreach($errors->get('first_name') as $error)
-                                    * {{$error}}</br>
-                                  @endforeach
-                                </div>
-                            @endif
                             <div class="form-group">
                                 <label>Apellidos</label>
                                 {{ Form::text('last_name', $user->last_name, ['class' => 'form-control', 'placeholder' => 'Apellidos']) }}
                             </div>
-                            @if( $errors->has('last_name') )
-                                <div class="alert alert-danger">
-                                  @foreach($errors->get('last_name') as $error)
-                                    * {{$error}}</br>
-                                  @endforeach
-                                </div>
-                            @endif
-                            <div class="form-group">
-                                <label>Correo Electrónico</label>
-                                {{ Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
-                            </div>
-                            @if( $errors->has('email') )
-                                <div class="alert alert-danger">
-                                  @foreach($errors->get('email') as $error)
-                                    * {{$error}}</br>
-                                  @endforeach
-                                </div>
-                            @endif
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Activación del Usuario</label>
-                                {{ Form::checkBox('activated', 1, User::activatedUser($user->id), ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
+                                <label>Grupos</label>
+                                @foreach($groups as $group)
+                                <ul>
+                                    {{ Form::checkBox('groups[]', $group->id, User::roles($group->id, $user->id)) }} 
+                                    {{ $group->name }}
+                                </ul>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-12">

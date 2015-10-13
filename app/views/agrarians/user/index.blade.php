@@ -12,7 +12,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                <a href="{{ URL::route('users.dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Lista
@@ -63,7 +63,7 @@
                         </table>
                         <div class="form-actions" align="center">
                             <a href="{{ URL::route('user.dashboard') }}" class="btn btn-lg btn-danger">
-                                <i class="glyphicon glyphicon-home"></i> Regresar al Menu Principal
+                                <i class="fa fa-home"></i> Regresar al Menu Principal
                             </a>
                         </div>
                     </div>

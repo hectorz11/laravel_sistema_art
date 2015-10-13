@@ -46,6 +46,10 @@ class GroupTableSeeder extends Seeder {
 				'groups_create' => 1,
 				'groups_update' => 1,
 				'groups_delete' => 1,
+				'profiles_index' => 1,
+				'profiles_create' => 1,
+				'profiles_update' => 1,
+				'profiles_delete' => 1,
 			)
 		));
 		Sentry::createGroup(array(
@@ -88,6 +92,10 @@ class GroupTableSeeder extends Seeder {
 				'groups_create' => 1,
 				'groups_update' => 1,
 				'groups_delete' => 1,
+				'profiles_index' => 1,
+				'profiles_create' => 1,
+				'profiles_update' => 1,
+				'profiles_delete' => 1,
 			)
 		));
 		Sentry::createGroup(array(
@@ -130,6 +138,7 @@ class GroupTableSeeder extends Seeder {
 				'groups_create' => 1,
 				'groups_update' => 1,
 				'groups_delete' => 1,
+				'profiles_update' => 1,
 			)
 		));
 		Sentry::createGroup(array(
@@ -164,6 +173,7 @@ class GroupTableSeeder extends Seeder {
 				'municipalities_create' => 1,
 				'municipalities_update' => 1,
 				'municipalities_delete' => 1,
+				'profiles_update' => 1,
 			)
 		));
 		Sentry::createGroup(array(
@@ -177,6 +187,7 @@ class GroupTableSeeder extends Seeder {
 				'records_index' => 1,
 				'notaries_index' => 1,
 				'municipalities_index' => 1,
+				'profiles_update' => 1,
 			)
 		));
 	}

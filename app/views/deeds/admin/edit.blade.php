@@ -7,11 +7,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Editar <small>Escrituras Públicas</small>
+                            Editar <small>Escritura Pública</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Editar
@@ -147,8 +147,8 @@
                                 <label>Descripción</label>
                                 {{ Form::textArea('description', $deed->description, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Descripción']) }}
                             </div>
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <a href="{{ URL::route('admin.deeds.index') }}" class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
+                            <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-check-circle-o"></i> Aceptar</button>
+                            <a href="{{ URL::route('admin.deeds.index') }}" class="btn btn-lg btn-danger"><i class="fa fa-times-circle-o"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>

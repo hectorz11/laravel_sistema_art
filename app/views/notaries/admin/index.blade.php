@@ -12,7 +12,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Lista
@@ -60,7 +60,7 @@
                                                 @endif
                                                     <td>
                                                         <a href="{{ URL::route('admin.notaries.edit', $na->id) }}" class="btn btn-info btn-sm">
-                                                            <i class='glyphicon glyphicon-edit'></i> Editar
+                                                            <i class='fa fa-edit'></i> Editar
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -93,7 +93,7 @@
                                                 @endif
                                                     <td>
                                                         <a href="{{ URL::route('admin.notaries.edit', $nd->id) }}" class="btn btn-info btn-sm">
-                                                            <i class='glyphicon glyphicon-edit'></i> Editar
+                                                            <i class='fa fa-edit'></i> Editar
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -106,10 +106,10 @@
                         </div>
                         <div class="form-actions" align="center">
                             <a href="{{ URL::route('admin.notaries.create') }}" class="btn btn-lg btn-primary" name="ingresar">
-                                <i class="glyphicon glyphicon-plus-sign"></i> Ingresar Nuevo Registro
+                                <i class="fa fa-plus-sign"></i> Ingresar Nuevo Registro
                             </a> 
                             <a href="{{ URL::route('admin.dashboard') }}" class="btn btn-lg btn-danger">
-                                <i class="glyphicon glyphicon-home"></i> Regresar al Menu Principal
+                                <i class="fa fa-home"></i> Regresar al Menu Principal
                             </a>
                         </div>
                     </div>

@@ -12,7 +12,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                <a href="{{ URL::route('users.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Lista
@@ -63,24 +63,12 @@
                         </table>
                         <div class="form-actions" align="center">
                             <a href="{{ URL::route('user.dashboard') }}" class="btn btn-lg btn-danger">
-                                <i class="glyphicon glyphicon-home"></i> Regresar al Menu Principal
+                                <i class="fa fa-home"></i> Regresar al Menu Principal
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-
-                <div class='row'>
-                    <!--al pulsar en el botón debajo de éste mostraremos los usuarios registrados-->
-                    <div class='col-lg-12'>
-                        {{ HTML::link(URL::to('#'), 'Ver usuarios registrados', ['class' => 'show_users']) }}  
-                        <!--div para mostrar un preloader mientras cargamos los usuarios-->
-                        <div style='margin: 10px 0px 0px 300px' class='preload_users'></div>
-                        <!--aquí se mostrarán los Expedientes Públicos-->
-                        <table class='load_ajax table table-striped table-bordered table-hover'>
-                        </table>
-                    </div>
-                </div>
                 
             </div>
             <!-- /.container-fluid -->

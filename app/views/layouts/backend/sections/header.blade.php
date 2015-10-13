@@ -88,18 +88,24 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ $user->first_name }} {{ $user->last_name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                    @if ($sentry->hasAnyAccess(['admin']))
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="{{ URL::route('admin.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         </li>
+                    @elseif ($sentry->hasAnyAccess(['users']))
+                        <li>
+                            <a href="{{ URL::route('users.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                        </li>
+                    @endif
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Configuraciones</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ URL::route('signout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{{ URL::route('signout') }}"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                 </li>

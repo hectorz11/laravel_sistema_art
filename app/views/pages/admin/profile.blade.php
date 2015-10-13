@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Editar <small>Grupo</small>
+                            Editar <small>Perfil</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -34,7 +34,7 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.users.update', $user->id], 'method' => 'PUT']) }}
+                    {{ Form::open(['route' => ['admin.profiles.update', $user->id], 'method' => 'PUT']) }}
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Nombre(s)</label>
@@ -51,16 +51,9 @@
                                 <label>Apellidos</label>
                                 {{ Form::text('last_name', $user->last_name, ['class' => 'form-control', 'placeholder' => 'Apellidos']) }}
                             </div>
-                            @if( $errors->has('last_name') )
-                                <div class="alert alert-danger">
-                                  @foreach($errors->get('last_name') as $error)
-                                    * {{$error}}</br>
-                                  @endforeach
-                                </div>
-                            @endif
                             <div class="form-group">
                                 <label>Correo Electrónico</label>
-                                {{ Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
+                                {{ Form::text('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
                             </div>
                             @if( $errors->has('email') )
                                 <div class="alert alert-danger">
@@ -72,13 +65,21 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Activación del Usuario</label>
-                                {{ Form::checkBox('activated', 1, User::activatedUser($user->id), ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) }}
+                                <label>Fecha de Nacimiento</label>
+                                {{ Form::text('birthday', $user->profiles->birthday, ['class' => 'form-control', 'placeholder' => 'Fecha de Nacimiento']) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Celular/Teléfono</label>
+                                {{ Form::text('phone', $user->profiles->phone, ['class' => 'form-control', 'placeholder' => 'Celular/Teléfono']) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Sexo</label>
+                                {{ Form::text('gender', $user->profiles->gender, ['class' => 'form-control', 'placeholder' => 'Sexo']) }}
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <a href="{{ URL::route('admin.users.index') }}" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
+                            <a href="{{ URL::route('admin.dashboard') }}" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>

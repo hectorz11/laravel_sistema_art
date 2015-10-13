@@ -69,10 +69,24 @@ return array(
 			'database' => 'sistema_art',
 			'username' => 'ArchivoRegionalTacna',
 			'password' => 'archivoregionaltacna',
+<<<<<<< HEAD
+=======
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
 		),
+
+		/*'pgsql' => array(
+			'driver'   => 'pgsql',
+			'host'     => 'ec2-54-243-132-114.compute-1.amazonaws.com',
+			'database' => 'd122n56f6ksk05',
+			'username' => 'inmwurqtwwliyl',
+			'password' => 'Ctm0ebKyQHBIpSaMvOvjHdqkQM',
+>>>>>>> 945e940d254858f4b54909f3e0b66cd777e88834
+			'charset'  => 'utf8',
+			'prefix'   => '',
+			'schema'   => 'public',
+		),*/
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
