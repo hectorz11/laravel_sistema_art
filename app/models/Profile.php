@@ -36,11 +36,12 @@ class Profile extends \Eloquent {
 			$user->save();
 
 			$profile = self::find($user->profiles->id);
-			$profile->photo = $input['photo'];
+			if (Input::has('photo')) $profile->photo = $input['photo'];
+			else $profile->photo = '';
 			$profile->birthday = $input['birthday'];
 			$profile->phone = $input['phone'];
 			$profile->gender = $input['gender'];
-			$profile->user_id = $input['user_id'];
+			$profile->user_id = $user->id;
 
 			if ($profile->save()) {
 				$answer['message'] = 'Editado con exito!';

@@ -63,7 +63,7 @@
                         </table>
                         <div class="form-actions" align="center">
                             <a href="{{ URL::route('user.dashboard') }}" class="btn btn-lg btn-danger">
-                                <i class="glyphicon glyphicon-home"></i> Regresar al Menu Principal
+                                <i class="fa fa-home"></i> Regresar al Menu Principal
                             </a>
                         </div>
                     </div>

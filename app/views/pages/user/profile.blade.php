@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Aceptar</button>
-                            <a href="{{ URL::route('admin.dashboard') }}" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
+                            <a href="{{ URL::route('users.dashboard') }}" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> Cancelar</a>
                         </div>
                     {{ Form::close() }}
                 </div>
