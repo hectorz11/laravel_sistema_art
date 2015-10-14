@@ -14,4 +14,14 @@ Route::group(['prefix' => '/users', 'before' => 'users:users'], function()
 	{
 		Route::put('/profile/{id}', ['as' => 'users.profiles.update', 'uses' => 'ProfileController@putUserUpdate']);
 	});
+
+	Route::group(['prefix' => '/comments'], function()
+	{
+		Route::get('/', ['as' => 'users.comments.index', 'uses' => 'CommentController@getUserIndex']);
+
+		Route::group(['before' => 'csrf'], function()
+		{
+			Route::post('/', ['as' => 'users.comments.store', 'uses' => 'CommentController@postUserCreate']);
+		});
+	});
 });

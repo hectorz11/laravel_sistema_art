@@ -47,7 +47,7 @@ class CivilController extends \BaseController {
 				return View::make('civils.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -56,7 +56,7 @@ class CivilController extends \BaseController {
 		if (Sentry::hasAnyAccess(['civils_create'])) {
 			return View::make('civils.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -72,7 +72,7 @@ class CivilController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -86,7 +86,7 @@ class CivilController extends \BaseController {
 				return View::make('civils.admin.edit', ['civil' => $civil]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -102,7 +102,7 @@ class CivilController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -144,7 +144,7 @@ class CivilController extends \BaseController {
 				return View::make('civils.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

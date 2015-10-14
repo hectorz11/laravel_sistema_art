@@ -47,7 +47,7 @@ class AgrarianController extends \BaseController {
 				return View::make('agrarians.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -56,7 +56,7 @@ class AgrarianController extends \BaseController {
 		if (Sentry::hasAnyAccess(['agrarians_create'])) {
 			return View::make('agrarians.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -72,7 +72,7 @@ class AgrarianController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -86,7 +86,7 @@ class AgrarianController extends \BaseController {
 				return View::make('agrarians.admin.edit', ['agrarian' => $agrarian]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -102,7 +102,7 @@ class AgrarianController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -144,7 +144,7 @@ class AgrarianController extends \BaseController {
 				return View::make('agrarians.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

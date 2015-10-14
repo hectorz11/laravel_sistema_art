@@ -47,7 +47,7 @@ class PenalController extends \BaseController {
 				return View::make('penals.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -56,7 +56,7 @@ class PenalController extends \BaseController {
 		if (Sentry::hasAnyAccess(['penals_create'])) {
 			return View::make('penals.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -72,7 +72,7 @@ class PenalController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -86,7 +86,7 @@ class PenalController extends \BaseController {
 				return View::make('penals.admin.edit', ['penal' => $penal]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -102,7 +102,7 @@ class PenalController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -144,7 +144,7 @@ class PenalController extends \BaseController {
 				return View::make('penals.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

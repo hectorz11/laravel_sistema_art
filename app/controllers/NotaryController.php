@@ -16,6 +16,8 @@ class NotaryController extends \BaseController {
 			$notariesDisabled = $this->notary->allnotariesDisabled();
 
 			return View::make('notaries.admin.index', ['not_a' => $notariesActivated, 'not_d' => $notariesDisabled]);
+		} else {
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -24,7 +26,7 @@ class NotaryController extends \BaseController {
 		if (Sentry::hasAnyAccess(['notaries_create'])) {
 			return View::make('notaries.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -40,7 +42,7 @@ class NotaryController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -54,7 +56,7 @@ class NotaryController extends \BaseController {
 				return View::make('notaries.admin.edit', ['notary' => $notary]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -70,7 +72,7 @@ class NotaryController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

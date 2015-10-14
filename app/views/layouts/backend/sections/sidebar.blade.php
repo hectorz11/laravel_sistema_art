@@ -1,9 +1,15 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                    @if (Sentry::getUser()->hasAccess(['admin']))
                     <li class="active">
                         <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Panel de Administración</a>
                     </li>
+                    @elseif (Sentry::getUser()->hasAccess(['users']))
+                    <li class="active">
+                        <a href="{{ URL::route('users.dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Panel de Usuario</a>
+                    </li>
+                    @endif
                     @if (Sentry::getUser()->hasAccess(['admin']))
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#deeds">

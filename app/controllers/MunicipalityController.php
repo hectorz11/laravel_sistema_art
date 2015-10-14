@@ -16,6 +16,8 @@ class MunicipalityController extends \BaseController {
 			$municipalitiesDisabled = $this->municipality->allMunicipalitiesDisabled();
 
 			return View::make('municipalities.admin.index', ['muni_a' => $municipalitiesActivated, 'muni_d' => $municipalitiesDisabled]);
+		} else {
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -24,7 +26,7 @@ class MunicipalityController extends \BaseController {
 		if (Sentry::hasAnyAccess(['municipalities_create'])) {
 			return View::make('municipalities.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -40,7 +42,7 @@ class MunicipalityController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -54,7 +56,7 @@ class MunicipalityController extends \BaseController {
 				return View::make('municipalities.admin.edit', ['municipality' => $municipality]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -70,7 +72,7 @@ class MunicipalityController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

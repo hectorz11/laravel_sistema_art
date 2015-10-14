@@ -64,7 +64,7 @@ class DeedController extends \BaseController {
 				return View::make('deeds.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -74,7 +74,7 @@ class DeedController extends \BaseController {
 			$notaries = $this->notary->allNotariesActivated();
 			return View::make('deeds.admin.create', ['notaries' => $notaries]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -90,7 +90,7 @@ class DeedController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -105,7 +105,7 @@ class DeedController extends \BaseController {
 				return View::make('deeds.admin.edit', ['deed' => $deed, 'notaries' => $notaries]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -121,7 +121,7 @@ class DeedController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -164,7 +164,7 @@ class DeedController extends \BaseController {
 				return View::make('deeds.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 }

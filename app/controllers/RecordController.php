@@ -49,7 +49,7 @@ class RecordController extends \BaseController {
 				return View::make('records.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -59,7 +59,7 @@ class RecordController extends \BaseController {
 			$municipalities = $this->municipality->allMunicipalitiesActivated();
 			return View::make('records.admin.create', ['municipalities' => $municipalities]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -75,7 +75,7 @@ class RecordController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -90,7 +90,7 @@ class RecordController extends \BaseController {
 				return View::make('records.admin.edit', ['record' => $record, 'municipalities' => $municipalities]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -106,7 +106,7 @@ class RecordController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -149,7 +149,7 @@ class RecordController extends \BaseController {
 				return View::make('records.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

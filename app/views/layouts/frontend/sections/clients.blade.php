@@ -5,7 +5,7 @@
             <div class="container">
 
                 <div class="section-title center">
-                    <h2>Some of <strong>our Clients</strong></h2>
+                    <h2>Algo de <strong>nuestros clientes</strong></h2>
                     <div class="line">
                         <hr>
                     </div>
