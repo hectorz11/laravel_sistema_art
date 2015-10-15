@@ -90,16 +90,16 @@
                     <ul class="dropdown-menu">
                     @if ($sentry->hasAnyAccess(['admin']))
                         <li>
-                            <a href="{{ URL::route('admin.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                            <a href="{{ URL::route('admin.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Administrador</a>
                         </li>
                     @elseif ($sentry->hasAnyAccess(['users']))
                         <li>
-                            <a href="{{ URL::route('users.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                            <a href="{{ URL::route('users.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Usuario</a>
+                        </li>
+                        <li>
+                            <a href="{{ URL::route('users.comments.index') }}"><i class="fa fa-fw fa-envelope"></i> Comentarios</a>
                         </li>
                     @endif
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Configuraciones</a>
                         </li>

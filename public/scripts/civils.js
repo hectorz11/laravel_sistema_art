@@ -13,6 +13,6 @@
             "displayLength":10,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": '/user/civils',
+            "sAjaxSource": '/users/civils',
         });
     });

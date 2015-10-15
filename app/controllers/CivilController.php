@@ -37,10 +37,10 @@ class CivilController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.civils.edit', $model->id)."'>
-								<span class='label label-info'><i class='glyphicon glyphicon-edit'></i> Editar</span>
+								<span class='label label-info'><i class='fa fa-edit'></i> Editar</span>
 							</a>
-							<a href='#' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='glyphicon glyphicon-remove-circle'></i> Eliminar</span>
+							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
+								<span class='label label-danger'><i class='fa fa-times-circle-o'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {
@@ -106,9 +106,33 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	public function getAdminModalData()
+	{
+		if (Input::has('civils')) {
+			$idCivil = Input::get('civils');
+			$civil = $this->civil->selectCivil($idCivil);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idCivil' => $civil->id,
+				'numberCivil' => $civil->number_civil,
+			);
+			return Response::json($data);
+		}
+	}
+
 	public function deleteAdminDelete($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['civils_delete'])) {
+			$idCivil = Input::get('idCivil');
+			$civil = Civil::find($idCivil);
+			$civil->status = 0;
+			$civil->save();
+
+			return Redirect::route('admin.civils.index')
+			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
+		} else {
+			return Redirect::route('pages.error');
+		}
 	}
 	
 	/*
@@ -136,10 +160,7 @@ class CivilController extends \BaseController {
 				->searchColumns('civils.number_civil','civils.date','civils.demandant','civils.defendant','civils.secretary','civils.matery')
 				->orderColumns('id','civils.number_civil')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
-				->addColumn('Operaciones', function($model)
-				{
-					return "";
-				})->make();
+				->make();
 			} else {
 				return View::make('civils.user.index');
 			}

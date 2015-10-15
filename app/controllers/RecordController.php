@@ -39,10 +39,10 @@ class RecordController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.records.edit', $model->id)."'>
-								<span class='label label-info'><i class='glyphicon glyphicon-edit'></i> Editar</span>
+								<span class='label label-info'><i class='fa fa-edit'></i> Editar</span>
 							</a>
-							<a href='#' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='glyphicon glyphicon-remove-circle'></i> Eliminar</span>
+							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
+								<span class='label label-danger'><i class='fa fa-times-circle-o'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {
@@ -110,9 +110,33 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	public function getAdminModalData()
+	{
+		if (Input::has('records')) {
+			$idRecord = Input::get('records');
+			$record = $this->record->selectRecord($idRecord);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idRecord' => $record->id,
+				'numberStarting' => $record->number_starting,
+			);
+			return Response::json($data);
+		}
+	}
+
 	public function deleteAdminDelete($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['records_delete'])) {
+			$idRecord = Input::get('idRecord');
+			$record = Record::find($idRecord);
+			$record->status = 0;
+			$record->save();
+
+			return Redirect::route('admin.records.index')
+			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
+		} else {
+			return Redirect::route('pages.error');
+		}
 	}
 	
 	/*
@@ -141,10 +165,7 @@ class RecordController extends \BaseController {
 				->searchColumns('municipalities.name','records.number_starting','records.interested_m','records.interested_f','records.starting')
 				->orderColumns('id','records.number_starting')
 				->showColumns('id','name','number','date','interested_m','interested_f','starting')
-				->addColumn('Operaciones', function($model)
-				{
-					return "";
-				})->make();
+				->make();
 			} else {
 				return View::make('records.user.index');
 			}

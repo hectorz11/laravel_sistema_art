@@ -13,6 +13,6 @@
             "displayLength":10,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": '/user/agrarians',
+            "sAjaxSource": '/users/agrarians',
         });
     });

@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Lista <small>Registros Civiles</small>
+                            Lista <small>Comentarios</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -37,28 +37,25 @@
                 <div class="row">
                     <div class="col-lg-12">
                     <link href="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
-                        <table class="table table-striped table-bordered" id="tableRecordsUser">
+                        <table class="table table-striped table-bordered" id="tableComments">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Municipalidad</th>
-                                    <th>Nro. de Partida</th>
-                                    <th>Fecha</th>
-                                    <th>Interesado</th>
-                                    <th>Interesada</th>
-                                    <th>Partida</th>
+                                    <th>Comentario</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Operaciones</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($comments as $comment)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $comment->description }}</td>
+                                    <td>{{ $comment->created_at }}</td>
+                                    <td>
+                                        | <a href="{{ URL::route('users.comments.edit', $comment->id) }}"><i class="fa fa-edit"></i> Editar</a> | |
+                                        <a href=""><i class="fa fa-times-circle-o"></i> Eliminar</a> |
+                                    </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="form-actions" align="center">
@@ -72,9 +69,4 @@
 
             </div>
             <!-- /.container-fluid -->
-
-<script src="{{ URL::asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
-<script src="{{ URL::asset('/scripts/records.js') }}"></script>
 @stop

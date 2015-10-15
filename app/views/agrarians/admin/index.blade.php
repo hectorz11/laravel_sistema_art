@@ -77,6 +77,37 @@
 
             </div>
             <!-- /.container-fluid -->
+
+<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-share"></i> Eliminar Expediente Agrario<br>
+                    <span id="load"><center><img src="{{ asset('img/loading1.gif')}}"> Cargando...</center></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <!-- Start Form -->
+                {{ Form::open(['route' => 'admin.agrarians.delete', 'id' => 'formEdit', 'method' => 'DELETE']) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Número del Expediente Agrario</label>
+                            {{ Form::text('numberAgrarian', Input::old('numberAgrarian'), ['class' => 'form-control']) }}
+                        </div>
+                    </div><br>
+                    {{ Form::hidden('idAgrarian') }}
+                    {{ Form::hidden('agrarians', '', ['id' => 'val']) }}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Eliminar</button>
+                </form>
+                {{ Form::close() }}
+                <!-- End Form -->
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('scripts')
@@ -84,4 +115,26 @@
 <script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
 <script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
 <script src="{{ URL::asset('/scripts/agrarians.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        event.preventDefault()
+
+        $("#tableAgrarians").on("click", ".delete", function(e){
+            $('[name=agrarians]').val($(this).attr ('id'));
+            var faction = "<?php echo URL::route('admin.agrarians.modal.data'); ?>";
+            var fdata = $('#val').serialize();
+            $('#load').show();
+            $.get(faction, fdata, function(json) {
+                if (json.success) {
+                    $('#formEdit input[name="idAgrarian"]').val(json.idAgrarian);
+                    $('#formEdit input[name="numberAgrarian"]').val(json.numberAgrarian);
+                    $('#load').hide();
+                } else {
+                    $('#errorMessage').html(json.message);
+                    $('#errorMessage').show();
+                }
+            });
+        });
+    });
+</script>
 @stop

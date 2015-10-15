@@ -37,10 +37,10 @@ class AgrarianController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.agrarians.edit', $model->id)."'>
-								<span class='label label-info'><i class='glyphicon glyphicon-edit'></i> Editar</span>
+								<span class='label label-info'><i class='fa fa-edit'></i> Editar</span>
 							</a>
-							<a href='#' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='glyphicon glyphicon-remove-circle'></i> Eliminar</span>
+							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
+								<span class='label label-danger'><i class='fa fa-times-circle-o'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {
@@ -106,9 +106,33 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	public function getAdminModalData()
+	{
+		if (Input::has('agrarians')) {
+			$idAgrarian = Input::get('agrarians');
+			$agrarian = $this->agrarian->selectAgrarian($idAgrarian);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idAgrarian' => $agrarian->id,
+				'numberAgrarian' => $agrarian->number_agrarian,
+			);
+			return Response::json($data);
+		}
+	}
+
 	public function deleteAdminDelete($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['agrarians_delete'])) {
+			$idAgrarian = Input::get('idAgrarian');
+			$agrarian = Agrarian::find($idAgrarian);
+			$agrarian->status = 0;
+			$agrarian->save();
+
+			return Redirect::route('admin.agrarians.index')
+			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
+		} else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	/*
@@ -136,10 +160,7 @@ class AgrarianController extends \BaseController {
 				->searchColumns('agrarians.number_agrarian','agrarians.date','agrarians.demandant','agrarians.defendant','agrarians.secretary','agrarians.matery')
 				->orderColumns('id','agrarians.number_agrarian')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
-				->addColumn('Operaciones', function($model)
-				{
-					return "";
-				})->make();
+				->make();
 			} else {
 				return View::make('agrarians.user.index');
 			}

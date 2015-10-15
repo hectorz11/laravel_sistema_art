@@ -39,7 +39,7 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Deed::all()) }}</div>
+                                        <div class="huge">{{ count(Deed::whereStatus(1)->get()) }}</div>
                                         <div>Escrituras Públicas</div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Agrarian::all()) }}</div>
+                                        <div class="huge">{{ count(Agrarian::whereStatus(1)->get()) }}</div>
                                         <div>Expedientes Agrarios</div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Civil::all()) }}</div>
+                                        <div class="huge">{{ count(Civil::whereStatus(1)->get()) }}</div>
                                         <div>Expedientes Civiles</div>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Penal::all()) }}</div>
+                                        <div class="huge">{{ count(Penal::whereStatus(1)->get()) }}</div>
                                         <div>Expedientes Penales</div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Record::all()) }}</div>
+                                        <div class="huge">{{ count(Record::whereStatus(1)->get()) }}</div>
                                         <div>Registros Civiles</div>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                         <i class="fa fa-list-alt fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Municipality::all()) }}</div>
+                                        <div class="huge">{{ count(Municipality::whereStatus(1)->get()) }}</div>
                                         <div>Municipalidades</div>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@
                                         <i class="fa fa-list-alt fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(Notary::all()) }}</div>
+                                        <div class="huge">{{ count(Notary::whereStatus(1)->get()) }}</div>
                                         <div>Notarios</div>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                                         <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{ count(User::all()) }}</div>
+                                        <div class="huge">{{ count(User::whereActivated(1)->get()) }}</div>
                                         <div>Usuarios</div>
                                     </div>
                                 </div>

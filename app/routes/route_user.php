@@ -18,10 +18,13 @@ Route::group(['prefix' => '/users', 'before' => 'users:users'], function()
 	Route::group(['prefix' => '/comments'], function()
 	{
 		Route::get('/', ['as' => 'users.comments.index', 'uses' => 'CommentController@getUserIndex']);
+		Route::get('/{id}', ['as' => 'users.comments.edit', 'uses' => 'CommentController@getUserUpdate']);
 
 		Route::group(['before' => 'csrf'], function()
 		{
 			Route::post('/', ['as' => 'users.comments.store', 'uses' => 'CommentController@postUserCreate']);
+			Route::put('/', ['as' => 'users.comments.update', 'uses' => 'CommentController@putUserUpdate']);
+			Route::delete('/', ['as' => 'users.comments.delete', 'uses' => 'CommentController@deleteUserDelete']);
 		});
 	});
 });
