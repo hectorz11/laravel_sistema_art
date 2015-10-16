@@ -39,10 +39,10 @@ class RecordController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.records.edit', $model->id)."'>
-								<span class='label label-info'><i class='fa fa-edit'></i> Editar</span>
+								<span class='label label-primary'><i class='fa fa-edit'></i> Editar</span>
 							</a>
 							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='fa fa-times-circle-o'></i> Eliminar</span>
+								<span class='label label-default'><i class='fa fa-trash'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {

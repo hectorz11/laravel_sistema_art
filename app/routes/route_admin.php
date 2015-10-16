@@ -165,4 +165,18 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	Route::group(['prefix' => '/comments'], function()
+	{
+		$comG = 'admin.comments';
+		Route::get('/', ['as' => $comG . '.index', 'uses' => 'CommentController@getAdminIndex']);
+		Route::get('/modal/data', ['as' => $comG . '.modal.data', 'uses' => 'CommentController@getAdminModalData']);
+
+		Route::group(['before' => 'csrf'], function()
+		{
+			$comP = 'admin.comments';
+			Route::delete('/', ['as' => $comP . '.delete', 'uses' => 'CommentController@deleteAdminDelete']);
+			Route::post('/message', ['as' => $comP . '.message', 'uses' => 'CommentController@postAdminMessage']);
+		});
+	});
+
 });

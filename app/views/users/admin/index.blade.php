@@ -47,6 +47,7 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
+                                                    <th>N°</th>
                                                     <th>Nombre(s)</th>
                                                     <th>Apellidos</th>
                                                     <th>Correo ectrónico</th>
@@ -56,8 +57,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($users as $user)
+                                            <?php $number = 1; ?>
+                                            @forelse ($users as $user)
                                                 <tr>
+                                                    <td>{{ $number++ }}</td>
                                                     <td>{{ $user->first_name }}</td>
                                                     <td>{{ $user->last_name }}</td>
                                                     <td>{{ $user->email }}</td>
@@ -69,14 +72,16 @@
                                                     <td>{{ $user->created_at }}</td>
                                                     <td>
                                                         <a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-sm">
-                                                            <i class='glyphicon glyphicon-edit'></i> Editar
+                                                            <i class='fa fa-edit'></i> Editar
                                                         </a>
                                                         <a href="{{ URL::route('admin.users.role', $user->id) }}" class="btn btn-sm">
-                                                            <i class='glyphicon glyphicon-share'></i> Roles
+                                                            <i class='fa fa-share-square-o'></i> Roles
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr> No hay usuarios</tr>
+                                            @endforelse
                                             </tbody>
                                         </table>
                                     </div>

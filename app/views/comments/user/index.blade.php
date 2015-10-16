@@ -40,22 +40,29 @@
                         <table class="table table-striped table-bordered" id="tableComments">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Comentario</th>
                                     <th>Fecha de Creación</th>
                                     <th>Operaciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($comments as $comment)
+                            <?php $number = 1; ?>
+                            @forelse($comments as $comment)
                                 <tr>
+                                    <td>{{ $number++ }}</td>
                                     <td>{{ $comment->description }}</td>
                                     <td>{{ $comment->created_at }}</td>
                                     <td>
-                                        | <a href="{{ URL::route('users.comments.edit', $comment->id) }}"><i class="fa fa-edit"></i> Editar</a> | |
-                                        <a href=""><i class="fa fa-times-circle-o"></i> Eliminar</a> |
+                                        <a href="{{ URL::route('users.comments.edit', $comment->id) }}" class="btn btn-sm">
+                                            <i class="fa fa-edit"></i> Editar</a>
+                                        <a href="" class="btn btn-sm">
+                                            <i class="fa fa-times-circle-o"></i> Eliminar</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr> No hay comentarios </tr>
+                            @endforelse
                             </tbody>
                         </table>
                         <div class="form-actions" align="center">
