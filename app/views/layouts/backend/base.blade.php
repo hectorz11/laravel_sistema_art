@@ -12,19 +12,19 @@
     <title>ART - Archivo Regional de Tacna</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ URL::asset('/zapana/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/zapana/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ URL::asset('/zapana/css/sb-admin.css') }}" rel="stylesheet">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/zapana/css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{{ URL::asset('/zapana/css/plugins/morris.css') }}" rel="stylesheet">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/zapana/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{ URL::asset('/zapana/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/zapana/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- jQuery -->
-    <script src="{{ URL::asset('/zapana/js/jquery.js') }}"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/zapana/js/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ URL::route('home') }}">Archivo Regional de Tacna</a>
+                <a class="navbar-brand" href="{{ URL::route('home">Archivo Regional de Tacna</a>
             </div>
             <!-- Top Menu Items -->
             @include('layouts.backend.sections.header')
@@ -71,12 +71,12 @@
             @yield('scripts')
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ URL::asset('/zapana/js/bootstrap.min.js') }}"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/zapana/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{{ URL::asset('/zapana/js/plugins/morris/raphael.min.js') }}"></script>
-    <script src="{{ URL::asset('/zapana/js/plugins/morris/morris.min.js') }}"></script>
-    <script src="{{ URL::asset('/zapana/js/plugins/morris/morris-data.js') }}"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/zapana/js/plugins/morris/raphael.min.js"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/zapana/js/plugins/morris/morris.min.js"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/zapana/js/plugins/morris/morris-data.js"></script>
 
 </body>
 
