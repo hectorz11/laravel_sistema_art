@@ -119,10 +119,10 @@ Route::filter('admin', function($route, $request, $value)
 		$user = Sentry::getUser();
  
 		if( ! $user->hasAnyAccess([$value])) {
-			return Redirect::route('/');
+			return Redirect::route('pages.error');
 		}
 	} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		return Redirect::route('/');
+		return Redirect::route('pages.error');
 	}
 });
 Route::filter('users', function($route, $request, $value)
@@ -131,9 +131,9 @@ Route::filter('users', function($route, $request, $value)
 		$user = Sentry::getUser();
  
 		if( ! $user->hasAnyAccess([$value])) {
-			return Redirect::route('/');
+			return Redirect::route('pages.error');
 		}
 	} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		return Redirect::route('/');
+		return Redirect::route('pages.error');
 	}
 });

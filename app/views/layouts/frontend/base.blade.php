@@ -13,30 +13,30 @@
     
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="{{ URL::asset('/hector/img/favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ URL::asset('/hector/img/apple-touch-icon.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ URL::asset('/hector/img/apple-touch-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ URL::asset('/hector/img/apple-touch-icon-114x114.png') }}">
+    <link rel="shortcut icon" href="http://hectorz11.github.io/laravel_sistema_art/hector/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="http://hectorz11.github.io/laravel_sistema_art/hector/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://hectorz11.github.io/laravel_sistema_art/hector/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://hectorz11.github.io/laravel_sistema_art/hector/img/apple-touch-icon-114x114.png">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/fonts/font-awesome/css/font-awesome.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/signin.css') }}">
+    <link rel="stylesheet" type="text/css" href="http://hectorz11.github.io/laravel_sistema_art/hector/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://hectorz11.github.io/laravel_sistema_art/hector/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="http://hectorz11.github.io/laravel_sistema_art/zapana/css/signin.css">
 
     <!-- Slider
     ================================================== -->
-    <link href="{{ URL::asset('/hector/css/owl.carousel.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ URL::asset('/hector/css/owl.theme.css') }}" rel="stylesheet" media="screen">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/hector/css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="http://hectorz11.github.io/laravel_sistema_art/hector/css/owl.theme.css" rel="stylesheet" media="screen">
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/hector/css/responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="http://hectorz11.github.io/laravel_sistema_art/hector/css/style.css">
+    <link rel="stylesheet" type="text/css" href="http://hectorz11.github.io/laravel_sistema_art/hector/css/responsive.css">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
 
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/modernizr.custom.js') }}"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/modernizr.custom.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,17 +87,17 @@
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/jquery.1.11.1.js') }}"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/jquery.1.11.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/bootstrap.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/SmoothScroll.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/jquery.isotope.js') }}"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/jquery.isotope.js"></script>
 
-    <script src="{{ URL::asset('/hector/js/owl.carousel.js') }}"></script>
+    <script src="http://hectorz11.github.io/laravel_sistema_art/hector/js/owl.carousel.js"></script>
 
     <!-- Javascripts
     ================================================== -->
-    <script type="text/javascript" src="{{ URL::asset('/hector/js/main.js') }}"></script>
+    <script type="text/javascript" src="http://hectorz11.github.io/laravel_sistema_art/hector/js/main.js"></script>
 
   </body>
 </html>

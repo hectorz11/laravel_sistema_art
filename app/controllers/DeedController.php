@@ -54,17 +54,17 @@ class DeedController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.deeds.edit', $model->id)."'>
-								<span class='label label-info'><i class='glyphicon glyphicon-edit'></i> Editar</span>
+								<span class='label label-primary'><i class='fa fa-edit'></i> Editar</span>
 							</a>
-							<a href='#' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='glyphicon glyphicon-remove-circle'></i> Eliminar</span>
+							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
+								<span class='label label-default'><i class='fa fa-trash'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {
 				return View::make('deeds.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -74,7 +74,7 @@ class DeedController extends \BaseController {
 			$notaries = $this->notary->allNotariesActivated();
 			return View::make('deeds.admin.create', ['notaries' => $notaries]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -90,7 +90,7 @@ class DeedController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -105,7 +105,7 @@ class DeedController extends \BaseController {
 				return View::make('deeds.admin.edit', ['deed' => $deed, 'notaries' => $notaries]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -121,13 +121,37 @@ class DeedController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('deeds')) {
+			$idDeed = Input::get('deeds');
+			$deed = $this->deed->selectDeed($idDeed);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idDeed' => $deed->id,
+				'numberDeeds' => $deed->number_deeds,
+			);
+			return Response::json($data);
 		}
 	}
 
 	public function deleteAdminDelete($id)
 	{
-		//
+		if (Sentry::hasAnyAccess(['deeds_delete'])) {
+			$idDeed = Input::get('idDeed');
+			$deed = Deed::find($idDeed);
+			$deed->status = 0;
+			$deed->save();
+
+			return Redirect::route('admin.deeds.index')
+			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
+		} else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	/*
@@ -156,15 +180,12 @@ class DeedController extends \BaseController {
 				->searchColumns('notaries.name','deeds.number_deeds','deeds.protocol','deeds.given_by','deeds.pro')
 				->orderColumns('id','deeds.number_deeds')
 				->showColumns('id','name','number','protocol','folio','given','pro')
-				->addColumn('Operaciones', function($model)
-				{
-					return "";
-				})->make();
+				->make();
 			} else {
 				return View::make('deeds.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 }

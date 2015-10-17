@@ -37,17 +37,17 @@ class PenalController extends \BaseController {
 				->addColumn('Operaciones', function($model)
 				{
 					return "<a href='".URL::route('admin.penals.edit', $model->id)."'>
-								<span class='label label-info'><i class='glyphicon glyphicon-edit'></i> Editar</span>
+								<span class='label label-primary'><i class='fa fa-edit'></i> Editar</span>
 							</a>
-							<a href='#' id=$model->id data-toggle='modal'>
-								<span class='label label-danger'><i class='glyphicon glyphicon-remove-circle'></i> Eliminar</span>
+							<a class='delete' href='".URL::to('#Delete')."' id=$model->id data-toggle='modal'>
+								<span class='label label-default'><i class='fa fa-trash'></i> Eliminar</span>
 							</a>";
 				})->make();
 			} else {
 				return View::make('penals.admin.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -56,7 +56,7 @@ class PenalController extends \BaseController {
 		if (Sentry::hasAnyAccess(['penals_create'])) {
 			return View::make('penals.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -72,7 +72,7 @@ class PenalController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -86,7 +86,7 @@ class PenalController extends \BaseController {
 				return View::make('penals.admin.edit', ['penal' => $penal]);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -102,13 +102,37 @@ class PenalController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
-	public function postAdminDelete($id)
+	public function getAdminModalData()
 	{
-		//
+		if (Input::has('penals')) {
+			$idPenal = Input::get('penals');
+			$penal = $this->penal->selectPenal($idPenal);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idPenal' => $penal->id,
+				'numberPenal' => $penal->number_penal,
+			);
+			return Response::json($data);
+		}
+	}
+
+	public function deleteAdminDelete($id)
+	{
+		if (Sentry::hasAnyAccess(['penals_delete'])) {
+			$idPenal = Input::get('idPenal');
+			$penal = Penal::find($idPenal);
+			$penal->status = 0;
+			$penal->save();
+
+			return Redirect::route('admin.penals.index')
+			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
+		} else {
+			return Redirect::route('pages.error');
+		}
 	}
 	
 	/*
@@ -136,15 +160,12 @@ class PenalController extends \BaseController {
 				->searchColumns('penals.number_penal','penals.date','penals.acussed','penals.aggrieved','penals.judge','penals.scribe')
 				->orderColumns('id','penals.number_penal')
 				->showColumns('id','number','date','acussed','aggrieved','judge','scribe')
-				->addColumn('Operaciones', function($model)
-				{
-					return "";
-				})->make();
+				->make();
 			} else {
 				return View::make('penals.user.index');
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

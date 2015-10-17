@@ -9,7 +9,7 @@ class ProfileController extends \BaseController {
 
 			return View::make('pages.admin.profile', ['user' => $user]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -26,7 +26,7 @@ class ProfileController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -35,9 +35,9 @@ class ProfileController extends \BaseController {
 		if (Sentry::hasAnyAccess(['profiles_update'])) {
 			$user = User::find($id);
 
-			return View::make('pages.users.profile', ['user' => $user]);
+			return View::make('pages.user.profile', ['user' => $user]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -54,7 +54,7 @@ class ProfileController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

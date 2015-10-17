@@ -24,7 +24,7 @@
             "displayLength":10,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": '/user/deeds',
+            "sAjaxSource": '/users/deeds',
         });
 
         $('.show_users').bind('click', function(e) {

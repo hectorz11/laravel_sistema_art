@@ -33,7 +33,7 @@ class UserController extends \BaseController {
 			$users = $this->user->allUsers();
 			return View::make('users.admin.index', ['users' => $users]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -43,7 +43,7 @@ class UserController extends \BaseController {
 			$user = $this->user->selectUser($id);
 			return View::make('users.admin.edit', ['user' => $user]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -59,7 +59,7 @@ class UserController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -70,7 +70,7 @@ class UserController extends \BaseController {
 			$groups = Sentry::findAllGroups();
 			return View::make('users.admin.roles.edit', ['user' => $user, 'groups' => $groups]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -92,7 +92,7 @@ class UserController extends \BaseController {
 			return Redirect::route('admin.users.role', $id)
 			->with(['message' => 'Fue un exito la operación!', 'class' => 'success']);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

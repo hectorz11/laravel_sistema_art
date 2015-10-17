@@ -10,4 +10,14 @@ class Comment extends \Eloquent {
 	{
 		return $this->belongsTo('Profile','profile_id');
 	}
+
+	public function allComments()
+	{
+		return self::whereStatus(1)->get();
+	}
+
+	public function selectComment($id)
+	{
+		return self::find($id);
+	}
 }

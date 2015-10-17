@@ -9,7 +9,7 @@ class GroupController extends \BaseController {
 
 			return View::make('groups.admin.index', ['groups' => $groups]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -18,7 +18,7 @@ class GroupController extends \BaseController {
 		if (Sentry::hasAnyAccess(['groups_create'])) {
 			return View::make('groups.admin.create');
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -79,7 +79,7 @@ class GroupController extends \BaseController {
 				->with(['message' => 'El grupo ya existe', 'class' => 'warning']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -90,7 +90,7 @@ class GroupController extends \BaseController {
 
 			return View::make('groups.admin.update', ['group' => $group]);
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 
@@ -154,7 +154,7 @@ class GroupController extends \BaseController {
 				->with(['message' => 'El grupo no fue encontrado.', 'class' => 'danger']);
 			}
 		} else {
-			return View::make('pages.error');
+			return Redirect::route('pages.error');
 		}
 	}
 

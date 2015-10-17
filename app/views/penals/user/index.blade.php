@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <link href="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+                    <link href="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
                         <table class="table table-striped table-bordered" id="tablePenalsUser">
                             <thead>
                                 <tr>
@@ -62,7 +62,7 @@
                             </tbody>
                         </table>
                         <div class="form-actions" align="center">
-                            <a href="{{ URL::route('user.dashboard') }}" class="btn btn-lg btn-danger">
+                            <a href="{{ URL::route('users.dashboard') }}" class="btn btn-lg btn-danger">
                                 <i class="fa fa-home"></i> Regresar al Menu Principal
                             </a>
                         </div>
@@ -75,8 +75,8 @@
 @stop
 
 @section('scripts')
-<script src="{{ URL::asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/js/jquery-1.11.0.min.js"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="{{ URL::asset('/scripts/penals.js') }}"></script>
 @stop

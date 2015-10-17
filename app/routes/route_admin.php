@@ -86,6 +86,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		Route::get('/', ['as' => $deeG . '.index', 'uses' => 'DeedController@getAdminIndex']);
 		Route::get('/create', ['as' => $deeG . '.create', 'uses' => 'DeedController@getAdminCreate']);
 		Route::get('/{id}', ['as' => $deeG . '.edit', 'uses' => 'DeedController@getAdminUpdate']);
+		Route::get('/modal/data', ['as' => $deeG . '.modal.data' , 'uses' => 'DeedController@getAdminModalData']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
@@ -102,6 +103,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		Route::get('/', ['as' => $agrG . '.index', 'uses' => 'AgrarianController@getAdminIndex']);
 		Route::get('/create', ['as' => $agrG . '.create', 'uses' => 'AgrarianController@getAdminCreate']);
 		Route::get('/{id}', ['as' => $agrG . '.edit', 'uses' => 'AgrarianController@getAdminUpdate']);
+		Route::get('/modal/data', ['as' => $agrG . '.modal.data' , 'uses' => 'AgrarianController@getAdminModalData']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
@@ -118,6 +120,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		Route::get('/', ['as' => $civG . '.index', 'uses' => 'CivilController@getAdminIndex']);
 		Route::get('/create', ['as' => $civG . '.create', 'uses' => 'CivilController@getAdminCreate']);
 		Route::get('/{id}', ['as' => $civG . '.edit', 'uses' => 'CivilController@getAdminUpdate']);
+		Route::get('/modal/data', ['as' => $civG . '.modal.data' , 'uses' => 'CivilController@getAdminModalData']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
@@ -134,6 +137,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		Route::get('/', ['as' => $recG . '.index', 'uses' => 'RecordController@getAdminIndex']);
 		Route::get('/create', ['as' => $recG . '.create', 'uses' => 'RecordController@getAdminCreate']);
 		Route::get('/{id}', ['as' => $recG . '.edit', 'uses' => 'RecordController@getAdminUpdate']);
+		Route::get('/modal/data', ['as' => $recG . '.modal.data' , 'uses' => 'RecordController@getAdminModalData']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
@@ -150,6 +154,7 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		Route::get('/', ['as' => $penG . '.index', 'uses' => 'PenalController@getAdminIndex']);
 		Route::get('/create', ['as' => $penG . '.create', 'uses' => 'PenalController@getAdminCreate']);
 		Route::get('/{id}', ['as' => $penG . '.edit', 'uses' => 'PenalController@getAdminUpdate']);
+		Route::get('/modal/data', ['as' => $penG . '.modal.data' , 'uses' => 'PenalController@getAdminModalData']);
 
 		Route::group(['before' => 'csrf'], function() 
 		{
@@ -157,6 +162,20 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 			Route::post('/', ['as' => $penP . '.store', 'uses' => 'PenalController@postAdminCreate']);
 			Route::put('/{id}', ['as' => $penP . '.update', 'uses' => 'PenalController@putAdminUpdate']);
 			Route::delete('/{id}', ['as' => $penP . '.delete', 'uses' => 'PenalController@deleteAdminDelete']);
+		});
+	});
+
+	Route::group(['prefix' => '/comments'], function()
+	{
+		$comG = 'admin.comments';
+		Route::get('/', ['as' => $comG . '.index', 'uses' => 'CommentController@getAdminIndex']);
+		Route::get('/modal/data', ['as' => $comG . '.modal.data', 'uses' => 'CommentController@getAdminModalData']);
+
+		Route::group(['before' => 'csrf'], function()
+		{
+			$comP = 'admin.comments';
+			Route::delete('/', ['as' => $comP . '.delete', 'uses' => 'CommentController@deleteAdminDelete']);
+			Route::post('/message', ['as' => $comP . '.message', 'uses' => 'CommentController@postAdminMessage']);
 		});
 	});
 
