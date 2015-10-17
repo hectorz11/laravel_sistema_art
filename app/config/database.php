@@ -69,8 +69,6 @@ return array(
 			'database' => 'sistema_art',
 			'username' => 'ArchivoRegionalTacna',
 			'password' => 'archivoregionaltacna',
-<<<<<<< HEAD
-=======
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
@@ -82,7 +80,6 @@ return array(
 			'database' => 'd122n56f6ksk05',
 			'username' => 'inmwurqtwwliyl',
 			'password' => 'Ctm0ebKyQHBIpSaMvOvjHdqkQM',
->>>>>>> 945e940d254858f4b54909f3e0b66cd777e88834
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
