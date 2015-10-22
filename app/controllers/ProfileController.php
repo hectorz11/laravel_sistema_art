@@ -7,9 +7,12 @@ class ProfileController extends \BaseController {
 		if (Sentry::hasAnyAccess(['profiles_update'])) 
 		{
 			$user = User::find($id);
+
 			return View::make('pages.admin.profile', ['user' => $user]);
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	public function putAdminUpdate($id)
@@ -21,9 +24,11 @@ class ProfileController extends \BaseController {
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.profiles.edit', $id)
 				->withErrors($answer['message'])->withInput;
-			else
+			}
+			else {
 				return Redirect::route('admin.profiles.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
 		} 
 		else return Redirect::route('pages.error');
 	}
@@ -33,9 +38,12 @@ class ProfileController extends \BaseController {
 		if (Sentry::hasAnyAccess(['profiles_update'])) 
 		{
 			$user = User::find($id);
+
 			return View::make('pages.user.profile', ['user' => $user]);
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	public function putUserUpdate($id)
@@ -44,14 +52,18 @@ class ProfileController extends \BaseController {
 		{
 			$answer = Profile::updateProfile(Input::all(), $id);
 
-			if ($answer['error'] == true)
+			if ($answer['error'] == true) {
 				return Redirect::route('users.profiles.edit', $id)
 				->withErrors($answer['message'])->withInput;
-			else
+			}
+			else {
 				return Redirect::route('users.profiles.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 }

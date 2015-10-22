@@ -18,6 +18,7 @@ class UserController extends \BaseController {
 	{
 		$sentry = Sentry::getUser();
 		$user = $this->user->selectUser($sentry->id);
+
 		return View::make('pages.user.user', ['user' => $user]);
 	}
 
@@ -29,46 +30,60 @@ class UserController extends \BaseController {
 	*/
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['users_index']))
-		{
+		if (Sentry::hasAnyAccess(['users_index'])) {
+
 			$users = $this->user->allUsers();
+
 			return View::make('users.admin.index', ['users' => $users]);
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['users_update'])) 
-		{
+		if (Sentry::hasAnyAccess(['users_update'])) {
+
 			$user = $this->user->selectUser($id);
+
 			return View::make('users.admin.edit', ['user' => $user]);
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['users_update'])) 
-		{
+		if (Sentry::hasAnyAccess(['users_update'])) {
+
 			$answer = User::updateUser(Input::all(), $id);
-			if ($answer['error'] == true) 
+
+			if ($answer['error'] == true) {
 				return Redirect::route('admin.users.edit', $id)
 				->withErrors($answer['message'])->withInput();
-			else 
+			}
+			else {
 				return Redirect::route('admin.users.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
+			}
 		} 
-		else return Redirect::route('pages.error');
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 	public function getAdminRole($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
+
 			$user = $this->user->selectUser($id);
 			$groups = Sentry::findAllGroups();
+
 			return View::make('users.admin.roles.edit', ['user' => $user, 'groups' => $groups]);
-		} else {
+		} 
+		else {
 			return Redirect::route('pages.error');
 		}
 	}
@@ -76,6 +91,7 @@ class UserController extends \BaseController {
 	public function postAdminRole($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
+
 			$sentry = Sentry::findUserById($id);
 			$groups_1 = Sentry::findAllGroups();
 			$groups = Input::get('groups');
@@ -83,14 +99,17 @@ class UserController extends \BaseController {
 			foreach ($groups_1 as $group_1) {
 				$sentry->groups()->detach($group_1);
 			}
+
 			if (isset($groups)) {
 				foreach ($groups as $group) {
 					$sentry->groups()->attach($group);
 				}
 			}
+
 			return Redirect::route('admin.users.role', $id)
 			->with(['message' => 'Fue un exito la operación!', 'class' => 'success']);
-		} else {
+		} 
+		else {
 			return Redirect::route('pages.error');
 		}
 	}
