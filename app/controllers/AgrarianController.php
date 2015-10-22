@@ -53,8 +53,7 @@ class AgrarianController extends \BaseController {
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['agrarians_create'])) 
-			return View::make('agrarians.admin.create');
+		if (Sentry::hasAnyAccess(['agrarians_create'])) return View::make('agrarians.admin.create');
 		else return Redirect::route('pages.error');
 	}
 

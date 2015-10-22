@@ -18,8 +18,10 @@ class RecordController extends \BaseController {
 	*/
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['records_index'])) {
-			if (Request::ajax()) {
+		if (Sentry::hasAnyAccess(['records_index'])) 
+		{
+			if (Request::ajax()) 
+			{
 				$result = DB::table('records')
 				->select(array(
 					'records.id',
@@ -45,74 +47,69 @@ class RecordController extends \BaseController {
 								<span class='label label-default'><i class='fa fa-trash'></i> Eliminar</span>
 							</a>";
 				})->make();
-			} else {
-				return View::make('records.admin.index');
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+			} 
+			else return View::make('records.admin.index');
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['records_create'])) {
+		if (Sentry::hasAnyAccess(['records_create'])) 
+		{
 			$municipalities = $this->municipality->allMunicipalitiesActivated();
 			return View::make('records.admin.create', ['municipalities' => $municipalities]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['records_create'])) {
+		if (Sentry::hasAnyAccess(['records_create'])) 
+		{
 			$answer = Record::createRecord(Input::all());
-			if ($answer['error'] == true) {
+			if ($answer['error'] == true)
 				return Redirect::route('admin.records.create')
 				->withErrors($answer['message'])->withInput();
-			} else {
+			else
 				return Redirect::route('admin.records.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['records_update'])) {
+		if (Sentry::hasAnyAccess(['records_update'])) 
+		{
 			$municipalities = $this->municipality->allMunicipalitiesActivated();
 			$record = $this->record->selectRecord($id);
-			if (Request::ajax()) {
-				return Response::json(['record' => $record, 'municipalities' => $municipalities]);
-			} else {
-				return View::make('records.admin.edit', ['record' => $record, 'municipalities' => $municipalities]);
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+
+			if (Request::ajax()) return Response::json(['record' => $record, 'municipalities' => $municipalities]);
+			else return View::make('records.admin.edit', ['record' => $record, 'municipalities' => $municipalities]);
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['records_update'])) {
+		if (Sentry::hasAnyAccess(['records_update'])) 
+		{
 			$answer = Record::updateRecord(Input::all(), $id);
-			if ($answer['error'] == true) {
+			if ($answer['error'] == true) 
 				return Redirect::route('admin.records.edit', $id)
 				->withErrors($answer['message'])->withInput();
-			} else {
+			else 
 				return Redirect::route('admin.records.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminModalData()
 	{
-		if (Input::has('records')) {
+		if (Input::has('records')) 
+		{
 			$idRecord = Input::get('records');
 			$record = $this->record->selectRecord($idRecord);
 			$data = array(
@@ -126,7 +123,8 @@ class RecordController extends \BaseController {
 
 	public function deleteAdminDelete($id)
 	{
-		if (Sentry::hasAnyAccess(['records_delete'])) {
+		if (Sentry::hasAnyAccess(['records_delete'])) 
+		{
 			$idRecord = Input::get('idRecord');
 			$record = Record::find($idRecord);
 			$record->status = 0;
@@ -134,9 +132,8 @@ class RecordController extends \BaseController {
 
 			return Redirect::route('admin.records.index')
 			->with(['message' => 'Eliminado con exito!', 'class' => 'success']);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 	
 	/*
@@ -147,8 +144,10 @@ class RecordController extends \BaseController {
 	*/
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['users'])) {
-			if (Request::ajax()) {
+		if (Sentry::hasAnyAccess(['users'])) 
+		{
+			if (Request::ajax()) 
+			{
 				$result = DB::table('records')
 				->select(array(
 					'records.id',
@@ -166,12 +165,10 @@ class RecordController extends \BaseController {
 				->orderColumns('id','records.number_starting')
 				->showColumns('id','name','number','date','interested_m','interested_f','starting')
 				->make();
-			} else {
-				return View::make('records.user.index');
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+			} 
+			else return View::make('records.user.index');
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 }

@@ -104,13 +104,12 @@ class CommentController extends \BaseController {
 
 	public function getUserUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['comments_update'])) {
+		if (Sentry::hasAnyAccess(['comments_update'])) 
+		{
 			$comment = $this->comment->selectComment($id);
-
 			return View::make('comments.user.edit', ['comment' => $comment]); 
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function postUserCreate()

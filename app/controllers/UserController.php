@@ -29,38 +29,37 @@ class UserController extends \BaseController {
 	*/
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['users_index'])) {
+		if (Sentry::hasAnyAccess(['users_index']))
+		{
 			$users = $this->user->allUsers();
 			return View::make('users.admin.index', ['users' => $users]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['users_update'])) {
+		if (Sentry::hasAnyAccess(['users_update'])) 
+		{
 			$user = $this->user->selectUser($id);
 			return View::make('users.admin.edit', ['user' => $user]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['users_update'])) {
+		if (Sentry::hasAnyAccess(['users_update'])) 
+		{
 			$answer = User::updateUser(Input::all(), $id);
-			if ($answer['error'] == true) {
+			if ($answer['error'] == true) 
 				return Redirect::route('admin.users.edit', $id)
 				->withErrors($answer['message'])->withInput();
-			} else {
+			else 
 				return Redirect::route('admin.users.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminRole($id)
