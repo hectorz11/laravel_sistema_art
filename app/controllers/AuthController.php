@@ -9,14 +9,17 @@ class AuthController extends \BaseController {
 
 	public function postSignIn()
 	{
-		try {
+		try 
+		{
 			$credenciales = array(
 				'email' => Input::get('email'),
 				'password' => Input::get('password')
 			);
 			$sentry = Sentry::authenticate($credenciales, false);
 			$user = User::find($sentry->id);
-			if (!$user->tokens()->where('client', BrowserDetect::toString())->first()) {
+
+			if (!$user->tokens()->where('client', BrowserDetect::toString())->first()) 
+			{
 				$token = [];
 				$token['api_token'] = hash('sha256', Str::random(10), false);
 				$token['client'] = BrowserDetect::toString();
@@ -24,41 +27,54 @@ class AuthController extends \BaseController {
 				$user->tokens()->save(new Token($token));
 			}
 
-			if (Sentry::check()) {
-				if($sentry->hasAnyAccess(['admin'])) {
+			if (Sentry::check()) 
+			{
+				if($sentry->hasAnyAccess(['admin'])) 
 					//return Response::json(['token' => $token, 'user' => $sentry->toArray()]);
 					return Redirect::route('admin.dashboard')
 					->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
-				} else if($sentry->hasAnyAccess(['users'])) {
+				else if($sentry->hasAnyAccess(['users'])) 
 					return Redirect::route('users.dashboard')
 					->with(['message' => $sentry->first_name.' '.$sentry->last_name, 'class' => 'info']);
-				}
-			} else {
-				return Redirect::route('home')->withInput();
-			}
-		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
+			} 
+			else return Redirect::route('home')->withInput();
+		} 
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e) 
+		{
 			return Redirect::route('signin')
-			->with(['message' => 'Se requiere E - Mail', 'class' => 'warning']);
-		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
+			->with(['message' => 'Se requiere campo E-Mail', 'class' => 'warning']);
+		} 
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) 
+		{
 			return Redirect::route('signin')
-			->with(['message' => 'Se requiere contraseña.', 'class' => 'warning']);
-		} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
+			->with(['message' => 'Se requiere campo Contraseña.', 'class' => 'warning']);
+		} 
+		catch (Cartalyst\Sentry\Users\WrongPasswordException $e) 
+		{
 			return Redirect::route('signin')
 			->with(['message' => 'Contraseña incorrecta, vuelva a intentarlo.', 'class' => 'warning']);
-		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+		} 
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e) 
+		{
 			return Redirect::route('signin')
 			->with(['message' => 'El usuario no se ha encontrado.', 'class' => 'danger']);
-		} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
+		} 
+		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) 
+		{
 			return Redirect::route('signin')
 			->with(['message' => 'El usuario no está activado.', 'class' => 'warning']);
 	    }
-	    // The following is only required if the throttling is enabled
-		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
+		// The following is only required if the throttling is enabled
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+		{
 			return Redirect::route('signin')
-			->with(['message' => 'El usuario está suspendido.', 'class' => 'warning']);
-		} catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
+			->with(['message' => 'Usuario está suspendido.', 'class' => 'info']);
+		}
+		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+		{
 			return Redirect::route('signin')
-			->with(['message' => 'El usuario está banneado.', 'class' => 'warning']);
+			->with(['message' => 'Usuario está prohibido.', 'class' => 'info']);
+>>>>>>> c7b8695c9e9289f4f426678dcbdc7516be31c287
 		}
 	}
 
@@ -75,26 +91,48 @@ class AuthController extends \BaseController {
 
 	public function postSignUp()
 	{
-		$answer = User::createUser(Input::all());
-		if ($answer['error'] == true) {
-			return Redirect::route('home');
-		} else {
-			$user = $answer['data'];
-			$data['activationCode'] = $user->GetActivationCode();
-			$data['email'] = $user->email;
-			$data['userId'] = $user->getId();
-			$data['password'] = Input::get('password');
+		try
+		{			
+			$answer = User::createUser(Input::all());
+			if ($answer['error'] == true) 
+				return Redirect::route('home');
+			else 
+			{
+				$user = $answer['data'];
+				$data['activationCode'] = $user->GetActivationCode();
+				$data['email'] = $user->email;
+				$data['userId'] = $user->getId();
+				$data['password'] = Input::get('password');
 
-			Mail::send('emails.auth.activated', $data, function($m) use ($data) {
-				$m->to($data['email'])->subject('Gracias por registrarse - Support Team ART');
-			});
+				Mail::send('emails.auth.activated', $data, function($m) use ($data) 
+				{
+					$m->to($data['email'])->subject('Gracias por registrarse - Support Team ART');
+				});
 
-			return Redirect::route('signin');
+				return Redirect::route('signin');
+			}
+		}
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			return Redirect::route('signup')
+			->with(['message' => 'Se requiere campo de E-Mail.', 'class' => 'warning']);
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			return Redirect::route('signup')
+			->with(['message' => 'Se requiere campo Contraseña.', 'class' => 'warning']);
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			return Redirect::route('signup')
+			->with(['message' => 'El usuario no se ha encontrado.', 'class' => 'warning']);
 		}
 	}
 
 	public function getRegisterActivated($userId, $activationCode)
 	{
+<<<<<<< HEAD
 		try {
 			$user = Sentry::findUserById($userId);
 			if ($user->attemptActivation($activationCode)) {
@@ -107,9 +145,14 @@ class AuthController extends \BaseController {
 				->with('class', 'danger');
 			}
 		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+=======
+		$user = Sentry::findUserById($userId);
+		if ($user->attemptActivation($activationCode)) 
+>>>>>>> c7b8695c9e9289f4f426678dcbdc7516be31c287
 			return Redirect::route('signin')
 			->with('message', 'El usuario no se ha encontrado.')
 			->with('class', 'success');
+<<<<<<< HEAD
 		}
 		catch (Cartalyst\Sentry\Users\UserAlreadyActivatedException $e) {
 			return Redirect::route('signin')
@@ -117,6 +160,12 @@ class AuthController extends \BaseController {
 			->with('class', 'success');
 		}
 		
+=======
+		else 
+			return Redirect::route('signin')
+			->with('message', 'No se puede activar el usuario inténtalo de nuevo más tarde o póngase en contacto con equipo de apoyo.')
+			->with('class', 'danger');
+>>>>>>> c7b8695c9e9289f4f426678dcbdc7516be31c287
 	}
 
 	public function getForgotPassword()
@@ -126,54 +175,63 @@ class AuthController extends \BaseController {
 
 	public function postForgotPassword()
 	{
-		if (Input::has('email')) {
-			try {
+		if (Input::has('email')) 
+		{
+			try 
+			{
 				$email = Input::get('email');
 				$sentry = Sentry::findUserByLogin($email);
 				$resetCode = $sentry->getResetPasswordCode();
 				$user = User::find($sentry->id);
 
 				Mail::send("emails.auth.reset_password", array('email' => $email, 'resetCode' => $resetCode),
-					function($message) use ($email, $resetCode) {
+					function($message) use ($email, $resetCode) 
+					{
 						$message->to($email)->subject('Siga el enlace para restablecer tu contraseña');
 					}
 				);
+
 				return Redirect::route('forgot.password')
 				->with('mensaje', 'Hemos enviado un enlace a su cuenta de correo electrónico por favor, siga a restablecer su contraseña.')
 				->with('class', 'success');
 
-			} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+			} 
+			catch (Cartalyst\Sentry\Users\UserNotFoundException $e) 
+			{
 				return Redirect::route('forgot.password')
 				->with(['mensaje' => 'Usuario no encontrado', 'class' => 'info']);
 			}
-		} else {
+		} 
+		else 
 			return Redirect::route('forgot.password')
 			->with(['mensaje' => 'TEAM ART: Error email', 'class' => 'danger']);
-		}
 	}
 
 	public function getNewPassword()
 	{
-		if (Input::has('email') && Input::has('resetcode')) {
-			try {
+		if (Input::has('email') && Input::has('resetcode')) 
+		{
+			try 
+			{
 				$sentry = Sentry::findUserByLogin(Input::get('email'));
-				if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) {
+				if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) 
 					return View::make('pages.guest.new_password')
 					->with('user', $sentry);
-				} else {
+				else 
 					return Redirect::route('forgot.password')
 					->with('mensaje', 'Solicitud no válida. Introduzca DNI para restablecer su contraseña.')
 					->with('class', 'danger');
-				}
-			} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+			} 
+			catch (Cartalyst\Sentry\Users\UserNotFoundException $e) 
+			{
                 return Redirect::route('forgot.password')
                 ->with('mensaje', 'Usuario no encontrado')->with('class', 'danger');
             }
-		} else {
+		} 
+		else 
 			return Redirect::route('forgot.password')
             ->with('mensaje', 'Solicitud no válida. Introduzca correo electrónico para restablecer su contraseña')
             ->with('class', 'danger');
-		}
 	}
 
 	public function postNewPassword()
@@ -184,39 +242,44 @@ class AuthController extends \BaseController {
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
-		if ($validation->passes()) {
-			if (Input::has('email') && Input::has('resetcode')) {
-				try {
+		if ($validation->passes()) 
+		{
+			if (Input::has('email') && Input::has('resetcode')) 
+			{
+				try 
+				{
 					$sentry = Sentry::findUserByLogin(Input::get('email'));
-					if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) {
-						if ($sentry->attemptResetPassword(Input::get('resetcode'), Input::get('password'))) {
+					if ($sentry->checkResetPasswordCode(Input::get('resetcode'))) 
+					{
+						if ($sentry->attemptResetPassword(Input::get('resetcode'), Input::get('password'))) 
 							return Redirect::route('signin')
 							->with('mensaje', 'Cambio de contraseña fue un éxito. Por favor ingresa abajo con su nueva contraseña.')
 							->with('class', 'success');
-						} else {
+						else 
 							return Redirect::route('forgot.password')
 							->with('mensaje', 'No se ha podido restablecer la contraseña. Por favor, inténtalo de nuevo.')
 							->with('class', 'danger');
-						}
-					} else {
+					} 
+					else 
 						return Redirect::route('forgot.password')
 						->with('mensaje', 'No se ha podido restablecer la contraseña. Por favor, vuelva a intentarlo.')
 						->with('class', 'danger');
-					}
-				} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+				} 
+				catch (Cartalyst\Sentry\Users\UserNotFoundException $e) 
+				{
                     return Redirect::route('forgot.password')
                     ->with('mensaje', 'Usuario no encontrado.')
                     ->with('class', 'danger');
                 }
-            } else {
+            } 
+            else 
                 return Redirect::route('forgot.password')
                 ->with('mensaje', 'Solicitud no válida. Introduzca correo electrónico para restablecer su contraseña.')
                 ->with('class', 'danger');
-            }
-        } else {
+        } 
+        else 
             return Redirect::to('/new/password?email='.Input::get('email').'&resetcode='.Input::get('resetcode'))
 			->withErrors($validation)->withInput();
-        }
 	}
 
 }

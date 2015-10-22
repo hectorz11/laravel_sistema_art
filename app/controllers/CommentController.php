@@ -11,8 +11,10 @@ class CommentController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['comments_index'])) {
-			if (Request::ajax()) {
+		if (Sentry::hasAnyAccess(['comments_index'])) 
+		{
+			if (Request::ajax()) 
+			{
 				$result = DB::table('comments')
 				->select(array(
 					'comments.id',
@@ -37,15 +39,15 @@ class CommentController extends \BaseController {
 								<span class='label label-default'><i class='fa fa-trash'></i> Eliminar</span>
 							</a>";
 				})->make();
-			} else {
-				return View::make('comments.admin.index');
-			}
+			} 
+			else return View::make('comments.admin.index');
 		}
 	}
 
 	public function getAdminModalData()
 	{
-		if (Input::has('comments')) {
+		if (Input::has('comments')) 
+		{
 			$idComment = Input::get('comments');
 			$comment = $this->comment->selectComment($idComment);
 			$data = array(
@@ -60,7 +62,8 @@ class CommentController extends \BaseController {
 
 	public function postAdminMessage()
 	{
-		if (Input::has('email') && Input::has('answer') && Input::has('description')) {
+		if (Input::has('email') && Input::has('answer') && Input::has('description')) 
+		{
 			$data['email'] = Input::get('email');
 			$data['answer'] = Input::get('answer');
 			$data['description'] = Input::get('description');
@@ -73,40 +76,40 @@ class CommentController extends \BaseController {
 			$comment->status = 0;
 			$comment->save();
 
-			Mail::send('emails.comments.message', $data, function($m) use ($data) {
+			Mail::send('emails.comments.message', $data, function($m) use ($data) 
+			{
 				$m->to($data['email'])->subject('Gracias por comentar - Support Team ART');
 			});
 
 			return Redirect::route('admin.comments.index')
 			->with(['message' => 'Ha sido enviado la respuesta al Email: '.$user->email, 'class' => 'success']);
-		} else {
+		} 
+		else
 			return Redirect::route('admin.comments.index')
 			->with(['message' => 'ERROR TEAM: llamar al 968159823', 'class' => 'danger']);
-		}
 	}
 
 	public function getUserIndex()
 	{
-		if (Sentry::hasAnyAccess(['comments_index'])) {
+		if (Sentry::hasAnyAccess(['comments_index'])) 
+		{
 			$sentry = Sentry::getUser();
 			$user = User::find($sentry->id);
 			$comments = $user->profiles->comments;
 
 			return View::make('comments.user.index', ['comments' => $comments]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getUserUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['comments_update'])) {
+		if (Sentry::hasAnyAccess(['comments_update'])) 
+		{
 			$comment = $this->comment->selectComment($id);
-
 			return View::make('comments.user.edit', ['comment' => $comment]); 
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function postUserCreate()

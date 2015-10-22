@@ -4,28 +4,26 @@ class GroupController extends \BaseController {
 
 	public function getAdminIndex()
 	{
-		if (Sentry::hasAnyAccess(['groups_index'])) {
+		if (Sentry::hasAnyAccess(['groups_index'])) 
+		{
 			$groups = Sentry::findAllGroups();
-
 			return View::make('groups.admin.index', ['groups' => $groups]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['groups_create'])) {
-			return View::make('groups.admin.create');
-		} else {
-			return Redirect::route('pages.error');
-		}
+		if (Sentry::hasAnyAccess(['groups_create'])) return View::make('groups.admin.create');
+		else return Redirect::route('pages.error');
 	}
 
 	public function postAdminCreate()
 	{
-		if (Sentry::hasAnyAccess(['groups_create'])) {
-			try {
+		if (Sentry::hasAnyAccess(['groups_create'])) 
+		{
+			try 
+			{
 				$group = Sentry::createGroup([
 					'name' => Input::get('name'),
 					'permissions' => [
@@ -71,33 +69,37 @@ class GroupController extends \BaseController {
 				return Redirect::route('admin.groups.create')
 				->with(['message' => 'Grupo creado con exito', 'class' => 'success']);
 
-			} catch (Cartalyst\Sentry\Groups\NameRequiredException $e) {
+			} 
+			catch (Cartalyst\Sentry\Groups\NameRequiredException $e) 
+			{
 				return Redirect::route('admin.groups.create')
 				->with(['message' => 'El nombre es requerido', 'class' => 'warning']);
-			} catch (Cartalyst\Sentry\Groups\GroupExistsException $e) {
+			} 
+			catch (Cartalyst\Sentry\Groups\GroupExistsException $e) 
+			{
 				return Redirect::route('admin.groups.create')
 				->with(['message' => 'El grupo ya existe', 'class' => 'warning']);
 			}
-		} else {
-			return Redirect::route('pages.error');
 		}
+		else return Redirect::route('pages.error');
 	}
 
 	public function getAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['groups_update'])) {
+		if (Sentry::hasAnyAccess(['groups_update'])) 
+		{
 			$group = sentry::findGroupById($id);
-
 			return View::make('groups.admin.update', ['group' => $group]);
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 	public function putAdminUpdate($id)
 	{
-		if (Sentry::hasAnyAccess(['groups_update'])) {
-			try {
+		if (Sentry::hasAnyAccess(['groups_update'])) 
+		{
+			try
+			{
 				$group = Sentry::findGroupById($id);
 				$group->name = Input::get('name');
 				$group->permissions = [
@@ -142,20 +144,25 @@ class GroupController extends \BaseController {
 				$group->save();
 
 				return Redirect::route('admin.groups.edit', $id)
-				->with(['message' => 'El grupo fue actualizado con exito!', 'class' => 'success']);
-			} catch (Cartalyst\Sentry\Groups\NameRequiredException $e) {
+				->with(['message' => 'El grupo fue actualizado con exito!', 'class' => 'success']);		
+			} 
+			catch (Cartalyst\Sentry\Groups\NameRequiredException $e) 
+			{
 				return Redirect::route('admin.groups.edit', $id)
 				->with(['message' => 'El nombre es requerido', 'class' => 'warning']);
-			} catch (Cartalyst\Sentry\Groups\GroupExistsException $e) {
+			} 
+			catch (Cartalyst\Sentry\Groups\GroupExistsException $e) 
+			{
 				return Redirect::route('admin.groups.edit', $id)
 				->with(['message' => 'El grupo ya existe', 'class' => 'warning']);
-			} catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e) {
+			} 
+			catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e) 
+			{
 				return Redirect::route('admin.groups.edit', $id)
 				->with(['message' => 'El grupo no fue encontrado.', 'class' => 'danger']);
 			}
-		} else {
-			return Redirect::route('pages.error');
-		}
+		} 
+		else return Redirect::route('pages.error');
 	}
 
 }
