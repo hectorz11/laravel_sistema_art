@@ -38,20 +38,28 @@ class AuthController extends \BaseController {
 			}
 		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
 			return Redirect::route('signin')
-			->with(['message' => 'E-mail es requerido', 'class' => 'warning']);
+			->with(['message' => 'Se requiere E - Mail', 'class' => 'warning']);
 		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
 			return Redirect::route('signin')
-			->with(['message' => 'Password es requerido', 'class' => 'warning']);
+			->with(['message' => 'Se requiere contraseña.', 'class' => 'warning']);
 		} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
 			return Redirect::route('signin')
-			->with(['message' => 'Contraseña incorrecta', 'class' => 'warning']);
+			->with(['message' => 'Contraseña incorrecta, vuelva a intentarlo.', 'class' => 'warning']);
 		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
 			return Redirect::route('signin')
-			->with(['message' => 'Usuario no registrado', 'class' => 'danger']);
+			->with(['message' => 'El usuario no se ha encontrado.', 'class' => 'danger']);
 		} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
 			return Redirect::route('signin')
-			->with(['message' => 'Usuario no activado', 'class' => 'warning']);
+			->with(['message' => 'El usuario no está activado.', 'class' => 'warning']);
 	    }
+	    // The following is only required if the throttling is enabled
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'El usuario está suspendido.', 'class' => 'warning']);
+		} catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
+			return Redirect::route('signin')
+			->with(['message' => 'El usuario está banneado.', 'class' => 'warning']);
+		}
 	}
 
 	public function getSignOut()
@@ -87,16 +95,28 @@ class AuthController extends \BaseController {
 
 	public function getRegisterActivated($userId, $activationCode)
 	{
-		$user = Sentry::findUserById($userId);
-		if ($user->attemptActivation($activationCode)) {
+		try {
+			$user = Sentry::findUserById($userId);
+			if ($user->attemptActivation($activationCode)) {
+				return Redirect::route('signin')
+				->with('message', 'La activación de usuario fue un éxito, porfavor ingresa arriba.')
+				->with('class', 'success');
+			} else {
+				return Redirect::route('signin')
+				->with('message', 'No se puede activar el usuario inténtalo de nuevo más tarde o póngase en contacto con equipo de apoyo.')
+				->with('class', 'danger');
+			}
+		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
 			return Redirect::route('signin')
-			->with('message', 'La activación de usuario fue un éxito, porfavor ingresa arriba.')
+			->with('message', 'El usuario no se ha encontrado.')
 			->with('class', 'success');
-		} else {
-			return Redirect::route('signin')
-			->with('message', 'No se puede activar el usuario inténtalo de nuevo más tarde o póngase en contacto con equipo de apoyo.')
-			->with('class', 'danger');
 		}
+		catch (Cartalyst\Sentry\Users\UserAlreadyActivatedException $e) {
+			return Redirect::route('signin')
+			->with('message', 'El usuario ya está activado.')
+			->with('class', 'success');
+		}
+		
 	}
 
 	public function getForgotPassword()
