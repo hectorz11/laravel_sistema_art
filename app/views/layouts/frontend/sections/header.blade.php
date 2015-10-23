@@ -10,7 +10,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">ART</a>
+      @if (!Sentry::check())
+          <a class="navbar-brand" href="{{ URL::route('home') }}">ART</a>
+      @else
+        @if (Sentry::getUser()->hasAccess(['users']))
+          <a class="navbar-brand" href="{{ URL::route('users.dashboard') }}">Usuario</a>
+        @elseif (Sentry::getUser()->hasAccess(['admin']))
+          <a class="navbar-brand" href="{{ URL::route('admin.dashboard') }}">Administrador</a>
+        @endif
+      @endif
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

@@ -66,24 +66,27 @@ class CommentController extends \BaseController {
 	{
 		if (Input::has('email') && Input::has('answer') && Input::has('description')) {
 
-			$data['email'] = Input::get('email');
-			$data['answer'] = Input::get('answer');
-			$data['description'] = Input::get('description');
-			
 			$email = Input::get('email');
 			$sentry = Sentry::findUserByLogin($email);
 			$idComment = Input::get('idComment');
 
-			$comment = $this->selectComment($idComment);
+			$data['email'] = $email;
+			$data['first_name'] = $sentry->first_name;
+			$data['last_name'] = $sentry->last_name;
+			$data['answer'] = Input::get('answer');
+			$data['description'] = Input::get('description');
+			
+			$comment = $this->comment->selectComment($idComment);
 			$comment->status = 0;
-			$comment->save();
 
-			Mail::send('emails.comments.message', $data, function($m) use ($data) {
-				$m->to($data['email'])->subject('Gracias por comentar - Support Team ART');
-			});
+			if ($comment->save()) {
+				Mail::send('emails.comments.message', $data, function($m) use ($data) {
+					$m->to($data['email'])->subject('Gracias por comentar - Support Team ART');
+				});
+			}
 
 			return Redirect::route('admin.comments.index')
-			->with(['message' => 'Ha sido enviado la respuesta al Email: '.$user->email, 'class' => 'success']);
+			->with(['message' => 'Ha sido enviado la respuesta al Email: '.$email, 'class' => 'success']);
 		} 
 		else {
 			return Redirect::route('admin.comments.index')

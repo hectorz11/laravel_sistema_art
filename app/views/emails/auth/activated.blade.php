@@ -37,9 +37,11 @@
         <tr>
             <td style="text-align: center; vertical-align: middle;">
                 <img src="" alt="" />
-                <span style="color: green;">Hola {{ $email }}. Bienvenido a nuestra red!</span>
+                <span style="color: green;">Hola {{ $first_name }} {{ $last_name }}. Bienvenido a nuestra red!</span>
                 <br>
-                <span style="color: green;">Su contraseña es la siguiente: {{ $password }}</span>
+                Su Correo Electrónico es : {{ $email }}
+                <br>
+                Su Contraseña es : {{ $password }}
                 <br>
                 Completa el registro, con el siguiente enlace:
                 <br>

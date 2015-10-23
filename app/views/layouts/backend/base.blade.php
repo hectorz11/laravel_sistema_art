@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ URL::route('home">Archivo Regional de Tacna</a>
+                <a class="navbar-brand" href="{{ URL::route('home') }}">Archivo Regional de Tacna</a>
             </div>
             <!-- Top Menu Items -->
             @include('layouts.backend.sections.header')

@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <link href="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+                    <link href="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
                         <table class="table table-striped table-bordered" id="tableComments">
                             <thead>
                                 <tr>
@@ -82,7 +82,7 @@
             </div>
             <div class="modal-body">
                 <!-- Start Form -->
-                {{ Form::open(['route' => 'admin.comments.delete', 'id' => 'formEdit', 'method' => 'DELETE']) }}
+                {{ Form::open(['route' => 'admin.comments.message', 'id' => 'formEdit', 'method' => 'POST']) }}
                     <div class="row">
                         <div class="col-md-12">
                             <label>Comentario</label>
@@ -138,9 +138,9 @@
 @stop
 
 @section('scripts')
-<script src="{{ URL::asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/jquery.dataTables.js') }}"></script>
-<script src="{{ URL::asset('/assets/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/js/jquery-1.11.0.min.js"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="http://hectorz11.github.io/laravel_sistema_art/assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="{{ URL::asset('/scripts/comments.js') }}"></script>
 <script>
     $(document).ready(function() {

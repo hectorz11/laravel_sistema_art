@@ -95,6 +95,8 @@ class AuthController extends \BaseController {
 				$user = $answer['data'];
 				$data['activationCode'] = $user->GetActivationCode();
 				$data['email'] = $user->email;
+				$data['first_name'] = $user->first_name;
+				$data['last_name'] = $user->last_name;
 				$data['userId'] = $user->getId();
 				$data['password'] = Input::get('password');
 
