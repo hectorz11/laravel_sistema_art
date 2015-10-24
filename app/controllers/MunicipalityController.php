@@ -33,6 +33,24 @@ class MunicipalityController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['municipalities_update'])) {
+
+			$municipality = $this->municipality->selectMunicipality($id);
+
+			if (Request::ajax()) {
+				return Response::json(['municipality' => $municipality]);
+			}
+			else {
+				return View::make('municipalities.admin.edit', ['municipality' => $municipality]);
+			}
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['municipalities_create'])) {
@@ -46,24 +64,6 @@ class MunicipalityController extends \BaseController {
 			else {
 				return Redirect::route('admin.municipalities.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['municipalities_update'])) {
-
-			$municipality = $this->municipality->selectMunicipality($id);
-
-			if (Request::ajax()) {
-				return Response::json(['municipality' => $municipality]);
-			}
-			else {
-				return View::make('municipalities.admin.edit', ['municipality' => $municipality]);
 			}
 		} 
 		else {

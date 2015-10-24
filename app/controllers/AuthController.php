@@ -12,7 +12,7 @@ class AuthController extends \BaseController {
 		try {
 			$credenciales = array(
 				'email' => Input::get('email'),
-				'password' => Input::get('password')
+				'password' => Input::get('password'),
 			);
 
 			$sentry = Sentry::authenticate($credenciales, false);

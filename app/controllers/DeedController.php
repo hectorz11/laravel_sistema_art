@@ -20,18 +20,7 @@ class DeedController extends \BaseController {
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deeds_index'])) {
-			/*$deeds = DB::table('deeds')
-			->select(array(
-				'deeds.id',
-				'notaries.name as name',
-				'deeds.number_deeds as number_deeds',
-				'deeds.protocol as protocol',
-				'deeds.folio as folio',
-				'deeds.given_by as given_by',
-				'deeds.pro as pro'))
-			->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
-			->where('deeds.status', '=', 1)->paginate(5);*/
-			//$deeds = $this->deed->allDeeds();
+
 			if (Request::ajax()) {
 				//return Response::json(View::make('deeds.admin.posts', ['deeds' => $deeds])->render());
 				//return Response::json(['deeds' => $deeds]);
@@ -43,13 +32,14 @@ class DeedController extends \BaseController {
 					'deeds.protocol as protocol',
 					'deeds.folio as folio',
 					'deeds.given_by as given',
-					'deeds.pro as pro'))
+					'deeds.pro as pro',
+					'deeds.created_at as created'))
 				->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
 				->where('deeds.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('notaries.name','deeds.number_deeds','deeds.protocol','deeds.given_by','deeds.pro')
-				->orderColumns('id','deeds.number_deeds')
+				->searchColumns('name','number_deeds','protocol','given_by','pro')
+				->orderColumns('created','id','number_deeds')
 				->showColumns('id','name','number','protocol','folio','given','pro')
 				->addColumn('Operaciones', function($model) {
 					return "<a href='".URL::route('admin.deeds.edit', $model->id)."'>
@@ -82,6 +72,41 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['deeds_update'])) {
+
+			$notaries = $this->notary->allNotariesActivated();
+			$deed = $this->deed->selectDeed($id);
+
+			if (Request::ajax()) {
+				return Response::json(['deed' => $deed, 'notaries' => $notaries]);
+			}
+			else {
+				return View::make('deeds.admin.edit', ['deed' => $deed, 'notaries' => $notaries]);
+			}
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('deeds')) {
+
+			$idDeed = Input::get('deeds');
+			$deed = $this->deed->selectDeed($idDeed);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idDeed' => $deed->id,
+				'numberDeeds' => $deed->number_deeds,
+			);
+
+			return Response::json($data);
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['deeds_create'])) {
@@ -95,25 +120,6 @@ class DeedController extends \BaseController {
 			else {
 				return Redirect::route('admin.deeds.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['deeds_update'])) {
-
-			$notaries = $this->notary->allNotariesActivated();
-			$deed = $this->deed->selectDeed($id);
-
-			if (Request::ajax()) {
-				return Response::json(['deed' => $deed, 'notaries' => $notaries]);
-			}
-			else {
-				return View::make('deeds.admin.edit', ['deed' => $deed, 'notaries' => $notaries]);
 			}
 		} 
 		else {
@@ -138,22 +144,6 @@ class DeedController extends \BaseController {
 		} 
 		else {
 			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminModalData()
-	{
-		if (Input::has('deeds')) {
-
-			$idDeed = Input::get('deeds');
-			$deed = $this->deed->selectDeed($idDeed);
-			$data = array(
-				'success' => true,// indica que se llevo la peticion acabo
-				'idDeed' => $deed->id,
-				'numberDeeds' => $deed->number_deeds,
-			);
-
-			return Response::json($data);
 		}
 	}
 
@@ -194,13 +184,14 @@ class DeedController extends \BaseController {
 					'deeds.protocol as protocol',
 					'deeds.folio as folio',
 					'deeds.given_by as given',
-					'deeds.pro as pro'))
+					'deeds.pro as pro',
+					'deeds.created_at as created'))
 				->join('notaries', 'deeds.notary_id', '=', 'notaries.id')
 				->where('deeds.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('notaries.name','deeds.number_deeds','deeds.protocol','deeds.given_by','deeds.pro')
-				->orderColumns('id','deeds.number_deeds')
+				->searchColumns('name','number_deeds','protocol','given_by','pro')
+				->orderColumns('created','id','number_deeds')
 				->showColumns('id','name','number','protocol','folio','given','pro')
 				->make();
 			} 

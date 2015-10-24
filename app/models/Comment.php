@@ -20,4 +20,35 @@ class Comment extends \Eloquent {
 	{
 		return self::find($id);
 	}
+
+	public static function createComment($input, $id)
+	{
+		//
+	}
+
+	public static function updateComment($input, $id)
+	{
+		$answer = [];
+		$rules = [
+			'description' => 'required',
+		];
+		$validation = Validator::make($input, $rules);
+
+		if ($validation->fails()) {
+			$answer['message'] = $validation;
+			$answer['error'] = true;
+		} else {
+			$comment = self::find($id);
+			$comment->description = $input['description'];
+
+			if ($comment->save()) {
+				$answer['message'] = 'Editado con exito!';
+				$answer['error'] = false;
+			} else {
+				$answer['message'] = 'COMMENT UPDATE error, team noob!';
+				$answer['error'] = false;
+			}
+		}
+		return $answer;
+	}
 }

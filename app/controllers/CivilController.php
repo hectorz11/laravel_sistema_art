@@ -29,12 +29,13 @@ class CivilController extends \BaseController {
 					'civils.demandant as demandant',
 					'civils.defendant as defendant',
 					'civils.secretary as secretary',
-					'civils.matery as matery'))
+					'civils.matery as matery',
+					'civils.created_at as created'))
 				->where('civils.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('civils.number_civil','civils.date','civils.demandant','civils.defendant','civils.secretary','civils.matery')
-				->orderColumns('id','civils.number_civil')
+				->searchColumns('number_civil','date','demandant','defendant','secretary','matery')
+				->orderColumns('created','id','number_civil')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
 				->addColumn('Operaciones', function($model) {
 					return "<a href='".URL::route('admin.civils.edit', $model->id)."'>
@@ -64,6 +65,40 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['civils_update'])) {
+
+			$civil = $this->civil->selectCivil($id);
+
+			if (Request::ajax()) {
+				return Response::json(['civil' => $civil]);
+			}
+			else {
+				return View::make('civils.admin.edit', ['civil' => $civil]);
+			}
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('civils')) {
+
+			$idCivil = Input::get('civils');
+			$civil = $this->civil->selectCivil($idCivil);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idCivil' => $civil->id,
+				'numberCivil' => $civil->number_civil,
+			);
+
+			return Response::json($data);
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['civils_create'])) {
@@ -77,24 +112,6 @@ class CivilController extends \BaseController {
 			else {
 				return Redirect::route('admin.civils.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['civils_update'])) {
-
-			$civil = $this->civil->selectCivil($id);
-
-			if (Request::ajax()) {
-				return Response::json(['civil' => $civil]);
-			}
-			else {
-				return View::make('civils.admin.edit', ['civil' => $civil]);
 			}
 		} 
 		else {
@@ -119,22 +136,6 @@ class CivilController extends \BaseController {
 		} 
 		else {
 			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminModalData()
-	{
-		if (Input::has('civils')) {
-
-			$idCivil = Input::get('civils');
-			$civil = $this->civil->selectCivil($idCivil);
-			$data = array(
-				'success' => true,// indica que se llevo la peticion acabo
-				'idCivil' => $civil->id,
-				'numberCivil' => $civil->number_civil,
-			);
-
-			return Response::json($data);
 		}
 	}
 
@@ -175,12 +176,13 @@ class CivilController extends \BaseController {
 					'civils.demandant as demandant',
 					'civils.defendant as defendant',
 					'civils.secretary as secretary',
-					'civils.matery as matery'))
+					'civils.matery as matery',
+					'civils.created_at as created'))
 				->where('civils.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('civils.number_civil','civils.date','civils.demandant','civils.defendant','civils.secretary','civils.matery')
-				->orderColumns('id','civils.number_civil')
+				->searchColumns('number_civil','date','demandant','defendant','secretary','matery')
+				->orderColumns('created','id','number_civil')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
 				->make();
 			} 

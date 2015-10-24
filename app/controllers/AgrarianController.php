@@ -29,12 +29,13 @@ class AgrarianController extends \BaseController {
 					'agrarians.demandant as demandant',
 					'agrarians.defendant as defendant',
 					'agrarians.secretary as secretary',
-					'agrarians.matery as matery'))
+					'agrarians.matery as matery',
+					'agrarians.created_at as created'))
 				->where('agrarians.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('agrarians.number_agrarian','agrarians.date','agrarians.demandant','agrarians.defendant','agrarians.secretary','agrarians.matery')
-				->orderColumns('id','agrarians.number_agrarian')
+				->searchColumns('number_agrarian','date','demandant','defendant','secretary','matery')
+				->orderColumns('created','id','number_agrarian')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
 				->addColumn('Operaciones', function($model) {
 					return "<a href='".URL::route('admin.agrarians.edit', $model->id)."'>
@@ -64,6 +65,40 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['agrarians_update'])) {
+
+			$agrarian = $this->agrarian->selectAgrarian($id);
+
+			if (Request::ajax()) {
+				return Response::json(['agrarian' => $agrarian]);
+			}
+			else {
+				return View::make('agrarians.admin.edit', ['agrarian' => $agrarian]);
+			}
+		} 
+		else { 
+			return Redirect::route('pages.error'); 
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('agrarians')) {
+
+			$idAgrarian = Input::get('agrarians');
+			$agrarian = $this->agrarian->selectAgrarian($idAgrarian);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idAgrarian' => $agrarian->id,
+				'numberAgrarian' => $agrarian->number_agrarian,
+			);
+
+			return Response::json($data);
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['agrarians_create'])) {
@@ -77,24 +112,6 @@ class AgrarianController extends \BaseController {
 			else {
 				return Redirect::route('admin.agrarians.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else { 
-			return Redirect::route('pages.error'); 
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['agrarians_update'])) {
-
-			$agrarian = $this->agrarian->selectAgrarian($id);
-
-			if (Request::ajax()) {
-				return Response::json(['agrarian' => $agrarian]);
-			}
-			else {
-				return View::make('agrarians.admin.edit', ['agrarian' => $agrarian]);
 			}
 		} 
 		else { 
@@ -119,22 +136,6 @@ class AgrarianController extends \BaseController {
 		} 
 		else { 
 			return Redirect::route('pages.error'); 
-		}
-	}
-
-	public function getAdminModalData()
-	{
-		if (Input::has('agrarians')) {
-
-			$idAgrarian = Input::get('agrarians');
-			$agrarian = $this->agrarian->selectAgrarian($idAgrarian);
-			$data = array(
-				'success' => true,// indica que se llevo la peticion acabo
-				'idAgrarian' => $agrarian->id,
-				'numberAgrarian' => $agrarian->number_agrarian,
-			);
-
-			return Response::json($data);
 		}
 	}
 
@@ -175,12 +176,13 @@ class AgrarianController extends \BaseController {
 					'agrarians.demandant as demandant',
 					'agrarians.defendant as defendant',
 					'agrarians.secretary as secretary',
-					'agrarians.matery as matery'))
+					'agrarians.matery as matery',
+					'agrarians.created_at as created'))
 				->where('agrarians.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('agrarians.number_agrarian','agrarians.date','agrarians.demandant','agrarians.defendant','agrarians.secretary','agrarians.matery')
-				->orderColumns('id','agrarians.number_agrarian')
+				->searchColumns('number_agrarian','date','demandant','defendant','secretary','matery')
+				->orderColumns('created','id','number_agrarian')
 				->showColumns('id','number','date','demandant','defendant','secretary','matery')
 				->make();
 			}

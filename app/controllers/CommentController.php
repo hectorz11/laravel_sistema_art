@@ -9,6 +9,12 @@ class CommentController extends \BaseController {
 		$this->comment = $comment;
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol ADMIN (administrador)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['comments_index'])) {
@@ -19,6 +25,7 @@ class CommentController extends \BaseController {
 				->select(array(
 					'comments.id',
 					'comments.description as description',
+					'comments.created_at as created',
 					'users.email as email',
 					'users.first_name as first_name',
 					'users.last_name as last_name'))
@@ -27,8 +34,8 @@ class CommentController extends \BaseController {
 				->where('comments.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('users.email','users.first_name','users.last_name','comments.description')
-				->orderColumns('id','users.email')
+				->searchColumns('email','first_name','last_name','description')
+				->orderColumns('created','id')
 				->showColumns('id','description','email','first_name','last_name')
 				->addColumn('Operaciones', function($model) {
 					return "<a class='operation' href='".URL::to('#Send')."' id=$model->id data-toggle='modal'>
@@ -94,6 +101,12 @@ class CommentController extends \BaseController {
 		}
 	}
 
+	/*
+	!------------------------------------------------------------------------------
+	! Rol USER (usuario)
+	!------------------------------------------------------------------------------
+	!
+	*/
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['comments_index'])) {
@@ -125,6 +138,26 @@ class CommentController extends \BaseController {
 	public function postUserCreate()
 	{
 		//
+	}
+
+	public function putUserUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['comments_update'])) {
+
+			$answer = Comment::updateComment(Input::all(), $id);
+
+			if ($answer['error'] == true) {
+				return Redirect::route('users.comments.edit', $id)
+				->withErrors($answer['message'])->withInput();
+			} 
+			else {
+				return Redirect::route('users.comments.edit', $id)
+				->with(['message' => $answer['message'], 'class' => 'success']);
+			} 
+		}
+		else {
+			return Redirect::route('pages.error');
+		}
 	}
 
 }

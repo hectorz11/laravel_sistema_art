@@ -54,6 +54,20 @@ class UserController extends \BaseController {
 		}
 	}
 
+	public function getAdminRole($id)
+	{
+		if (Sentry::hasAnyAccess(['users_update'])) {
+
+			$user = $this->user->selectUser($id);
+			$groups = Sentry::findAllGroups();
+
+			return View::make('users.admin.roles.edit', ['user' => $user, 'groups' => $groups]);
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
@@ -68,20 +82,6 @@ class UserController extends \BaseController {
 				return Redirect::route('admin.users.edit', $id)
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminRole($id)
-	{
-		if (Sentry::hasAnyAccess(['users_update'])) {
-
-			$user = $this->user->selectUser($id);
-			$groups = Sentry::findAllGroups();
-
-			return View::make('users.admin.roles.edit', ['user' => $user, 'groups' => $groups]);
 		} 
 		else {
 			return Redirect::route('pages.error');

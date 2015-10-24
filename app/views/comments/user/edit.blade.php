@@ -34,7 +34,7 @@
                 @endif
 
                 <div class="row">
-                    {{ Form::open(['route' => ['admin.agrarians.update', $comment->id], 'method' => 'PUT']) }}
+                    {{ Form::open(['route' => ['users.comments.update', $comment->id], 'method' => 'PUT']) }}
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Comentario</label>

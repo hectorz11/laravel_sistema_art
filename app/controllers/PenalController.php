@@ -29,12 +29,13 @@ class PenalController extends \BaseController {
 					'penals.acussed as acussed',
 					'penals.aggrieved as aggrieved',
 					'penals.judge as judge',
-					'penals.scribe as scribe'))
+					'penals.scribe as scribe',
+					'penals.created_at as created'))
 				->where('penals.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('penals.number_penal','penals.date','penals.acussed','penals.aggrieved','penals.judge','penals.scribe')
-				->orderColumns('id','penals.number_penal')
+				->searchColumns('number_penal','date','acussed','aggrieved','judge','scribe')
+				->orderColumns('created','id','number_penal')
 				->showColumns('id','number','date','acussed','aggrieved','judge','scribe')
 				->addColumn('Operaciones', function($model) {
 					return "<a href='".URL::route('admin.penals.edit', $model->id)."'>
@@ -64,6 +65,40 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['penals_update'])) {
+
+			$penal = $this->penal->selectPenal($id);
+
+			if (Request::ajax()) {
+				return Response::json(['penal' => $penal]);
+			}
+			else {
+				return View::make('penals.admin.edit', ['penal' => $penal]);
+			}
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('penals')) {
+
+			$idPenal = Input::get('penals');
+			$penal = $this->penal->selectPenal($idPenal);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idPenal' => $penal->id,
+				'numberPenal' => $penal->number_penal,
+			);
+
+			return Response::json($data);
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['penals_create'])) {
@@ -77,24 +112,6 @@ class PenalController extends \BaseController {
 			else {
 				return Redirect::route('admin.penals.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['penals_update'])) {
-
-			$penal = $this->penal->selectPenal($id);
-
-			if (Request::ajax()) {
-				return Response::json(['penal' => $penal]);
-			}
-			else {
-				return View::make('penals.admin.edit', ['penal' => $penal]);
 			}
 		} 
 		else {
@@ -119,22 +136,6 @@ class PenalController extends \BaseController {
 		} 
 		else {
 			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminModalData()
-	{
-		if (Input::has('penals')) {
-
-			$idPenal = Input::get('penals');
-			$penal = $this->penal->selectPenal($idPenal);
-			$data = array(
-				'success' => true,// indica que se llevo la peticion acabo
-				'idPenal' => $penal->id,
-				'numberPenal' => $penal->number_penal,
-			);
-
-			return Response::json($data);
 		}
 	}
 
@@ -175,12 +176,13 @@ class PenalController extends \BaseController {
 					'penals.acussed as acussed',
 					'penals.aggrieved as aggrieved',
 					'penals.judge as judge',
-					'penals.scribe as scribe'))
+					'penals.scribe as scribe',
+					'penals.created_at as created'))
 				->where('penals.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('penals.number_penal','penals.date','penals.acussed','penals.aggrieved','penals.judge','penals.scribe')
-				->orderColumns('id','penals.number_penal')
+				->searchColumns('number_penal','date','acussed','aggrieved','judge','scribe')
+				->orderColumns('created','id','number_penal')
 				->showColumns('id','number','date','acussed','aggrieved','judge','scribe')
 				->make();
 			} 

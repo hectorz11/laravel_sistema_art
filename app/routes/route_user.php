@@ -23,7 +23,7 @@ Route::group(['prefix' => '/users', 'before' => 'users:users'], function()
 		Route::group(['before' => 'csrf'], function()
 		{
 			Route::post('/', ['as' => 'users.comments.store', 'uses' => 'CommentController@postUserCreate']);
-			Route::put('/', ['as' => 'users.comments.update', 'uses' => 'CommentController@putUserUpdate']);
+			Route::put('/{id}', ['as' => 'users.comments.update', 'uses' => 'CommentController@putUserUpdate']);
 			Route::delete('/', ['as' => 'users.comments.delete', 'uses' => 'CommentController@deleteUserDelete']);
 		});
 	});

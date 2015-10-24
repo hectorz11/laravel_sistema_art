@@ -33,6 +33,24 @@ class NotaryController extends \BaseController {
 		}
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['notaries_update'])) {
+
+			$notary = $this->notary->selectNotary($id);
+
+			if (Request::ajax()) {
+				return Response::json(['notary' => $notary]);
+			}
+			else {
+				return View::make('notaries.admin.edit', ['notary' => $notary]);
+			}
+		}
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['notaries_create'])) {
@@ -48,24 +66,6 @@ class NotaryController extends \BaseController {
 				->with(['message' => $answer['message'], 'class' => 'success']);
 			}
 		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['notaries_update'])) {
-
-			$notary = $this->notary->selectNotary($id);
-
-			if (Request::ajax()) {
-				return Response::json(['notary' => $notary]);
-			}
-			else {
-				return View::make('notaries.admin.edit', ['notary' => $notary]);
-			}
-		}
 		else {
 			return Redirect::route('pages.error');
 		}

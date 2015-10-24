@@ -30,13 +30,14 @@ class RecordController extends \BaseController {
 					'records.date as date',
 					'records.interested_m as interested_m',
 					'records.interested_f as interested_f',
-					'records.starting as starting'))
+					'records.starting as starting',
+					'records.created_at as created'))
 				->join('municipalities', 'records.municipality_id', '=', 'municipalities.id')
 				->where('records.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('municipalities.name','records.number_starting','records.interested_m','records.interested_f','records.starting')
-				->orderColumns('id','records.number_starting')
+				->searchColumns('name','number_starting','interested_m','interested_f','starting')
+				->orderColumns('created','id','number_starting')
 				->showColumns('id','name','number','date','interested_m','interested_f','starting')
 				->addColumn('Operaciones', function($model) {
 					return "<a href='".URL::route('admin.records.edit', $model->id)."'>
@@ -68,6 +69,41 @@ class RecordController extends \BaseController {
 			return Redirect::route('pages.error'); }
 	}
 
+	public function getAdminUpdate($id)
+	{
+		if (Sentry::hasAnyAccess(['records_update'])) {
+
+			$municipalities = $this->municipality->allMunicipalitiesActivated();
+			$record = $this->record->selectRecord($id);
+
+			if (Request::ajax()) {
+				return Response::json(['record' => $record, 'municipalities' => $municipalities]);
+			}
+			else {
+				return View::make('records.admin.edit', ['record' => $record, 'municipalities' => $municipalities]);
+			}
+		} 
+		else {
+			return Redirect::route('pages.error');
+		}
+	}
+
+	public function getAdminModalData()
+	{
+		if (Input::has('records')) {
+
+			$idRecord = Input::get('records');
+			$record = $this->record->selectRecord($idRecord);
+			$data = array(
+				'success' => true,// indica que se llevo la peticion acabo
+				'idRecord' => $record->id,
+				'numberStarting' => $record->number_starting,
+			);
+
+			return Response::json($data);
+		}
+	}
+
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['records_create'])) {
@@ -81,25 +117,6 @@ class RecordController extends \BaseController {
 			else {
 				return Redirect::route('admin.records.index')
 				->with(['message' => $answer['message'], 'class' => 'success']);
-			}
-		} 
-		else {
-			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminUpdate($id)
-	{
-		if (Sentry::hasAnyAccess(['records_update'])) {
-
-			$municipalities = $this->municipality->allMunicipalitiesActivated();
-			$record = $this->record->selectRecord($id);
-
-			if (Request::ajax()) {
-				return Response::json(['record' => $record, 'municipalities' => $municipalities]);
-			}
-			else {
-				return View::make('records.admin.edit', ['record' => $record, 'municipalities' => $municipalities]);
 			}
 		} 
 		else {
@@ -124,22 +141,6 @@ class RecordController extends \BaseController {
 		} 
 		else {
 			return Redirect::route('pages.error');
-		}
-	}
-
-	public function getAdminModalData()
-	{
-		if (Input::has('records')) {
-
-			$idRecord = Input::get('records');
-			$record = $this->record->selectRecord($idRecord);
-			$data = array(
-				'success' => true,// indica que se llevo la peticion acabo
-				'idRecord' => $record->id,
-				'numberStarting' => $record->number_starting,
-			);
-
-			return Response::json($data);
 		}
 	}
 
@@ -180,13 +181,14 @@ class RecordController extends \BaseController {
 					'records.date as date',
 					'records.interested_m as interested_m',
 					'records.interested_f as interested_f',
-					'records.starting as starting'))
+					'records.starting as starting',
+					'records.created_at as created'))
 				->join('municipalities', 'records.municipality_id', '=', 'municipalities.id')
 				->where('records.status', '=', 1);
 
 				return Datatable::query($result)
-				->searchColumns('municipalities.name','records.number_starting','records.interested_m','records.interested_f','records.starting')
-				->orderColumns('id','records.number_starting')
+				->searchColumns('name','number_starting','interested_m','interested_f','starting')
+				->orderColumns('created','id','number_starting')
 				->showColumns('id','name','number','date','interested_m','interested_f','starting')
 				->make();
 			} 
