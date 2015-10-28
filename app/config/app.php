@@ -126,8 +126,10 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'hisorange\BrowserDetect\Provider\BrowserDetectService',
+		'Hugofirth\Mailchimp\MailchimpServiceProvider',
+		//
 		'Tappleby\AuthToken\AuthTokenServiceProvider',
-
+		
 	),
 
 	/*
@@ -198,6 +200,8 @@ return array(
 		'Datatable' 	  => 'Chumper\Datatable\Facades\DatatableFacade',
 		'OAuth' 		  => 'Artdarek\OAuth\Facade\OAuth',
 		'BrowserDetect'   => 'hisorange\BrowserDetect\Facade\Parser',
+		'MailchimpWrapper'=> 'Hugofirth\Mailchimp\Facades\MailchimpWrapper',
+		//
 		'AuthToken' 	  => 'Tappleby\Support\Facades\AuthToken',
 		'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'
 
