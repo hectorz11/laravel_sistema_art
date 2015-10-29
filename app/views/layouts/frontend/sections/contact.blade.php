@@ -40,7 +40,7 @@
                     </form>
                 @else
                     <!-- Begin MailChimp Signup Form -->
-                    <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+                    <!--<link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
                     <style type="text/css">
                         #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
                         /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
@@ -62,8 +62,9 @@
                                     <div id="mce-responses" class="clear">
                                         <div class="response" id="mce-error-response" style="display:none"></div>
                                         <div class="response" id="mce-success-response" style="display:none"></div>
-                                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div style="position: absolute; left: -5000px;">
+                                    </div>-->
+                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <!--<div style="position: absolute; left: -5000px;">
                                     <input type="text" name="b_d8944e7916f28595a01a00794_7a1bc8d8cc" tabindex="-1" value="">
                                 </div>
                                 <div class="clear">
@@ -88,9 +89,9 @@
                             }(jQuery));
 
                         var $mcj = jQuery.noConflict(true);
-                    </script>
+                    </script>-->
                     <!--End mc_embed_signup-->
-                    <!--{{ Form::open(['route' => 'subscribe']) }}
+                    {{ Form::open(['route' => 'subscribe']) }}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -100,7 +101,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn tf-btn btn-default btn-lg">Subscribirse</button>
-                    {{ Form::close() }}-->
+                    {{ Form::close() }}
 
                     <div class="row">
                         <div class="col-md-4 col-sm-6 service">

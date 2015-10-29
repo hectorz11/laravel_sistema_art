@@ -7,11 +7,11 @@ class MailchimpController extends \BaseController {
 		return View::make('pages.admin.admin');
 	}
 
-	public function store()
+	public function postCreate()
 	{
-		protected $listId = '7a1bc8d8cc';
+		$listId = 'aa20a0973e';
 
-		return $email = Input::get('email');
+		$email = Input::get('email');
 
 		/**
 		 * Access the mailchimp lists API
