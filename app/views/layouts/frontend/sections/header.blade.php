@@ -13,10 +13,14 @@
       @if (!Sentry::check())
           <a class="navbar-brand" href="{{ URL::route('home') }}">ART</a>
       @else
-        @if (Sentry::getUser()->hasAccess(['users']))
+        @if (Sentry::hasAccess(['users','admin']))
+          <a class="navbar-brand" href="{{ URL::route('admin.dashboard') }}">Admin</a>
+          <a class="navbar-brand" href="#">-</a>
+          <a class="navbar-brand" href="{{ URL::route('users.dashboard') }}">User</a>
+        @elseif (Sentry::hasAccess(['users']))
           <a class="navbar-brand" href="{{ URL::route('users.dashboard') }}">Usuario</a>
-        @elseif (Sentry::getUser()->hasAccess(['admin']))
-          <a class="navbar-brand" href="{{ URL::route('admin.dashboard') }}">Administrador</a>
+        @elseif (Sentry::hasAccess(['admin']))
+          <a class="navbar-brand" href="{{ URL::route('admin.dashboard') }}">Administrador</a>       
         @endif
       @endif
         </div>
@@ -31,6 +35,10 @@
             <li><a href="#tf-works" class="page-scroll">Portfolio</a></li>
             <li><a href="#tf-testimonials" class="page-scroll">Testimonios</a></li>
             <li><a href="#tf-contact" class="page-scroll">Contacto</a></li>
+      @if (!Sentry::check())
+            <li><a href="{{ URL::route('signin') }}">Login</a></li>
+            <li><a href="{{ URL::route('signup') }}">Register</a></li>
+      @endif
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

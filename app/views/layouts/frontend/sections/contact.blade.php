@@ -100,17 +100,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn tf-btn btn-default btn-lg">Subscribirse</button>
+                        <button type="submit" class="btn btn-warning btn-lg">Subscribirse</button>
                     {{ Form::close() }}
-
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 service">
-                            <a href="{{ URL::route('signin') }}" class="btn btn-primary btn-lg">Iniciar Sesión</a>
-                        </div>
-                        <div class="col-md-4 col-sm-6 service">
-                            <a href="{{ URL::route('signup') }}" class="btn btn-success btn-lg">Registrarse</a>
-                        </div>
-                    </div>
                 @endif
                 </div>
             </div>
