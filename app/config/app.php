@@ -127,6 +127,7 @@ return array(
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'hisorange\BrowserDetect\Provider\BrowserDetectService',
 		'Hugofirth\Mailchimp\MailchimpServiceProvider',
+		'Doxxon\LaravelMandrillRequest\LaravelMandrillRequestServiceProvider',
 		//
 		'Tappleby\AuthToken\AuthTokenServiceProvider',
 		
@@ -201,6 +202,7 @@ return array(
 		'OAuth' 		  => 'Artdarek\OAuth\Facade\OAuth',
 		'BrowserDetect'   => 'hisorange\BrowserDetect\Facade\Parser',
 		'MailchimpWrapper'=> 'Hugofirth\Mailchimp\Facades\MailchimpWrapper',
+		'Mandrill' 		  => 'Doxxon\LaravelMandrillRequest\Facades\MandrillRequest',
 		//
 		'AuthToken' 	  => 'Tappleby\Support\Facades\AuthToken',
 		'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'

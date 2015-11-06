@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "894e9999c6b51b792efe7d9c11ee1802",
-    "content-hash": "767fe82396d4b076ec511b74eec07da3",
+    "hash": "b7ad698e9620d9b27ee2d8d2f0c09eb8",
+    "content-hash": "3a86bdeff2e71e40cd0bffa5ea2e2c97",
     "packages": [
         {
             "name": "alrik11es/cowsayphp",
@@ -343,6 +343,54 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "time": "2014-01-17 12:21:18"
+        },
+        {
+            "name": "doxxon/laravel-mandrill-request",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doxxon/Laravel-Mandrill-Request.git",
+                "reference": "825c2583c2159eae9f766cbfdc1772ac88b30b03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doxxon/Laravel-Mandrill-Request/zipball/825c2583c2159eae9f766cbfdc1772ac88b30b03",
+                "reference": "825c2583c2159eae9f766cbfdc1772ac88b30b03",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doxxon\\LaravelMandrillRequest": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Doxxon",
+                    "email": "doxxon.co@gmail.com"
+                }
+            ],
+            "description": "Mandrill transactional emails via Laravel 4",
+            "homepage": "http://github.com/doxxon/Laravel-Mandrill-Request",
+            "keywords": [
+                "email",
+                "laravel",
+                "mandrill"
+            ],
+            "time": "2015-01-13 12:57:19"
         },
         {
             "name": "filp/whoops",
@@ -841,16 +889,16 @@
         },
         {
             "name": "lusitanian/oauth",
-            "version": "v0.8.1",
+            "version": "v0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "619a03134e7a20f35cee094b930ca624924d31df"
+                "reference": "f81b0f4988d8613a96857ff317a80d95d126b4e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/619a03134e7a20f35cee094b930ca624924d31df",
-                "reference": "619a03134e7a20f35cee094b930ca624924d31df",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/f81b0f4988d8613a96857ff317a80d95d126b4e4",
+                "reference": "f81b0f4988d8613a96857ff317a80d95d126b4e4",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +952,7 @@
                 "oauth",
                 "security"
             ],
-            "time": "2015-10-14 03:42:30"
+            "time": "2015-10-29 22:57:59"
         },
         {
             "name": "mailchimp/mailchimp",
@@ -2398,16 +2446,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v80",
+            "version": "v82",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "1b916117abc0fa3c4305eaa864085704b6e8161d"
+                "reference": "ce2b40b0ecf99c2d4fb4cee9edffc5a80cb8b274"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/1b916117abc0fa3c4305eaa864085704b6e8161d",
-                "reference": "1b916117abc0fa3c4305eaa864085704b6e8161d",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/ce2b40b0ecf99c2d4fb4cee9edffc5a80cb8b274",
+                "reference": "ce2b40b0ecf99c2d4fb4cee9edffc5a80cb8b274",
                 "shasum": ""
             },
             "bin": [
@@ -2438,14 +2486,15 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-10-15 14:08:33"
+            "time": "2015-10-31 00:38:28"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "fzaninotto/faker": 20,
-        "artdarek/oauth-4-laravel": 20
+        "artdarek/oauth-4-laravel": 20,
+        "doxxon/laravel-mandrill-request": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

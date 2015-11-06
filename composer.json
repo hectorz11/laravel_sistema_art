@@ -14,6 +14,7 @@
   		"nesbot/Carbon": "*",
   		"tappleby/laravel-auth-token": "0.3.*",
   		"hugofirth/mailchimp": "2.0.*",
+  		"doxxon/laravel-mandrill-request": "dev-master",
 		"alrik11es/cowsayphp": "^1.0"
 	},
 	"require-dev": {

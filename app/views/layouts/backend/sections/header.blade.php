@@ -4,10 +4,7 @@
                 $user = User::find($sentry->id);
                 $date = '2015-10-16';
 
-                $profiles = DB::('profiles')->whereHas('comments' ,function($query)
-                {
-                    $query->where('created_at', 'like', '2015-10-16%');
-                })->take(3)->get();
+                $profiles = Profile::all();
             ?>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
