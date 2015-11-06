@@ -1,28 +1,20 @@
-            <!-- Sentry and Model User -->
-            <?php
-                $sentry = Sentry::getUser();
-                $user = User::find($sentry->id);
-                $date = '2015-10-16';
-
-                $profiles = Profile::all();
-            ?>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
-                    @foreach ($profiles as $p)
+                    @foreach (Sentry::all() as $p)
                         <li class="message-preview">
                             <a href="#">
                                 <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="{{ $p->photo }}" alt="..." width="50" height="50">
+                                        <img class="media-object" src="{{ $p->profiles->photo }}" alt="..." width="50" height="50">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>{{ $p->users->first_name }}</strong></h5>
-                                        <h5 class="media-heading"><strong>{{ $p->users->last_name }}</strong></h5>
+                                        <h5 class="media-heading"><strong>{{ $p->first_name }}</strong></h5>
+                                        <h5 class="media-heading"><strong>{{ $p->last_name }}</strong></h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Nro. de comentarios = {{ count($p->comments) }}</p>
+                                        <p>Nro. de comentarios = {{ count($p->profiles->comments) }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -58,19 +50,19 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ $user->first_name }} {{ $user->last_name }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Sentry::getUser()->first_name }} {{ Sentry::getUser()->last_name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                    @if ($sentry->hasAnyAccess(['admin']))
+                    @if (Sentry::hasAccess(['admin']))
                         <li>
-                            <a href="{{ URL::route('admin.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Administrador</a>
+                            <a href="{{ URL::route('admin.profiles.edit', Sentry::getUser()->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Administrador</a>
                         </li>
                     @endif
-                    @if ($sentry->hasAnyAccess(['users']))
+                    @if (Sentry::hasAccess(['users']))
                         <li>
-                            <a href="{{ URL::route('users.profiles.edit', $sentry->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Usuario</a>
+                            <a href="{{ URL::route('users.profiles.edit', Sentry::getUser()->id) }}"><i class="fa fa-fw fa-user"></i> Perfil Usuario</a>
                         </li>
                     @endif
-                    @if ($sentry->hasAnyAccess(['comments_index']))
+                    @if (Sentry::hasAccess(['comments_index']))
                         <li>
                             <a href="{{ URL::route('users.comments.index') }}"><i class="fa fa-fw fa-envelope"></i> Comentarios</a>
                         </li>

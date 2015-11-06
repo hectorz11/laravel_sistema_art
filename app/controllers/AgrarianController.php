@@ -103,7 +103,7 @@ class AgrarianController extends \BaseController {
 	{
 		if (Sentry::hasAnyAccess(['agrarians_create'])) {
 
-			$answer = Agrarian::createAgrarian(Input::all());
+			$answer = $this->agrarian->createAgrarian(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.agrarians.create')
@@ -123,7 +123,7 @@ class AgrarianController extends \BaseController {
 	{
 		if (Sentry::hasAnyAccess(['agrarians_update'])) {
 
-			$answer = Agrarian::updateAgrarian(Input::all(), $id);
+			$answer = $this->agrarian->updateAgrarian(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.agrarians.edit', $id)
@@ -144,7 +144,7 @@ class AgrarianController extends \BaseController {
 		if (Sentry::hasAnyAccess(['agrarians_delete'])) {
 
 			$idAgrarian = Input::get('idAgrarian');
-			$agrarian = Agrarian::find($idAgrarian);
+			$agrarian = $this->agrarian->selectAgrarian($idAgrarian);
 			$agrarian->status = 0;
 			$agrarian->save();
 
