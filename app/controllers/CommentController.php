@@ -2,8 +2,16 @@
 
 class CommentController extends \BaseController {
 
+	/**
+	 * Atributos de CommentController
+	 *
+	 */
 	protected $comment = null;
 
+	/**
+	 * Metodos de CommentController
+	 *
+	 */
 	public function __construct(Comment $comment)
 	{
 		$this->comment = $comment;
@@ -15,6 +23,10 @@ class CommentController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.comments.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['comments_index'])) {
@@ -52,6 +64,10 @@ class CommentController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.comments.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('comments')) {
@@ -69,6 +85,10 @@ class CommentController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.comments.message
+	 *
+	 */
 	public function postAdminMessage()
 	{
 		if (Input::has('email') && Input::has('answer') && Input::has('description')) {
@@ -107,6 +127,10 @@ class CommentController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * users.comments.index
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['comments_index'])) {
@@ -122,6 +146,10 @@ class CommentController extends \BaseController {
 		}
 	}
 
+	/**
+	 * users.comments.edit
+	 *
+	 */
 	public function getUserUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['comments_update'])) {
@@ -140,11 +168,15 @@ class CommentController extends \BaseController {
 		//
 	}
 
+	/**
+	 * users.comments.update
+	 *
+	 */
 	public function putUserUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['comments_update'])) {
 
-			$answer = Comment::updateComment(Input::all(), $id);
+			$answer = $this->comment->updateComment(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('users.comments.edit', $id)

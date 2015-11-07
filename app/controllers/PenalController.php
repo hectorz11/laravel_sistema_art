@@ -2,8 +2,16 @@
 
 class PenalController extends \BaseController {
 
+	/**
+	 * Atributos de PenalController
+	 *
+	 */
 	protected $penal = null;
 
+	/**
+	 * Metodos de PenalController
+	 *
+	 */
 	public function __construct(Penal $penal)
 	{
 		$this->penal = $penal;
@@ -15,6 +23,10 @@ class PenalController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.penals.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['penals_index'])) {
@@ -55,6 +67,10 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.penals.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['penals_create'])) {
@@ -65,6 +81,10 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.penals.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['penals_update'])) {
@@ -83,6 +103,10 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.penals.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('penals')) {
@@ -99,11 +123,15 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.notaries.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['penals_create'])) {
 
-			$answer = Penal::createPenal(Input::all());
+			$answer = $this->penal->createPenal(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.penals.create')
@@ -119,11 +147,15 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.penals.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['penals_update'])) {
 
-			$answer = Penal::updatePenal(Input::all(), $id);
+			$answer = $this->penal->updatePenal(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.penals.edit', $id)
@@ -139,12 +171,16 @@ class PenalController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.penals.delete
+	 *
+	 */
 	public function deleteAdminDelete($id)
 	{
 		if (Sentry::hasAnyAccess(['penals_delete'])) {
 
 			$idPenal = Input::get('idPenal');
-			$penal = Penal::find($idPenal);
+			$penal = $this->penal->selectPenal($idPenal);
 			$penal->status = 0;
 			$penal->save();
 
@@ -162,6 +198,10 @@ class PenalController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * users.penals.index
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

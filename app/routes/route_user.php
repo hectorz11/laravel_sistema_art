@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Grupo users
+ *
+ */
 Route::group(['prefix' => '/users', 'before' => 'users:users'], function() 
 {
 	Route::get('/', ['as' => 'users.dashboard', 'uses' => 'UserController@getIndex']);
@@ -15,6 +19,10 @@ Route::group(['prefix' => '/users', 'before' => 'users:users'], function()
 		Route::put('/profile/{id}', ['as' => 'users.profiles.update', 'uses' => 'ProfileController@putUserUpdate']);
 	});
 
+	/**
+	 * Grupo comments
+	 *
+	 */
 	Route::group(['prefix' => '/comments'], function()
 	{
 		Route::get('/', ['as' => 'users.comments.index', 'uses' => 'CommentController@getUserIndex']);

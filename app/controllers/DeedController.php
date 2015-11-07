@@ -2,9 +2,17 @@
 
 class DeedController extends \BaseController {
 
+	/**
+	 * Atributos de DeedController
+	 *
+	 */
 	protected $deed = null;
 	protected $notary = null;
 
+	/**
+	 * Metodos de DeedController
+	 *
+	 */
 	public function __construct(Deed $deed, Notary $notary)
 	{
 		$this->deed = $deed;
@@ -17,6 +25,10 @@ class DeedController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.deeds.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['deeds_index'])) {
@@ -59,6 +71,10 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['deeds_create'])) {
@@ -72,6 +88,10 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['deeds_update'])) {
@@ -91,6 +111,10 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('deeds')) {
@@ -107,11 +131,15 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['deeds_create'])) {
 
-			$answer = Deed::createDeed(Input::all());
+			$answer = $this->deed->createDeed(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.deeds.create')
@@ -127,11 +155,15 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['deeds_update'])) {
 
-			$answer = Deed::updateDeed(Input::all(), $id);
+			$answer = $this->deed->updateDeed(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.deeds.edit', $id)
@@ -147,12 +179,16 @@ class DeedController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.deeds.delete
+	 *
+	 */
 	public function deleteAdminDelete($id)
 	{
 		if (Sentry::hasAnyAccess(['deeds_delete'])) {
 
 			$idDeed = Input::get('idDeed');
-			$deed = Deed::find($idDeed);
+			$deed = $this->deed->selectDeed($idDeed);
 			$deed->status = 0;
 			$deed->save();
 
@@ -170,6 +206,10 @@ class DeedController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * users.deeds.index
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

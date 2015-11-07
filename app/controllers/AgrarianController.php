@@ -2,8 +2,16 @@
 
 class AgrarianController extends \BaseController {
 
+	/**
+	 * Atributos de AgrarianController
+	 *
+	 */
 	protected $agrarian = null;
 
+	/**
+	 * Metodos de AgrarianController
+	 *
+	 */
 	public function __construct(Agrarian $agrarian)
 	{
 		$this->agrarian = $agrarian;
@@ -15,6 +23,10 @@ class AgrarianController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.agrarians.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['agrarians_index'])) {
@@ -55,6 +67,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['agrarians_create'])) {
@@ -65,6 +81,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['agrarians_update'])) {
@@ -83,6 +103,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('agrarians')) {
@@ -99,6 +123,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['agrarians_create'])) {
@@ -119,6 +147,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['agrarians_update'])) {
@@ -139,6 +171,10 @@ class AgrarianController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.agrarians.delete
+	 *
+	 */
 	public function deleteAdminDelete($id)
 	{
 		if (Sentry::hasAnyAccess(['agrarians_delete'])) {
@@ -162,6 +198,10 @@ class AgrarianController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * users.agrarians.indez
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

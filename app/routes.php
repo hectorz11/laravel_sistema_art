@@ -11,10 +11,26 @@
 |
 */
 
+/**
+ * Rutas de las paginas de la web
+ *
+ */
 require __DIR__.'/routes/route_page.php';
 
+/**
+ * Rutas de Autentificación
+ *
+ */
 require __DIR__.'/routes/route_auth.php';
 
+/**
+ * Rutas de Administrador
+ *
+ */
 require __DIR__.'/routes/route_admin.php';
 
+/**
+ * Rutas de Usuarios
+ *
+ */
 require __DIR__.'/routes/route_user.php';

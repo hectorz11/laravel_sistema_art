@@ -2,6 +2,10 @@
 
 class GroupController extends \BaseController {
 
+	/**
+	 * admin.groups.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['groups_index'])) {
@@ -15,6 +19,10 @@ class GroupController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.groups.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['groups_create'])) {
@@ -25,6 +33,10 @@ class GroupController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.groups.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['groups_create'])) {
@@ -89,6 +101,10 @@ class GroupController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.groups.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['groups_update'])) {
@@ -102,6 +118,10 @@ class GroupController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.groups.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['groups_update'])) {

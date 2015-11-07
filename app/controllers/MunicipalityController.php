@@ -2,13 +2,25 @@
 
 class MunicipalityController extends \BaseController {
 
+	/**
+	 * Atributos de MunicipalityController
+	 *
+	 */
 	protected $municipality = null;
 
+	/**
+	 * Metodos de MunicipalityController
+	 *
+	 */
 	public function __construct(Municipality $municipality)
 	{
 		$this->municipality = $municipality;
 	}
 
+	/**
+	 * admin.municipalities.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['municipalities_index'])) {
@@ -23,6 +35,10 @@ class MunicipalityController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.municipalities.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['municipalities_create'])) {
@@ -33,6 +49,10 @@ class MunicipalityController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.municipalities.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['municipalities_update'])) {
@@ -51,11 +71,15 @@ class MunicipalityController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.municipalities.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['municipalities_create'])) {
 
-			$answer = Municipality::createMunicipality(Input::all());
+			$answer = $this->municipality->createMunicipality(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.municipalities.create')
@@ -71,11 +95,15 @@ class MunicipalityController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.municipalities.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['municipalities_update'])) {
 
-			$answer = Municipality::updateMunicipality(Input::all(), $id);
+			$answer = $this->municipality->updateMunicipality(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.municipalities.edit', $id)
