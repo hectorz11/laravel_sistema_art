@@ -14,7 +14,7 @@
                                         <h5 class="media-heading"><strong>{{ $p->first_name }}</strong></h5>
                                         <h5 class="media-heading"><strong>{{ $p->last_name }}</strong></h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Nro. de comentarios = </p>
+                                        <p>Nro. de comentarios = {{ count($p->profiles->comments) }}</p>
                                     </div>
                                 </div>
                             </a>

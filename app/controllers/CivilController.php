@@ -2,8 +2,16 @@
 
 class CivilController extends \BaseController {
 
+	/**
+	 * Atributos de CivilController
+	 *
+	 */
 	protected $civil = null;
 
+	/**
+	 * Metodos de CivilController
+	 *
+	 */
 	public function __construct(Civil $civil)
 	{
 		$this->civil = $civil;
@@ -15,6 +23,10 @@ class CivilController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.civils.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['civils_index'])) {
@@ -55,6 +67,10 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['civils_create'])) {
@@ -65,6 +81,10 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['civils_update'])) {
@@ -83,6 +103,10 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('civils')) {
@@ -99,11 +123,15 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['civils_create'])) {
 
-			$answer = Civil::createCivil(Input::all());
+			$answer = $this->civil->createCivil(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.civils.create')
@@ -119,11 +147,15 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['civils_update'])) {
 
-			$answer = Civil::updateCivil(Input::all(), $id);
+			$answer = $this->civil->updateCivil(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.civils.edit', $id)
@@ -139,12 +171,16 @@ class CivilController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.civils.delete
+	 *
+	 */
 	public function deleteAdminDelete($id)
 	{
 		if (Sentry::hasAnyAccess(['civils_delete'])) {
 
 			$idCivil = Input::get('idCivil');
-			$civil = Civil::find($idCivil);
+			$civil = $this->civil->selectCivil($idCivil);
 			$civil->status = 0;
 			$civil->save();
 
@@ -162,6 +198,10 @@ class CivilController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.users.index
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {

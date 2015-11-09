@@ -2,11 +2,34 @@
 
 class AuthController extends \BaseController {
 
+	/**
+	 * Atributos de AuthController
+	 *
+	 */
+	protected $user = null;
+
+	/**
+	 * Metodos de AuthController
+	 *
+	 */
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
+	/**
+	 * signin
+	 *
+	 */
 	public function getSignIn()
 	{
 		return View::make('pages.guest.sign_in');
 	}
 
+	/**
+	 * signin.post
+	 *
+	 */
 	public function postSignIn()
 	{
 		try {
@@ -16,7 +39,7 @@ class AuthController extends \BaseController {
 			);
 
 			$sentry = Sentry::authenticate($credenciales, false);
-			$user = User::find($sentry->id);
+			$user = $this->user->find($sentry->id);
 
 			if (!$user->tokens()->where('client', BrowserDetect::toString())->first()) {
 				$token = [];
@@ -72,21 +95,33 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * signout
+	 *
+	 */
 	public function getSignOut()
 	{
 		Sentry::logout();
 		return Redirect::route('home');
 	}
 
+	/**
+	 * signup
+	 *
+	 */
 	public function getSignUp()
 	{
 		return View::make('pages.guest.sign_up');
 	}
 
+	/**
+	 * signup.post
+	 *
+	 */
 	public function postSignUp()
 	{
 		try {			
-			$answer = User::createUser(Input::all());
+			$answer = $this->user->createUser(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('home');
@@ -121,6 +156,10 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * register.activated
+	 *
+	 */ 
 	public function getRegisterActivated($userId, $activationCode)
 	{
 		try {
@@ -147,11 +186,19 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * forgot.password
+	 *
+	 */
 	public function getForgotPassword()
 	{
 		return View::make('pages.guest.forgot_password');
 	}
 
+	/**
+	 * forgot.password.post
+	 *
+	 */
 	public function postForgotPassword()
 	{
 		if (Input::has('email')) {
@@ -159,7 +206,7 @@ class AuthController extends \BaseController {
 				$email = Input::get('email');
 				$sentry = Sentry::findUserByLogin($email);
 				$resetCode = $sentry->getResetPasswordCode();
-				$user = User::find($sentry->id);
+				$user = $this->user->selectUser($sentry->id);
 
 				Mail::send("emails.auth.reset_password", array('email' => $email, 'resetCode' => $resetCode), 
 					function($message) use ($email, $resetCode) {
@@ -181,6 +228,10 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * new.password
+	 *
+	 */
 	public function getNewPassword()
 	{
 		if (Input::has('email') && Input::has('resetcode')) {
@@ -208,6 +259,10 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * new.password.post
+	 *
+	 */
 	public function postNewPassword()
 	{
 		$rules = array(

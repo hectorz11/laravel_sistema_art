@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * Grupo admin
+ *
+ */
 Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function() 
 {
 	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'AdminController@index']);
 
+	/**
+	 * Grupo users
+	 *
+	 */
 	Route::group(['prefix' => '/users'], function() 
 	{
 		$userG = 'admin.users';
@@ -22,6 +30,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo profiles
+	 *
+	 */
 	Route::group(['prefix' => '/profiles'], function()
 	{
 		Route::get('/{id}', ['as' => 'admin.profiles.edit', 'uses' => 'ProfileController@getAdminUpdate']);
@@ -32,6 +44,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo groups
+	 *
+	 */
 	Route::group(['prefix' => '/groups'], function()
 	{
 		$groG = 'admin.groups';
@@ -48,6 +64,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo notaries
+	 *
+	 */
 	Route::group(['prefix' => '/notaries'], function() 
 	{
 		$notG = 'admin.notaries';
@@ -64,6 +84,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo municipalities
+	 *
+	 */
 	Route::group(['prefix' => '/municipalities'], function() 
 	{
 		$munG = 'admin.municipalities';
@@ -80,6 +104,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo deeds
+	 *
+	 */
 	Route::group(['prefix' => '/deeds'], function() 
 	{
 		$deeG = 'admin.deeds';
@@ -97,6 +125,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo agrarians
+	 *
+	 */
 	Route::group(['prefix' => '/agrarians'], function() 
 	{
 		$agrG = 'admin.agrarians';
@@ -114,6 +146,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo civils
+	 *
+	 */
 	Route::group(['prefix' => '/civils'], function() 
 	{	
 		$civG = 'admin.civils';
@@ -131,6 +167,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo records
+	 *
+	 */
 	Route::group(['prefix' => '/records'], function() 
 	{	
 		$recG = 'admin.records';
@@ -148,6 +188,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo penals
+	 *
+	 */
 	Route::group(['prefix' => '/penals'], function() 
 	{	
 		$penG = 'admin.penals';
@@ -165,6 +209,10 @@ Route::group(['prefix' => '/admin', 'before' => 'admin:admin'], function()
 		});
 	});
 
+	/**
+	 * Grupo comments
+	 *
+	 */
 	Route::group(['prefix' => '/comments'], function()
 	{
 		$comG = 'admin.comments';

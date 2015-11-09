@@ -2,8 +2,16 @@
 
 class UserController extends \BaseController {
 
+	/**
+	 * Atributos UserController
+	 *
+	 */
 	protected $user = null;
 
+	/**
+	 * Metodos de UserController
+	 *
+	 */
 	public function __construct(User $user)
 	{
 		$this->user = $user;
@@ -28,6 +36,10 @@ class UserController extends \BaseController {
 	|--------------------------------------------------------------------------
 	|
 	*/
+	/**
+	 * admin.users.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['users_index'])) {
@@ -41,6 +53,10 @@ class UserController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.users.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
@@ -54,6 +70,10 @@ class UserController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.users.role
+	 *
+	 */
 	public function getAdminRole($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
@@ -68,11 +88,15 @@ class UserController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.users.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {
 
-			$answer = User::updateUser(Input::all(), $id);
+			$answer = $this->user->updateUser(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.users.edit', $id)
@@ -88,6 +112,10 @@ class UserController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.users.role.post
+	 *
+	 */
 	public function postAdminRole($id)
 	{
 		if (Sentry::hasAnyAccess(['users_update'])) {

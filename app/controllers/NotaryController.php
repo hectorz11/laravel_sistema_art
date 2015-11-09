@@ -2,13 +2,25 @@
 
 class NotaryController extends \BaseController {
 
+	/**
+	 * Atributos de NotaryController
+	 *
+	 */
 	protected $notary = null;
 
+	/**
+	 * Metodos de NotaryController
+	 *
+	 */
 	public function __construct(Notary $notary)
 	{
 		$this->notary = $notary;
 	}
 
+	/**
+	 * admin.notaries.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['notaries_index'])) {
@@ -23,6 +35,10 @@ class NotaryController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.notaries.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['notaries_create'])) {
@@ -33,6 +49,10 @@ class NotaryController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.notaries.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['notaries_update'])) {
@@ -51,11 +71,15 @@ class NotaryController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.notaries.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['notaries_create'])) {
 
-			$answer = Notary::createNotary(Input::all());
+			$answer = $this->notary->createNotary(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.notaries.create')
@@ -71,11 +95,15 @@ class NotaryController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.notaries.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['notaries_update'])) {
 
-			$answer = Notary::updateNotary(Input::all(), $id);
+			$answer = $this->notary->updateNotary(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.notaries.edit', $id)

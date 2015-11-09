@@ -2,8 +2,17 @@
 
 class RecordController extends \BaseController {
 
+	/**
+	 * Atributos de RecordController
+	 *
+	 */
 	protected $record = null;
+	protected $municipality = null;
 
+	/**
+	 * Metodos de RecordController
+	 *
+	 */
 	public function __construct(Record $record, Municipality $municipality)
 	{
 		$this->record = $record;
@@ -16,6 +25,10 @@ class RecordController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * admin.records.index
+	 *
+	 */
 	public function getAdminIndex()
 	{
 		if (Sentry::hasAnyAccess(['records_index'])) {
@@ -57,6 +70,10 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.records.create
+	 *
+	 */
 	public function getAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['records_create'])) {
@@ -69,6 +86,10 @@ class RecordController extends \BaseController {
 			return Redirect::route('pages.error'); }
 	}
 
+	/**
+	 * admin.records.edit
+	 *
+	 */
 	public function getAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['records_update'])) {
@@ -88,6 +109,10 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.records.modal.data
+	 *
+	 */
 	public function getAdminModalData()
 	{
 		if (Input::has('records')) {
@@ -104,11 +129,15 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.records.store
+	 *
+	 */
 	public function postAdminCreate()
 	{
 		if (Sentry::hasAnyAccess(['records_create'])) {
 
-			$answer = Record::createRecord(Input::all());
+			$answer = $this->record->createRecord(Input::all());
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.records.create')
@@ -124,11 +153,15 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.records.update
+	 *
+	 */
 	public function putAdminUpdate($id)
 	{
 		if (Sentry::hasAnyAccess(['records_update'])) {
 
-			$answer = Record::updateRecord(Input::all(), $id);
+			$answer = $this->record->updateRecord(Input::all(), $id);
 
 			if ($answer['error'] == true) {
 				return Redirect::route('admin.records.edit', $id)
@@ -144,12 +177,16 @@ class RecordController extends \BaseController {
 		}
 	}
 
+	/**
+	 * admin.records.delete
+	 *
+	 */
 	public function deleteAdminDelete($id)
 	{
 		if (Sentry::hasAnyAccess(['records_delete'])) {
 
 			$idRecord = Input::get('idRecord');
-			$record = Record::find($idRecord);
+			$record = $this->record->selectRecord($idRecord);
 			$record->status = 0;
 			$record->save();
 
@@ -167,6 +204,10 @@ class RecordController extends \BaseController {
 	!------------------------------------------------------------------------------
 	!
 	*/
+	/**
+	 * users.records.index
+	 *
+	 */
 	public function getUserIndex()
 	{
 		if (Sentry::hasAnyAccess(['users'])) {
