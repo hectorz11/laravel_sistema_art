@@ -130,7 +130,7 @@ return array(
 		'Doxxon\LaravelMandrillRequest\LaravelMandrillRequestServiceProvider',
 		//
 		'Tappleby\AuthToken\AuthTokenServiceProvider',
-		
+
 	),
 
 	/*
