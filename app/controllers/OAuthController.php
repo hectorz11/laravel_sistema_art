@@ -70,7 +70,7 @@ class OAuthController extends \BaseController {
 				$user = Sentry::findGroupByName('usuario');
 
 				if($sentry->inGroup($user)) {
-					return Redirect::route('user.dashboard');
+					return Redirect::route('users.dashboard');
 				}
 			}
 		}
@@ -194,7 +194,7 @@ class OAuthController extends \BaseController {
 				$user = Sentry::findGroupByName('usuario');
 
 				if($sentry->inGroup($user)) {
-					return Redirect::route('user.dashboard');
+					return Redirect::route('users.dashboard');
 				}
 			}
 		}
@@ -267,7 +267,7 @@ class OAuthController extends \BaseController {
 				$user = Sentry::findGroupByName('usuario');
 
 				if($sentry->inGroup($user)) {
-					return Redirect::route('user.dashboard');
+					return Redirect::route('users.dashboard');
 				}
 			}
 	}
