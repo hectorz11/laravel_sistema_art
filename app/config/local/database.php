@@ -34,9 +34,9 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'homestead',
-			'username' => 'homestead',
-			'password' => 'secret',
+			'database' => 'sistema_art',
+			'username' => 'ArchivoRegionalTacna',
+			'password' => 'archivoregionaltacna',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
