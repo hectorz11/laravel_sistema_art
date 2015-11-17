@@ -4,6 +4,7 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
+		"php": "~5.5.0",
 		"laravel/framework": "4.2.*",
 		"cartalyst/sentry": "2.1.*",
 		"chumper/datatable": "2.*",
